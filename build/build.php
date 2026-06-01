@@ -74,7 +74,14 @@ if (in_array('--js', $argv, true)) {
     echo implode("\n", array_slice($twOut, -2)) . "\n";
     echo $twCode === 0 ? "✓ assets/tailwind.css built\n" : "✗ tailwind failed (code {$twCode}) — run it manually\n";
 
-    $cmd = 'npx --yes esbuild assets/app.js --bundle --format=iife --target=es2020 --outfile=assets/bundle.js 2>&1';
+    // web-tree-sitter ships a universal (node + web) Emscripten loader that
+    // references node built-ins behind runtime guards; mark them external so
+    // the browser bundle builds (the node code paths never run in-page).
+    $nodeExternals = implode(' ', array_map(
+        static fn (string $m): string => "--external:{$m}",
+        ['module', 'fs', 'fs/promises', 'path', 'url', 'crypto', 'worker_threads', 'os', 'util', 'child_process', 'perf_hooks'],
+    ));
+    $cmd = "npx --yes esbuild assets/app.js --bundle --format=iife --target=es2020 {$nodeExternals} --outfile=assets/bundle.js 2>&1";
     echo "→ {$cmd}\n";
     exec($cmd, $lines, $code);
     echo implode("\n", $lines) . "\n";

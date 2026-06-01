@@ -10,12 +10,12 @@ $bindings = [
     ['name' => 'Python',          'slug' => 'python', 'ref' => false, 'cmd' => 'pip install ktav',                              'repo' => 'https://github.com/ktav-lang/python'],
     ['name' => 'Go',              'slug' => 'go',     'ref' => false, 'cmd' => 'go get github.com/ktav-lang/golang',            'repo' => 'https://github.com/ktav-lang/golang'],
     ['name' => 'PHP',             'slug' => 'php',    'ref' => false, 'cmd' => 'composer require ktav-lang/ktav',               'repo' => 'https://github.com/ktav-lang/php',    'note' => 'needs ext-ffi', 'noteTitle' => 'Requires the PHP FFI extension (ext-ffi); no extension compilation on the consumer side'],
-    ['name' => 'Java / JVM',      'slug' => 'java',   'ref' => false, 'cmd' => 'implementation("io.github.ktav-lang:ktav:0.5.0")', 'repo' => 'https://github.com/ktav-lang/java', 'note' => 'JDK 17 · JNA', 'noteTitle' => 'Gradle/Maven coordinate io.github.ktav-lang:ktav (Maven Central publication planned); needs JDK 17 and the JNA runtime'],
+    ['name' => 'Java / JVM',      'slug' => 'java',   'ref' => false, 'cmd' => 'implementation("io.github.ktav-lang:ktav:0.6.0")', 'repo' => 'https://github.com/ktav-lang/java', 'note' => 'JDK 17 · JNA', 'noteTitle' => 'Gradle/Maven coordinate io.github.ktav-lang:ktav (Maven Central publication planned); needs JDK 17 and the JNA runtime'],
     ['name' => 'C# / .NET',       'slug' => 'dotnet', 'ref' => false, 'cmd' => 'dotnet add package Ktav',                       'repo' => 'https://github.com/ktav-lang/csharp'],
 ];
 
-$VSIX = 'https://github.com/ktav-lang/editor/releases/download/v0.5.0/ktav-0.5.0.vsix';
-$JB   = 'https://github.com/ktav-lang/editor/releases/download/intellij-v0.5.1/ktav-intellij-0.5.1%2B20260531-1420.zip';
+$VSIX = 'https://github.com/ktav-lang/editor/releases/download/v0.6.0/ktav-0.6.0.vsix';
+$JB   = 'https://github.com/ktav-lang/editor/releases/download/v0.6.0/ktav-intellij-0.6.0%2B20260601-2129.zip';
 ?>
     <section id="bindings" class="max-w-6xl mx-auto px-5 py-12 sm:py-16">
         <div class="text-center mb-8">

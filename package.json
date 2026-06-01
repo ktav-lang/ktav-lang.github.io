@@ -1,0 +1,20 @@
+{
+  "name": "ktav-site",
+  "version": "0.6.0",
+  "private": true,
+  "description": "Build-time dependencies for the ktav-lang landing page (CodeMirror 6 editor + tree-sitter highlighting). The site itself ships self-contained — these are only needed for `php build/build.php --js`.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "devDependencies": {
+    "@codemirror/commands": "^6.8.0",
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lang-yaml": "^6.1.2",
+    "@codemirror/language": "^6.10.8",
+    "@codemirror/legacy-modes": "^6.4.2",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/view": "^6.36.4",
+    "@lezer/highlight": "^1.2.1",
+    "esbuild": "^0.25.0",
+    "web-tree-sitter": "0.26.8"
+  }
+}

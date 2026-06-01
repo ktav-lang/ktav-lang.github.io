@@ -1,5 +1,5 @@
 import { convert, FORMATS, FORMAT_LABELS, ensureKtav } from "./converter.js";
-import { createEditor } from "./editor.js";
+import { createEditor } from "./cm-editor.js";
 
 // ── Representative samples (one small service config, per format) ──────
 // Code samples stay language-neutral across UI locales.
