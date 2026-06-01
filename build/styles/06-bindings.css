@@ -1,0 +1,47 @@
+/* "Get it in your language" — the seven-binding install list. */
+
+.binding-list { list-style: none; margin: 0; padding: 0.4rem; }
+.binding-row {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    padding: 0.85rem 0.9rem; border-radius: 14px;
+    transition: background 0.18s ease;
+}
+.binding-row + .binding-row { border-top: 1px solid var(--line); }
+.binding-row:hover { background: rgba(255, 255, 255, 0.03); }
+html[data-theme="light"] .binding-row:hover { background: rgba(20, 16, 45, 0.03); }
+.binding-row.is-ref { background: rgba(124, 58, 237, 0.07); }
+
+.binding-head { display: flex; align-items: center; gap: 0.65rem; }
+.lang-icon { width: 24px; height: 24px; flex: none; color: var(--ink); }
+.binding-name { font-weight: 700; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.binding-name:hover { color: var(--violet); }
+.binding-note {
+    padding: 0.1rem 0.45rem; border-radius: 999px;
+    font: 600 0.6rem var(--sans); letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--ink-faint); background: var(--glass-2); border: 1px solid var(--line-strong);
+}
+.binding-ref {
+    margin-left: auto; padding: 0.12rem 0.45rem; border-radius: 999px;
+    font: 700 0.6rem var(--sans); letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--violet); background: rgba(167, 139, 250, 0.16); border: 1px solid rgba(167, 139, 250, 0.32);
+}
+.cmd {
+    display: block; width: 100%;
+    font: 500 0.82rem var(--mono); color: var(--ink-dim);
+    background: var(--editor-bg); border: 1px solid var(--line);
+    border-radius: 10px; padding: 0.5rem 0.7rem; cursor: pointer;
+    white-space: normal; word-break: break-word;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.cmd:hover { color: var(--ink); border-color: var(--line-strong); }
+.cmd .prompt { color: var(--ink-faint); user-select: none; }
+.cmd.copied { color: var(--green); border-color: rgba(134, 239, 172, 0.5); }
+.cmd.copied::after { content: " ✓ copied"; color: var(--green); font-size: 0.72rem; }
+
+/* roomy two-column rows once there's width: name | command */
+@media (min-width: 640px) {
+    .binding-row { flex-direction: row; align-items: center; gap: 1.1rem; }
+    .binding-head { width: 16rem; flex: none; flex-wrap: nowrap; }
+    .binding-note, .binding-ref { flex: none; }
+    .cmd { flex: 1; }
+}

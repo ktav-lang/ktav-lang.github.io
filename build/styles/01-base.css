@@ -1,0 +1,97 @@
+/* Design tokens, theme overrides, reset and document base. */
+
+:root {
+    --bg-0: #07060d;
+    --bg-1: #0c0a1a;
+    --ink: #e7e3f4;
+    --ink-dim: #a39fb8;
+    --ink-faint: #6f6a86;
+    --line: rgba(255, 255, 255, 0.09);
+    --line-strong: rgba(255, 255, 255, 0.16);
+    --glass: rgba(255, 255, 255, 0.045);
+    --glass-2: rgba(255, 255, 255, 0.06);
+    --violet: #a78bfa;
+    --cyan: #5eead4;
+    --pink: #f0abfc;
+    --amber: #fcd34d;
+    --green: #86efac;
+
+    /* editor surface + syntax tokens (overridden per theme) */
+    --editor-bg: rgba(7, 6, 13, 0.55);
+    --t-comment: #6f6a86;
+    --t-key: #5eead4;
+    --t-marker: #f0abfc;
+    --t-punct: #8b87a3;
+    --t-string: #86efac;
+    --t-mstring: #b9f6ca;
+    --t-num: #fcd34d;
+    --t-bool: #c4b5fd;
+    --t-null: #f9a8d4;
+    --t-section: #a78bfa;
+
+    /* brand mark (the {ktav: lang} coin) — recolours per theme */
+    --icon-bg: #0e0c1c;
+    --icon-stroke: rgba(167, 139, 250, 0.5);
+    --icon-accent: #6ea8ff;
+
+    --shadow-card: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ── Light theme ───────────────────────────────────────────────────── */
+html[data-theme="light"] {
+    --bg-0: #eef0f7;
+    --bg-1: #f7f7fc;
+    --ink: #1a1730;
+    --ink-dim: #4f4a66;
+    --ink-faint: #837e98;
+    --line: rgba(20, 16, 45, 0.10);
+    --line-strong: rgba(20, 16, 45, 0.16);
+    --glass: rgba(255, 255, 255, 0.55);
+    --glass-2: rgba(255, 255, 255, 0.7);
+    --violet: #7c3aed;
+    --cyan: #0e7490;
+    --pink: #c026d3;
+    --amber: #b45309;
+    --green: #15803d;
+
+    --editor-bg: rgba(255, 255, 255, 0.66);
+    --t-comment: #8a86a0;
+    --t-key: #0e7490;
+    --t-marker: #c026d3;
+    --t-punct: #6b6880;
+    --t-string: #15803d;
+    --t-mstring: #047857;
+    --t-num: #b45309;
+    --t-bool: #6d28d9;
+    --t-null: #be185d;
+    --t-section: #7c3aed;
+
+    --icon-bg: #fbfafd;
+    --icon-stroke: #cbcaf5;
+    --icon-accent: #2f88ff;
+
+    --shadow-card: 0 24px 60px -28px rgba(60, 40, 120, 0.35);
+    color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--bg-0);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bg-mesh { animation: none; }
+    .fade-in { animation: none; }
+}

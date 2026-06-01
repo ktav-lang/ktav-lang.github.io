@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <style>
+    .coin { fill: #fbfafd; stroke: #cbcaf5; }
+    .word { fill: #14142b; }
+    .brace, .lang { fill: #5860f8; }
+    .colon { fill: #2f88ff; }
+    @media (prefers-color-scheme: dark) {
+      .coin { fill: #0e0c1c; stroke: #6b63d9; }
+      .word { fill: #e7e3f4; }
+      .brace, .lang { fill: #a78bfa; }
+      .colon { fill: #6ea8ff; }
+    }
+  </style>
+  <circle class="coin" cx="100" cy="100" r="86" stroke-width="6"/>
+  <text x="100" y="100" text-anchor="middle" dominant-baseline="central"
+        textLength="150" lengthAdjust="spacingAndGlyphs"
+        font-family="'JetBrains Mono','DejaVu Sans Mono','Consolas','Courier New',monospace"
+        font-size="34" font-weight="700"><tspan class="brace">{</tspan><tspan class="word"> ktav</tspan><tspan class="colon">:</tspan><tspan class="lang"> lang </tspan><tspan class="brace">}</tspan></text>
+</svg>

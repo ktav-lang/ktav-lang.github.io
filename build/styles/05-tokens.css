@@ -1,0 +1,12 @@
+/* Syntax-highlight token colours (shared by all five formats). */
+
+.tok-comment { color: var(--t-comment); font-style: italic; }
+.tok-key     { color: var(--t-key); }
+.tok-marker  { color: var(--t-marker); font-weight: 600; }
+.tok-punct   { color: var(--t-punct); }
+.tok-string  { color: var(--t-string); }
+.tok-mstring { color: var(--t-mstring); }
+.tok-num     { color: var(--t-num); }
+.tok-bool    { color: var(--t-bool); font-weight: 600; }
+.tok-null    { color: var(--t-null); font-weight: 600; }
+.tok-section { color: var(--t-section); font-weight: 700; }

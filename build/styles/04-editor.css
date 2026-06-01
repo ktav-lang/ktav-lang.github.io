@@ -1,0 +1,46 @@
+/* Highlighted editor: transparent textarea stacked over a coloured <pre>. */
+
+.editor {
+    position: relative;
+    min-height: 30rem;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--editor-bg);
+    border: 1px solid var(--line);
+}
+.editor-hl, .editor-input {
+    position: absolute; inset: 0; margin: 0;
+    padding: 1rem 1.1rem;
+    font-family: var(--mono);
+    font-size: 13px; line-height: 1.62;
+    letter-spacing: 0.1px;
+    tab-size: 2; -moz-tab-size: 2;
+    white-space: pre; word-wrap: normal;
+    border: 0; outline: none;
+}
+.editor-hl {
+    z-index: 1; overflow: hidden; pointer-events: none;
+    color: var(--ink);
+}
+.editor-hl code { font: inherit; white-space: inherit; }
+.editor-input {
+    z-index: 2; overflow: auto; resize: none;
+    background: transparent; color: transparent;
+    caret-color: var(--pink);
+}
+.editor-input::placeholder { color: var(--ink-faint); }
+.editor-input::selection { background: rgba(167, 139, 250, 0.32); }
+/* the output editor is read-only: selectable & copyable, but not typed into */
+.editor-input[readonly] { caret-color: transparent; cursor: default; }
+.editor:focus-within { border-color: rgba(167, 139, 250, 0.5); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12); }
+
+/* thin scrollbars */
+.editor-input::-webkit-scrollbar { width: 9px; height: 9px; }
+.editor-input::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 99px; }
+.editor-input::-webkit-scrollbar-track { background: transparent; }
+html[data-theme="light"] .editor-input::-webkit-scrollbar-thumb { background: rgba(20, 16, 45, 0.18); }
+
+@media (max-width: 860px) {
+    .editor { min-height: 22rem; }
+}

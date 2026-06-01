@@ -1,0 +1,39 @@
+/* Animated mesh-gradient backdrop + fine grain overlay. */
+
+.bg-mesh {
+    position: fixed;
+    inset: -20vh -20vw;
+    z-index: -2;
+    background:
+        radial-gradient(40vw 40vw at 12% 18%, rgba(124, 58, 237, 0.40), transparent 60%),
+        radial-gradient(38vw 38vw at 86% 12%, rgba(14, 165, 233, 0.30), transparent 60%),
+        radial-gradient(46vw 46vw at 78% 88%, rgba(236, 72, 153, 0.26), transparent 60%),
+        radial-gradient(40vw 40vw at 20% 92%, rgba(45, 212, 191, 0.22), transparent 60%),
+        linear-gradient(160deg, var(--bg-1), var(--bg-0));
+    filter: saturate(125%);
+    animation: drift 26s ease-in-out infinite alternate;
+    transition: opacity 0.4s ease;
+}
+html[data-theme="light"] .bg-mesh {
+    background:
+        radial-gradient(40vw 40vw at 12% 18%, rgba(124, 58, 237, 0.20), transparent 60%),
+        radial-gradient(38vw 38vw at 86% 12%, rgba(14, 165, 233, 0.16), transparent 60%),
+        radial-gradient(46vw 46vw at 78% 88%, rgba(236, 72, 153, 0.14), transparent 60%),
+        radial-gradient(40vw 40vw at 20% 92%, rgba(45, 212, 191, 0.14), transparent 60%),
+        linear-gradient(160deg, var(--bg-1), var(--bg-0));
+}
+html[data-theme="light"] .bg-grain { opacity: 0.025; }
+@keyframes drift {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    50%  { transform: translate3d(2%, -1.5%, 0) scale(1.06); }
+    100% { transform: translate3d(-2%, 1.5%, 0) scale(1.03); }
+}
+/* fine grain overlay to kill banding and add texture */
+.bg-grain {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}

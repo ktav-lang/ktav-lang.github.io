@@ -1,0 +1,21 @@
+/* Converter status line + the feature-comparison table. */
+
+.status { font: 500 0.82rem var(--sans); min-height: 1.4rem; }
+.status-ok   { color: var(--green); }
+.status-warn { color: var(--amber); }
+.status-err  { color: #fca5a5; }
+.warn-list { margin: 0.35rem 0 0; padding-left: 1.1rem; color: var(--amber); font-size: 0.78rem; line-height: 1.5; }
+
+.cmp { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.9rem; }
+.cmp th, .cmp td { padding: 0.85rem 1rem; text-align: center; border-bottom: 1px solid var(--line); }
+.cmp th:first-child, .cmp td:first-child { text-align: left; color: var(--ink); font-weight: 500; }
+.cmp thead th { font-weight: 700; color: var(--ink-dim); font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.cmp thead th.col-ktav { color: var(--violet); }
+.cmp tbody tr:hover { background: rgba(255, 255, 255, 0.03); }
+.cmp td.col-ktav { background: rgba(124, 58, 237, 0.08); }
+.cmp thead th.col-ktav, .cmp tbody td.col-ktav { border-left: 1px solid rgba(167, 139, 250, 0.25); border-right: 1px solid rgba(167, 139, 250, 0.25); }
+.mark-yes { color: var(--green); font-weight: 700; }
+.mark-no  { color: #f87171; opacity: 0.8; }
+.mark-part { color: var(--amber); font-weight: 700; }
+.cmp .cell { display: inline-flex; align-items: center; justify-content: center; gap: 0.3rem; }
+.cmp .note { display: block; font-size: 0.68rem; color: var(--ink-faint); font-weight: 400; margin-top: 0.15rem; }
