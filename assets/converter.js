@@ -103,22 +103,21 @@ function sanitize(value, target, warnings) {
     return walk(value, "");
 }
 
-// Ktav key hygiene: dotted keys are *paths*, so a literal dot in a key
-// collides with nesting; some characters can't appear in a bare key at
-// all. We warn (and let ktav itself reject the truly invalid ones).
+// Ktav key hygiene. Since spec 0.6.0 a literal `.` or `:` in a key is
+// representable — Ktav escapes them (`\.` / `\:`) so the key round-trips
+// as a single literal, not a dotted path. Whitespace, `#`, and the
+// structural brackets still can't appear in a key; we warn on those.
 function auditKtavKeys(value, warnings) {
-    const bad = /[\s:#{}\[\]]/;
+    const bad = /[\s#{}\[\]]/;
     const walk = (v, path) => {
         if (Array.isArray(v)) {
             v.forEach((item, i) => walk(item, `${path}[${i}]`));
         } else if (isPlainObject(v)) {
             for (const [k, val] of Object.entries(v)) {
-                if (k.includes(".")) {
-                    warnings.add(`key "${k}" contains a dot — Ktav reads it as a nested path, not a literal key`);
-                } else if (bad.test(k)) {
-                    warnings.add(`key "${k}" contains a character Ktav can't use in a bare key`);
-                } else if (k.length === 0) {
+                if (k.length === 0) {
                     warnings.add(`empty key encountered — not representable in Ktav`);
+                } else if (bad.test(k)) {
+                    warnings.add(`key "${k}" contains a character Ktav can't use in a key`);
                 }
                 walk(val, path ? `${path}.${k}` : k);
             }

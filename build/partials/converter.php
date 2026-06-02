@@ -14,7 +14,7 @@
         <div class="glass rounded-3xl p-4 sm:p-6">
             <div class="grid lg:grid-cols-[1fr_auto_1fr] gap-4 items-stretch">
                 <!-- source -->
-                <div class="flex flex-col gap-3">
+                <div class="flex flex-col gap-3 min-w-0">
                     <div class="flex items-center justify-between gap-2">
                         <label class="text-xs font-semibold uppercase tracking-wider" style="color:var(--ink-faint)" data-i18n="conv.source">Source</label>
                         <div class="flex items-center gap-2">
@@ -31,7 +31,7 @@
                 </div>
 
                 <!-- target -->
-                <div class="flex flex-col gap-3">
+                <div class="flex flex-col gap-3 min-w-0">
                     <div class="flex items-center justify-between gap-2">
                         <label class="text-xs font-semibold uppercase tracking-wider" style="color:var(--ink-faint)" data-i18n="conv.output">Output</label>
                         <div class="flex items-center gap-2">

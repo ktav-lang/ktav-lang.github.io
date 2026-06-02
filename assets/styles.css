@@ -288,6 +288,12 @@ html[data-theme="light"] .theme-toggle .i-moon { opacity: 0; transform: rotate(9
     position: relative;
     min-height: 30rem;
     height: 100%;
+    /* Fixed footprint: never let editor content (a long line) widen the box.
+       The grid column carries `min-w-0`; here we pin the editor to its column
+       and let CodeMirror scroll horizontally inside (`.cm-scroller`). */
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     border-radius: 16px;
     overflow: hidden;
     background: var(--editor-bg);

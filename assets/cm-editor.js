@@ -48,8 +48,13 @@ const siteHighlight = HighlightStyle.define([
 // Editor chrome — transparent so the `.editor` container's background and
 // rounded border show through; typography matches the rest of the page.
 const siteTheme = EditorView.theme({
-    "&": { height: "100%", backgroundColor: "transparent", color: "var(--ink)", fontSize: "13px" },
+    "&": {
+        height: "100%", width: "100%", maxWidth: "100%",
+        backgroundColor: "transparent", color: "var(--ink)", fontSize: "13px",
+    },
     "&.cm-focused": { outline: "none" },
+    // Horizontal scroll lives *inside* the editor — a long line never widens
+    // the box (so the two-column layout doesn't jump as content changes).
     ".cm-scroller": { fontFamily: "var(--mono)", lineHeight: "1.62", overflow: "auto" },
     ".cm-content": {
         padding: "1rem 1.1rem", caretColor: "var(--pink)",
