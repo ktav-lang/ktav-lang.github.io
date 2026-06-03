@@ -93,6 +93,42 @@ html[data-theme="dark"]  .theme-toggle .i-moon { opacity: 1; transform: none; }
 html[data-theme="light"] .theme-toggle .i-sun  { opacity: 1; transform: none; }
 html[data-theme="light"] .theme-toggle .i-moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
 
+/* nav actions: inline row on desktop, glass dropdown on mobile */
+.nav-menu { display: flex; align-items: center; gap: 0.6rem; }
+.nav-toggle {
+    display: none; place-items: center;
+    width: 42px; height: 42px; border-radius: 12px;
+    background: var(--glass-2); border: 1px solid var(--line-strong);
+    color: var(--ink); cursor: pointer;
+    transition: background 0.18s ease, transform 0.15s ease;
+}
+.nav-toggle:hover { background: rgba(255, 255, 255, 0.08); }
+.nav-toggle:active { transform: translateY(1px); }
+.nav-toggle svg { grid-area: 1 / 1; transition: opacity 0.2s ease, transform 0.25s ease; }
+.nav-toggle .i-x { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+.nav-toggle[aria-expanded="true"] .i-bars { opacity: 0; transform: rotate(90deg) scale(0.6); }
+.nav-toggle[aria-expanded="true"] .i-x { opacity: 1; transform: none; }
+
+@media (max-width: 639px) {
+    .nav-toggle { display: inline-grid; }
+    .nav-menu {
+        position: absolute; top: calc(100% + 10px); right: 0;
+        flex-direction: column; align-items: stretch; gap: 0.6rem;
+        min-width: 210px; padding: 0.9rem; border-radius: 16px;
+        background: var(--glass);
+        backdrop-filter: blur(20px) saturate(150%);
+        -webkit-backdrop-filter: blur(20px) saturate(150%);
+        border: 1px solid var(--line); box-shadow: var(--shadow-card);
+        transform-origin: top right;
+        opacity: 0; visibility: hidden; transform: translateY(-8px) scale(0.97);
+        transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+        z-index: 60;
+    }
+    .nav-menu.open { opacity: 1; visibility: visible; transform: none; }
+    .nav-menu .lang-switch { align-self: center; }
+    .nav-menu .btn { justify-content: center; width: 100%; }
+}
+
 /* language switcher */
 .lang-switch {
     display: inline-flex; gap: 2px; padding: 3px;

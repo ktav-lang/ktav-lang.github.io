@@ -44,6 +44,22 @@
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Why another config format? Isn't JSON / YAML / TOML enough?",
+              "acceptedAnswer": { "@type": "Answer", "text": "JSON is hostile to hand-edit (quotes, commas, no comments). YAML fixes ergonomics but adds traps: significant indentation and silent type coercion (the 'Norway' no→false bug). TOML splits tables vs inline. Ktav keeps JSON's shape and drops the punctuation tax without inheriting YAML's surprises." } },
+            { "@type": "Question", "name": "What makes Ktav different?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Types are inferred by strict lexical form: only true/false/null and a strict number grammar are typed; everything else is a string, and :: forces a literal. Plus dotted keys, multi-line strings, and one small spec with one parser." } },
+            { "@type": "Question", "name": "Is Ktav just another lonely format?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No. Ktav ships official parsers for 7 languages over a single Rust core, a tree-sitter grammar, an LSP, VS Code / JetBrains plugins, and a language-agnostic conformance suite — verified by tests." } },
+            { "@type": "Question", "name": "When should you not use Ktav?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Ktav is a configuration language, not a data-interchange format — don't swap it for JSON in an API. If you need schemas, types and logic inside the config, CUE or Dhall go further. Ktav stays small and readable." } }
+        ]
+    }
+    </script>
 
     <!-- Set theme + language before first paint to avoid a flash. -->
     <script>

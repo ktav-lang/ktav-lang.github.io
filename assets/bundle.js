@@ -27470,7 +27470,7 @@ motd: (
   var I18N = {
     en: {
       htmlLang: "en",
-      nav: { converter: "Converter", compare: "Compare", spec: "Spec" },
+      nav: { converter: "Converter", compare: "Compare", spec: "Spec", why: "Why ktav?" },
       hero: {
         badge: "Format + full ecosystem",
         title1: "Easy to read, type, and edit.",
@@ -27525,12 +27525,38 @@ motd: (
         editors: "Editor plugins \u2014 direct download",
         allReleases: "All releases \u2197"
       },
+      why: {
+        badge: "Why ktav?",
+        title: "Why another config format?",
+        q1: "Isn't JSON / YAML / TOML enough?",
+        a1: `JSON is hostile to hand-edit \u2014 quotes, commas, no comments. YAML fixes the
+                ergonomics but adds traps: significant indentation and silent type coercion
+                (the infamous <span class="font-mono" style="color:var(--ink)">no \u2192 false</span>
+                \u201CNorway\u201D bug). TOML is solid but splits tables vs inline. Ktav keeps JSON's
+                shape and drops the punctuation tax \u2014 without inheriting YAML's surprises.`,
+        q2: "What actually makes it different?",
+        a2: `Types are inferred by <strong style="color:var(--ink)">strict lexical form</strong>:
+                only <span class="font-mono" style="color:var(--ink)">true/false/null</span> and a
+                strict number grammar are typed \u2014 everything else is a string, and
+                <span class="font-mono" style="color:var(--ink)">::</span> forces a literal when you
+                need it. No guessing. Plus dotted keys for flat edits, multi-line strings, and one
+                small spec with one parser.`,
+        q3: "Is it just another lonely format?",
+        a3: `No \u2014 and that's the point. On day one Ktav ships official parsers for
+                <strong style="color:var(--ink)">7 languages</strong> over a single Rust core, a
+                tree-sitter grammar, an LSP, VS Code / JetBrains plugins, and a language-agnostic
+                conformance suite. Identical behaviour everywhere, verified by tests.`,
+        q4: "When should you NOT use it?",
+        a4: `Ktav is a <em>configuration</em> language, not a data-interchange format \u2014 don't
+                swap it for JSON in an API. If you need schemas, types and logic inside the config
+                itself, tools like CUE or Dhall go further. Ktav deliberately stays small and readable.`
+      },
       footer: { license: "Dual-licensed under MIT OR Apache-2.0", spec: "Specification", js: "JS / WASM", repos: "All repos" },
       status: { ok: "Converted", notes: (n2) => `Converted with ${n2} note${n2 > 1 ? "s" : ""}` }
     },
     ru: {
       htmlLang: "ru",
-      nav: { converter: "\u041A\u043E\u043D\u0432\u0435\u0440\u0442\u0435\u0440", compare: "\u0421\u0440\u0430\u0432\u043D\u0435\u043D\u0438\u0435", spec: "\u0421\u043F\u0435\u043A\u0430" },
+      nav: { converter: "\u041A\u043E\u043D\u0432\u0435\u0440\u0442\u0435\u0440", compare: "\u0421\u0440\u0430\u0432\u043D\u0435\u043D\u0438\u0435", spec: "\u0421\u043F\u0435\u043A\u0430", why: "\u0417\u0430\u0447\u0435\u043C ktav?" },
       hero: {
         badge: "\u0424\u043E\u0440\u043C\u0430\u0442 + \u0433\u043E\u0442\u043E\u0432\u0430\u044F \u044D\u043A\u043E\u0441\u0438\u0441\u0442\u0435\u043C\u0430",
         title1: "\u0423\u0434\u043E\u0431\u043D\u043E \u0447\u0438\u0442\u0430\u0442\u044C, \u043D\u0430\u0431\u0438\u0440\u0430\u0442\u044C \u0438 \u043F\u0440\u0430\u0432\u0438\u0442\u044C,",
@@ -27585,12 +27611,39 @@ motd: (
         editors: "\u041F\u043B\u0430\u0433\u0438\u043D\u044B \u0440\u0435\u0434\u0430\u043A\u0442\u043E\u0440\u043E\u0432 \u2014 \u043F\u0440\u044F\u043C\u043E\u0435 \u0441\u043A\u0430\u0447\u0438\u0432\u0430\u043D\u0438\u0435",
         allReleases: "\u0412\u0441\u0435 \u0440\u0435\u043B\u0438\u0437\u044B \u2197"
       },
+      why: {
+        badge: "\u0417\u0430\u0447\u0435\u043C ktav?",
+        title: "\u0417\u0430\u0447\u0435\u043C \u0435\u0449\u0451 \u043E\u0434\u0438\u043D \u0444\u043E\u0440\u043C\u0430\u0442 \u043A\u043E\u043D\u0444\u0438\u0433\u043E\u0432?",
+        q1: "\u0420\u0430\u0437\u0432\u0435 JSON / YAML / TOML \u043D\u0435\u0434\u043E\u0441\u0442\u0430\u0442\u043E\u0447\u043D\u043E?",
+        a1: `JSON \u043D\u0435\u0443\u0434\u043E\u0431\u043D\u043E \u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0440\u0443\u043A\u0430\u043C\u0438 \u2014 \u043A\u0430\u0432\u044B\u0447\u043A\u0438, \u0437\u0430\u043F\u044F\u0442\u044B\u0435, \u043D\u0435\u0442 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0435\u0432. YAML \u0447\u0438\u043D\u0438\u0442
+                \u044D\u0440\u0433\u043E\u043D\u043E\u043C\u0438\u043A\u0443, \u043D\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 \u043B\u043E\u0432\u0443\u0448\u043A\u0438: \u0437\u043D\u0430\u0447\u0438\u043C\u044B\u0435 \u043E\u0442\u0441\u0442\u0443\u043F\u044B \u0438 \u0442\u0438\u0445\u043E\u0435 \u043F\u0440\u0438\u0432\u0435\u0434\u0435\u043D\u0438\u0435 \u0442\u0438\u043F\u043E\u0432
+                (\u043F\u0435\u0447\u0430\u043B\u044C\u043D\u043E \u0438\u0437\u0432\u0435\u0441\u0442\u043D\u044B\u0439 \u0431\u0430\u0433 \xABNorway\xBB:
+                <span class="font-mono" style="color:var(--ink)">no \u2192 false</span>). TOML \u0445\u043E\u0440\u043E\u0448, \u043D\u043E
+                \u0434\u0435\u043B\u0438\u0442 \u0442\u0430\u0431\u043B\u0438\u0446\u044B \u0438 inline. Ktav \u0441\u043E\u0445\u0440\u0430\u043D\u044F\u0435\u0442 \u0444\u043E\u0440\u043C\u0443 JSON \u0438 \u0443\u0431\u0438\u0440\u0430\u0435\u0442 \xAB\u043F\u0443\u043D\u043A\u0442\u0443\u0430\u0446\u0438\u043E\u043D\u043D\u044B\u0439 \u043D\u0430\u043B\u043E\u0433\xBB \u2014
+                \u043D\u0435 \u043D\u0430\u0441\u043B\u0435\u0434\u0443\u044F \u0441\u044E\u0440\u043F\u0440\u0438\u0437\u043E\u0432 YAML.`,
+        q2: "\u0427\u0435\u043C \u043E\u043D \u0440\u0435\u0430\u043B\u044C\u043D\u043E \u043E\u0442\u043B\u0438\u0447\u0430\u0435\u0442\u0441\u044F?",
+        a2: `\u0422\u0438\u043F\u044B \u0432\u044B\u0432\u043E\u0434\u044F\u0442\u0441\u044F <strong style="color:var(--ink)">\u0441\u0442\u0440\u043E\u0433\u043E \u043F\u043E \u043B\u0435\u043A\u0441\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0444\u043E\u0440\u043C\u0435</strong>:
+                \u0442\u0438\u043F\u0438\u0437\u0438\u0440\u0443\u044E\u0442\u0441\u044F \u0442\u043E\u043B\u044C\u043A\u043E <span class="font-mono" style="color:var(--ink)">true/false/null</span>
+                \u0438 \u0441\u0442\u0440\u043E\u0433\u0430\u044F \u0433\u0440\u0430\u043C\u043C\u0430\u0442\u0438\u043A\u0430 \u0447\u0438\u0441\u0435\u043B \u2014 \u0432\u0441\u0451 \u043E\u0441\u0442\u0430\u043B\u044C\u043D\u043E\u0435 \u0441\u0442\u0440\u043E\u043A\u0430, \u0430
+                <span class="font-mono" style="color:var(--ink)">::</span> \u0444\u043E\u0440\u0441\u0438\u0442 \u043B\u0438\u0442\u0435\u0440\u0430\u043B, \u043A\u043E\u0433\u0434\u0430 \u043D\u0443\u0436\u043D\u043E.
+                \u041D\u0438\u043A\u0430\u043A\u043E\u0433\u043E \u0443\u0433\u0430\u0434\u044B\u0432\u0430\u043D\u0438\u044F. \u041F\u043B\u044E\u0441 \u0442\u043E\u0447\u0435\u0447\u043D\u044B\u0435 \u043A\u043B\u044E\u0447\u0438 \u0434\u043B\u044F \u043F\u043B\u043E\u0441\u043A\u0438\u0445 \u043F\u0440\u0430\u0432\u043E\u043A, \u043C\u043D\u043E\u0433\u043E\u0441\u0442\u0440\u043E\u0447\u043D\u044B\u0435 \u0441\u0442\u0440\u043E\u043A\u0438 \u0438
+                \u043E\u0434\u043D\u0430 \u043C\u0430\u043B\u0435\u043D\u044C\u043A\u0430\u044F \u0441\u043F\u0435\u043A\u0430 \u0441 \u043E\u0434\u043D\u0438\u043C \u043F\u0430\u0440\u0441\u0435\u0440\u043E\u043C.`,
+        q3: "\u042D\u0442\u043E \u043F\u0440\u043E\u0441\u0442\u043E \u0435\u0449\u0451 \u043E\u0434\u0438\u043D \u043E\u0434\u0438\u043D\u043E\u043A\u0438\u0439 \u0444\u043E\u0440\u043C\u0430\u0442?",
+        a3: `\u041D\u0435\u0442 \u2014 \u0438 \u0432 \u044D\u0442\u043E\u043C \u0441\u0443\u0442\u044C. \u0421 \u043F\u0435\u0440\u0432\u043E\u0433\u043E \u0434\u043D\u044F \u0443 Ktav \u043E\u0444\u0438\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0435 \u043F\u0430\u0440\u0441\u0435\u0440\u044B \u043D\u0430
+                <strong style="color:var(--ink)">7 \u044F\u0437\u044B\u043A\u0430\u0445</strong> \u043D\u0430\u0434 \u0435\u0434\u0438\u043D\u044B\u043C \u044F\u0434\u0440\u043E\u043C \u043D\u0430 Rust,
+                \u0433\u0440\u0430\u043C\u043C\u0430\u0442\u0438\u043A\u0430 tree-sitter, LSP, \u043F\u043B\u0430\u0433\u0438\u043D\u044B VS Code / JetBrains \u0438 \u044F\u0437\u044B\u043A-\u0430\u0433\u043D\u043E\u0441\u0442\u0438\u0447\u043D\u044B\u0439
+                conformance-suite. \u041E\u0434\u0438\u043D\u0430\u043A\u043E\u0432\u043E\u0435 \u043F\u043E\u0432\u0435\u0434\u0435\u043D\u0438\u0435 \u0432\u0435\u0437\u0434\u0435, \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0451\u043D\u043D\u043E\u0435 \u0442\u0435\u0441\u0442\u0430\u043C\u0438.`,
+        q4: "\u041A\u043E\u0433\u0434\u0430 \u0435\u0433\u043E \u041D\u0415 \u0441\u0442\u043E\u0438\u0442 \u0431\u0440\u0430\u0442\u044C?",
+        a4: `Ktav \u2014 \u044F\u0437\u044B\u043A <em>\u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0446\u0438\u0438</em>, \u0430 \u043D\u0435 \u0444\u043E\u0440\u043C\u0430\u0442 \u043E\u0431\u043C\u0435\u043D\u0430 \u0434\u0430\u043D\u043D\u044B\u043C\u0438: \u043D\u0435 \u043C\u0435\u043D\u044F\u0439 \u0438\u043C JSON \u0432 API.
+                \u0415\u0441\u043B\u0438 \u043D\u0443\u0436\u043D\u044B \u0441\u0445\u0435\u043C\u044B, \u0442\u0438\u043F\u044B \u0438 \u043B\u043E\u0433\u0438\u043A\u0430 \u0432\u043D\u0443\u0442\u0440\u0438 \u0441\u0430\u043C\u043E\u0433\u043E \u043A\u043E\u043D\u0444\u0438\u0433\u0430 \u2014 CUE \u0438\u043B\u0438 Dhall \u0434\u0430\u044E\u0442 \u0431\u043E\u043B\u044C\u0448\u0435.
+                Ktav \u043D\u0430\u043C\u0435\u0440\u0435\u043D\u043D\u043E \u043E\u0441\u0442\u0430\u0451\u0442\u0441\u044F \u043C\u0430\u043B\u0435\u043D\u044C\u043A\u0438\u043C \u0438 \u0447\u0438\u0442\u0430\u0435\u043C\u044B\u043C.`
+      },
       footer: { license: "\u0414\u0432\u043E\u0439\u043D\u0430\u044F \u043B\u0438\u0446\u0435\u043D\u0437\u0438\u044F MIT OR Apache-2.0", spec: "\u0421\u043F\u0435\u0446\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u044F", js: "JS / WASM", repos: "\u0412\u0441\u0435 \u0440\u0435\u043F\u043E\u0437\u0438\u0442\u043E\u0440\u0438\u0438" },
       status: { ok: "\u0413\u043E\u0442\u043E\u0432\u043E", notes: (n2) => `\u0413\u043E\u0442\u043E\u0432\u043E, \u0437\u0430\u043C\u0435\u0447\u0430\u043D\u0438\u0439: ${n2}` }
     },
     zh: {
       htmlLang: "zh",
-      nav: { converter: "\u8F6C\u6362\u5668", compare: "\u5BF9\u6BD4", spec: "\u89C4\u8303" },
+      nav: { converter: "\u8F6C\u6362\u5668", compare: "\u5BF9\u6BD4", spec: "\u89C4\u8303", why: "\u4E3A\u4EC0\u4E48\u7528 ktav\uFF1F" },
       hero: {
         badge: "\u683C\u5F0F + \u5B8C\u6574\u751F\u6001",
         title1: "\u6613\u8BFB\u3001\u6613\u5199\u3001\u6613\u6539\u7684\u914D\u7F6E\uFF0C",
@@ -27643,6 +27696,29 @@ motd: (
         reference: "\u53C2\u8003\u5B9E\u73B0",
         editors: "\u7F16\u8F91\u5668\u63D2\u4EF6 \u2014 \u76F4\u63A5\u4E0B\u8F7D",
         allReleases: "\u5168\u90E8\u53D1\u5E03 \u2197"
+      },
+      why: {
+        badge: "\u4E3A\u4EC0\u4E48\u7528 ktav\uFF1F",
+        title: "\u4E3A\u4EC0\u4E48\u53C8\u4E00\u4E2A\u914D\u7F6E\u683C\u5F0F\uFF1F",
+        q1: "JSON / YAML / TOML \u8FD8\u4E0D\u591F\u5417\uFF1F",
+        a1: `JSON \u96BE\u4EE5\u624B\u5199\u2014\u2014\u5F15\u53F7\u3001\u9017\u53F7\u3001\u6CA1\u6709\u6CE8\u91CA\u3002YAML \u6539\u5584\u4E86\u4E66\u5199\u4F53\u9A8C\uFF0C\u5374\u5E26\u6765\u9677\u9631\uFF1A\u7F29\u8FDB\u6709\u610F\u4E49\u3001
+                \u7C7B\u578B\u88AB\u6084\u6084\u8F6C\u6362\uFF08\u81ED\u540D\u662D\u8457\u7684
+                <span class="font-mono" style="color:var(--ink)">no \u2192 false</span>\u300CNorway\u300D\u95EE\u9898\uFF09\u3002
+                TOML \u4E0D\u9519\uFF0C\u4F46\u533A\u5206\u8868\u4E0E\u5185\u8054\u3002Ktav \u4FDD\u7559 JSON \u7684\u7ED3\u6784\u3001\u53BB\u6389\u6807\u70B9\u8D1F\u62C5\u2014\u2014\u53C8\u4E0D\u7EE7\u627F YAML \u7684\u610F\u5916\u3002`,
+        q2: "\u5B83\u5230\u5E95\u6709\u4F55\u4E0D\u540C\uFF1F",
+        a2: `\u7C7B\u578B\u6309<strong style="color:var(--ink)">\u4E25\u683C\u7684\u8BCD\u6CD5\u5F62\u5F0F</strong>\u63A8\u65AD\uFF1A\u53EA\u6709
+                <span class="font-mono" style="color:var(--ink)">true/false/null</span> \u548C\u4E25\u683C\u7684\u6570\u5B57\u8BED\u6CD5
+                \u4F1A\u88AB\u5B9A\u578B\u2014\u2014\u5176\u4F59\u90FD\u662F\u5B57\u7B26\u4E32\uFF0C\u9700\u8981\u65F6\u7528
+                <span class="font-mono" style="color:var(--ink)">::</span> \u5F3A\u5236\u4E3A\u5B57\u9762\u91CF\u3002\u7EDD\u4E0D\u9760\u731C\u3002
+                \u53E6\u6709\u70B9\u5F0F\u952E\u4FBF\u4E8E\u6241\u5E73\u7F16\u8F91\u3001\u591A\u884C\u5B57\u7B26\u4E32\uFF0C\u4EE5\u53CA\u4E00\u4EFD\u7CBE\u7B80\u89C4\u8303\u3001\u4E00\u4E2A\u89E3\u6790\u5668\u3002`,
+        q3: "\u5B83\u53EA\u662F\u53C8\u4E00\u4E2A\u5B64\u96F6\u96F6\u7684\u683C\u5F0F\u5417\uFF1F",
+        a3: `\u4E0D\u662F\u2014\u2014\u8FD9\u6B63\u662F\u91CD\u70B9\u3002Ktav \u4ECE\u7B2C\u4E00\u5929\u8D77\u5C31\u63D0\u4F9B
+                <strong style="color:var(--ink)">7 \u79CD\u8BED\u8A00</strong>\u7684\u5B98\u65B9\u89E3\u6790\u5668\uFF08\u57FA\u4E8E\u540C\u4E00\u4E2A Rust \u5185\u6838\uFF09\u3001
+                tree-sitter \u8BED\u6CD5\u3001LSP\u3001VS Code / JetBrains \u63D2\u4EF6\uFF0C\u4EE5\u53CA\u4E00\u5957\u8BED\u8A00\u65E0\u5173\u7684\u4E00\u81F4\u6027\u6D4B\u8BD5\u96C6\u3002
+                \u5404\u5904\u884C\u4E3A\u4E00\u81F4\uFF0C\u5E76\u7531\u6D4B\u8BD5\u4FDD\u8BC1\u3002`,
+        q4: "\u4EC0\u4E48\u65F6\u5019\u4E0D\u8BE5\u7528\u5B83\uFF1F",
+        a4: `Ktav \u662F<em>\u914D\u7F6E</em>\u8BED\u8A00\uFF0C\u800C\u975E\u6570\u636E\u4EA4\u6362\u683C\u5F0F\u2014\u2014\u522B\u5728 API \u91CC\u7528\u5B83\u66FF\u4EE3 JSON\u3002
+                \u82E5\u4F60\u9700\u8981\u5728\u914D\u7F6E\u5185\u7F6E\u6A21\u5F0F\u3001\u7C7B\u578B\u4E0E\u903B\u8F91\uFF0CCUE \u6216 Dhall \u8D70\u5F97\u66F4\u8FDC\u3002Ktav \u523B\u610F\u4FDD\u6301\u5C0F\u5DE7\u800C\u6613\u8BFB\u3002`
       },
       footer: { license: "\u53CC\u91CD\u8BB8\u53EF MIT OR Apache-2.0", spec: "\u89C4\u8303", js: "JS / WASM", repos: "\u5168\u90E8\u4ED3\u5E93" },
       status: { ok: "\u5DF2\u8F6C\u6362", notes: (n2) => `\u5DF2\u8F6C\u6362\uFF0C\u6709 ${n2} \u6761\u63D0\u793A` }
@@ -27767,6 +27843,28 @@ motd: (
     } catch {
     }
   });
+  var navToggle = $2("#nav-toggle");
+  var navMenu = $2("#nav-menu");
+  function setMenu(open) {
+    if (!navMenu || !navToggle) return;
+    navMenu.classList.toggle("open", open);
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  navToggle?.addEventListener("click", (e2) => {
+    e2.stopPropagation();
+    setMenu(!navMenu.classList.contains("open"));
+  });
+  navMenu?.addEventListener("click", (e2) => {
+    if (e2.target.closest("a")) setMenu(false);
+  });
+  document.addEventListener("click", (e2) => {
+    if (navMenu?.classList.contains("open") && !e2.target.closest("#nav-menu") && !e2.target.closest("#nav-toggle")) {
+      setMenu(false);
+    }
+  });
+  document.addEventListener("keydown", (e2) => {
+    if (e2.key === "Escape") setMenu(false);
+  });
   document.addEventListener("click", (e2) => {
     const el = e2.target.closest(".cmd");
     if (!el) return;
@@ -27786,6 +27884,7 @@ motd: (
       } catch {
       }
       applyI18n();
+      setMenu(false);
     });
   }
   applyI18n();

@@ -46,6 +46,22 @@
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Why another config format? Isn't JSON / YAML / TOML enough?",
+              "acceptedAnswer": { "@type": "Answer", "text": "JSON is hostile to hand-edit (quotes, commas, no comments). YAML fixes ergonomics but adds traps: significant indentation and silent type coercion (the 'Norway' no→false bug). TOML splits tables vs inline. Ktav keeps JSON's shape and drops the punctuation tax without inheriting YAML's surprises." } },
+            { "@type": "Question", "name": "What makes Ktav different?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Types are inferred by strict lexical form: only true/false/null and a strict number grammar are typed; everything else is a string, and :: forces a literal. Plus dotted keys, multi-line strings, and one small spec with one parser." } },
+            { "@type": "Question", "name": "Is Ktav just another lonely format?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No. Ktav ships official parsers for 7 languages over a single Rust core, a tree-sitter grammar, an LSP, VS Code / JetBrains plugins, and a language-agnostic conformance suite — verified by tests." } },
+            { "@type": "Question", "name": "When should you not use Ktav?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Ktav is a configuration language, not a data-interchange format — don't swap it for JSON in an API. If you need schemas, types and logic inside the config, CUE or Dhall go further. Ktav stays small and readable." } }
+        ]
+    }
+    </script>
 
     <!-- Set theme + language before first paint to avoid a flash. -->
     <script>
@@ -92,21 +108,30 @@
                     <svg class="i-sun" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M2 12h2.5M19.5 12H22M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77"/></svg>
                 </button>
 
-                <!-- right: language switcher + links -->
-                <div class="justify-self-end flex items-center gap-2 sm:gap-3">
-                    <div class="lang-switch" role="group" aria-label="Language">
-                        <button class="lang-btn" data-lang="en" title="English" aria-label="English">
-                            <svg viewBox="0 0 22 15" class="flag"><rect width="22" height="15" fill="#B22234"/><g fill="#fff"><rect y="1.15" width="22" height="1.15"/><rect y="3.46" width="22" height="1.15"/><rect y="5.77" width="22" height="1.15"/><rect y="8.08" width="22" height="1.15"/><rect y="10.38" width="22" height="1.15"/><rect y="12.69" width="22" height="1.15"/></g><rect width="9.5" height="8.08" fill="#3C3B6E"/><g fill="#fff"><circle cx="1.8" cy="1.6" r="0.5"/><circle cx="4.5" cy="1.6" r="0.5"/><circle cx="7.2" cy="1.6" r="0.5"/><circle cx="3.1" cy="3.2" r="0.5"/><circle cx="5.8" cy="3.2" r="0.5"/><circle cx="1.8" cy="4.8" r="0.5"/><circle cx="4.5" cy="4.8" r="0.5"/><circle cx="7.2" cy="4.8" r="0.5"/><circle cx="3.1" cy="6.4" r="0.5"/><circle cx="5.8" cy="6.4" r="0.5"/></g></svg>
-                        </button>
-                        <button class="lang-btn" data-lang="ru" title="Русский" aria-label="Русский">
-                            <svg viewBox="0 0 22 15" class="flag"><rect width="22" height="5" fill="#fff"/><rect y="5" width="22" height="5" fill="#0039A6"/><rect y="10" width="22" height="5" fill="#D52B1E"/></svg>
-                        </button>
-                        <button class="lang-btn" data-lang="zh" title="中文" aria-label="中文">
-                            <svg viewBox="0 0 22 15" class="flag"><rect width="22" height="15" fill="#DE2910"/><text x="2.2" y="6.6" fill="#FFDE00" font-size="6" font-family="serif">★</text><text x="7.2" y="2.4" fill="#FFDE00" font-size="2.3" font-family="serif">★</text><text x="9" y="4.2" fill="#FFDE00" font-size="2.3" font-family="serif">★</text><text x="9" y="6.7" fill="#FFDE00" font-size="2.3" font-family="serif">★</text><text x="7.2" y="8.6" fill="#FFDE00" font-size="2.3" font-family="serif">★</text></svg>
-                        </button>
+                <!-- right: language switcher + links (inline on desktop, dropdown on mobile) -->
+                <div class="justify-self-end relative flex items-center gap-2 sm:gap-3">
+                    <div id="nav-menu" class="nav-menu">
+                        <div class="lang-switch" role="group" aria-label="Language">
+                            <button class="lang-btn" data-lang="en" title="English" aria-label="English">
+                                <svg viewBox="0 0 22 15" class="flag"><rect width="22" height="15" fill="#B22234"/><g fill="#fff"><rect y="1.15" width="22" height="1.15"/><rect y="3.46" width="22" height="1.15"/><rect y="5.77" width="22" height="1.15"/><rect y="8.08" width="22" height="1.15"/><rect y="10.38" width="22" height="1.15"/><rect y="12.69" width="22" height="1.15"/></g><rect width="9.5" height="8.08" fill="#3C3B6E"/><g fill="#fff"><circle cx="1.8" cy="1.6" r="0.5"/><circle cx="4.5" cy="1.6" r="0.5"/><circle cx="7.2" cy="1.6" r="0.5"/><circle cx="3.1" cy="3.2" r="0.5"/><circle cx="5.8" cy="3.2" r="0.5"/><circle cx="1.8" cy="4.8" r="0.5"/><circle cx="4.5" cy="4.8" r="0.5"/><circle cx="7.2" cy="4.8" r="0.5"/><circle cx="3.1" cy="6.4" r="0.5"/><circle cx="5.8" cy="6.4" r="0.5"/></g></svg>
+                            </button>
+                            <button class="lang-btn" data-lang="ru" title="Русский" aria-label="Русский">
+                                <svg viewBox="0 0 22 15" class="flag"><rect width="22" height="5" fill="#fff"/><rect y="5" width="22" height="5" fill="#0039A6"/><rect y="10" width="22" height="5" fill="#D52B1E"/></svg>
+                            </button>
+                            <button class="lang-btn" data-lang="zh" title="中文" aria-label="中文">
+                                <svg viewBox="0 0 22 15" class="flag"><rect width="22" height="15" fill="#DE2910"/><text x="2.2" y="6.6" fill="#FFDE00" font-size="6" font-family="serif">★</text><text x="7.2" y="2.4" fill="#FFDE00" font-size="2.3" font-family="serif">★</text><text x="9" y="4.2" fill="#FFDE00" font-size="2.3" font-family="serif">★</text><text x="9" y="6.7" fill="#FFDE00" font-size="2.3" font-family="serif">★</text><text x="7.2" y="8.6" fill="#FFDE00" font-size="2.3" font-family="serif">★</text></svg>
+                            </button>
+                        </div>
+                        <a class="btn btn-ghost" href="#why" data-i18n="nav.why">Why ktav?</a>
+                        <a class="btn btn-ghost" href="https://github.com/ktav-lang/spec" data-i18n="nav.spec">Spec</a>
+                        <a class="btn btn-primary" href="https://github.com/ktav-lang">GitHub</a>
                     </div>
-                    <a class="btn btn-ghost hidden sm:inline-flex" href="https://github.com/ktav-lang/spec" data-i18n="nav.spec">Spec</a>
-                    <a class="btn btn-primary" href="https://github.com/ktav-lang">GitHub</a>
+
+                    <!-- mobile-only hamburger -->
+                    <button id="nav-toggle" class="nav-toggle sm:hidden" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+                        <svg class="i-bars" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+                        <svg class="i-x" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                    </button>
                 </div>
             </nav>
         </div>
@@ -302,6 +327,30 @@
                     JetBrains IDEs <span style="color:var(--ink-faint);font-weight:500">.zip</span>
                 </a>
                 <a class="btn btn-ghost" href="https://github.com/ktav-lang/editor/releases" data-i18n="bind.allReleases">All releases ↗</a>
+            </div>
+        </div>
+    </section>
+    <section id="why" class="max-w-6xl mx-auto px-5 py-12 sm:py-16">
+        <div class="text-center mb-8">
+            <span class="eyebrow" data-i18n="why.badge">Why ktav?</span>
+            <h2 class="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight" data-i18n="why.title">Why another config format?</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="why-item glass-soft">
+                <h3 class="why-q" data-i18n="why.q1">Isn't JSON / YAML / TOML enough?</h3>
+                <p class="why-a" data-i18n-html="why.a1">JSON is hostile to hand-edit — quotes, commas, no comments. YAML fixes the ergonomics but adds traps: significant indentation and silent type coercion (the infamous <span class="font-mono" style="color:var(--ink)">no → false</span> “Norway” bug). TOML is solid but splits tables vs inline. Ktav keeps JSON's shape and drops the punctuation tax — without inheriting YAML's surprises.</p>
+            </div>
+            <div class="why-item glass-soft">
+                <h3 class="why-q" data-i18n="why.q2">What actually makes it different?</h3>
+                <p class="why-a" data-i18n-html="why.a2">Types are inferred by <strong style="color:var(--ink)">strict lexical form</strong>: only <span class="font-mono" style="color:var(--ink)">true/false/null</span> and a strict number grammar are typed — everything else is a string, and <span class="font-mono" style="color:var(--ink)">::</span> forces a literal when you need it. No guessing. Plus dotted keys for flat edits, multi-line strings, and one small spec with one parser.</p>
+            </div>
+            <div class="why-item glass-soft">
+                <h3 class="why-q" data-i18n="why.q3">Is it just another lonely format?</h3>
+                <p class="why-a" data-i18n-html="why.a3">No — and that's the point. On day one Ktav ships official parsers for <strong style="color:var(--ink)">7 languages</strong> over a single Rust core, a tree-sitter grammar, an LSP, VS Code / JetBrains plugins, and a language-agnostic conformance suite. Identical behaviour everywhere, verified by tests.</p>
+            </div>
+            <div class="why-item glass-soft">
+                <h3 class="why-q" data-i18n="why.q4">When should you NOT use it?</h3>
+                <p class="why-a" data-i18n-html="why.a4">Ktav is a <em>configuration</em> language, not a data-interchange format — don't swap it for JSON in an API. If you need schemas, types and logic inside the config itself, tools like CUE or Dhall go further. Ktav deliberately stays small and readable.</p>
             </div>
         </div>
     </section>

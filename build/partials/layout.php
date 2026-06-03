@@ -11,6 +11,7 @@
 <?= block('converter') ?>
 <?= block('comparison') ?>
 <?= block('bindings') ?>
+<?= block('whyktav') ?>
 <?= block('footer') ?>
     <script src="assets/bundle.js" defer></script>
 </body>

@@ -1,0 +1,15 @@
+/* "Why ktav?" Q&A cards. */
+
+.why-item {
+    border-radius: 18px;
+    padding: 1.4rem 1.5rem;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.why-item:hover { transform: translateY(-2px); border-color: var(--line-strong); }
+.why-q {
+    font-size: 1.12rem; font-weight: 700; color: var(--ink);
+    margin: 0 0 0.6rem; line-height: 1.3;
+    display: flex; gap: 0.55rem;
+}
+.why-q::before { content: "?"; color: var(--violet); font-weight: 800; }
+.why-a { margin: 0; color: var(--ink-dim); font-size: 0.95rem; line-height: 1.65; }
