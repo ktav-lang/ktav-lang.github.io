@@ -1,7 +1,7 @@
 <?php /* Hero: pitch on the left, a static highlighted Ktav snippet on the right. */ ?>
     <section class="max-w-6xl mx-auto px-5 pt-16 pb-10 sm:pt-24 sm:pb-14">
         <div class="grid lg:grid-cols-2 gap-10 items-center">
-            <div class="fade-in">
+            <div class="fade-in min-w-0">
                 <span class="eyebrow"><span class="dot"></span> <span data-i18n="hero.badge">Format + full ecosystem</span></span>
                 <h1 class="mt-5 text-4xl sm:text-6xl font-extrabold leading-[1.05] tracking-tight">
                     <span data-i18n="hero.title1">Easy to read, type, and edit.</span><br />
@@ -26,14 +26,14 @@
             </div>
 
             <!-- Hero snippet -->
-            <div class="glass glow-violet rounded-3xl p-5 sm:p-6 fade-in">
+            <div class="glass glow-violet rounded-3xl p-5 sm:p-6 fade-in min-w-0">
                 <div class="flex items-center gap-2 mb-4">
                     <span style="width:11px;height:11px;border-radius:99px;background:#ff5f57"></span>
                     <span style="width:11px;height:11px;border-radius:99px;background:#febc2e"></span>
                     <span style="width:11px;height:11px;border-radius:99px;background:#28c840"></span>
                     <span class="ml-2 font-mono text-xs" style="color:var(--ink-faint)">service.ktav</span>
                 </div>
-<pre class="font-mono text-[13px] leading-[1.7] overflow-x-auto" style="margin:0"><code><span class="tok-comment">## A SOCKS5 rotator config.</span>
+<pre class="font-mono text-[13px] leading-[1.7] overflow-x-auto max-w-full" style="margin:0"><code><span class="tok-comment">## A SOCKS5 rotator config.</span>
 <span class="tok-key">service</span><span class="tok-marker">:</span> <span class="tok-string">socks5-rotator</span>
 <span class="tok-key">port</span><span class="tok-marker">:</span> <span class="tok-num">20082</span>
 <span class="tok-key">debug</span><span class="tok-marker">:</span> <span class="tok-bool">true</span>
