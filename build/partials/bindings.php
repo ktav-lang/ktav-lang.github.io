@@ -10,7 +10,7 @@ $bindings = [
     ['name' => 'Python',          'slug' => 'python', 'ref' => false, 'cmd' => 'pip install ktav',                              'repo' => 'https://github.com/ktav-lang/python'],
     ['name' => 'Go',              'slug' => 'go',     'ref' => false, 'cmd' => 'go get github.com/ktav-lang/golang',            'repo' => 'https://github.com/ktav-lang/golang'],
     ['name' => 'PHP',             'slug' => 'php',    'ref' => false, 'cmd' => 'composer require ktav-lang/ktav',               'repo' => 'https://github.com/ktav-lang/php',    'note' => 'needs ext-ffi', 'noteTitle' => 'Requires the PHP FFI extension (ext-ffi); no extension compilation on the consumer side'],
-    ['name' => 'Java / JVM',      'slug' => 'java',   'ref' => false, 'cmd' => 'implementation("io.github.ktav-lang:ktav:0.6.0")', 'repo' => 'https://github.com/ktav-lang/java', 'note' => 'JDK 17 · JNA', 'noteTitle' => 'Gradle/Maven coordinate io.github.ktav-lang:ktav (Maven Central publication planned); needs JDK 17 and the JNA runtime'],
+    ['name' => 'Java / JVM',      'slug' => 'java',   'ref' => false, 'cmd' => 'implementation("io.github.ktav-lang:ktav:0.6.0")', 'repo' => 'https://github.com/ktav-lang/java', 'note' => 'JDK 17 · JNA', 'noteTitle' => 'Gradle/Maven coordinate io.github.ktav-lang:ktav (on Maven Central); needs JDK 17 and the JNA runtime'],
     ['name' => 'C# / .NET',       'slug' => 'dotnet', 'ref' => false, 'cmd' => 'dotnet add package Ktav',                       'repo' => 'https://github.com/ktav-lang/csharp'],
 ];
 
