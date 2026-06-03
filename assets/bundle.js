@@ -27152,14 +27152,23 @@ ${JSON.stringify(symbolNames, null, 2)}`);
   var rehighlight = StateEffect.define();
   function initKtav() {
     if (started) return started;
+    if (typeof location !== "undefined" && location.protocol === "file:") {
+      console.info("Ktav highlighting needs http(s); skipped on file:// \u2014 serve the folder to enable it.");
+      started = Promise.resolve();
+      return started;
+    }
     started = (async () => {
-      await Parser2.init({ locateFile: (path) => `${VENDOR}/${path}` });
-      const lang2 = await Language2.load(`${VENDOR}/tree-sitter-ktav.wasm`);
-      const scm = await (await fetch(`${VENDOR}/highlights.scm`)).text();
-      parser4 = new Parser2();
-      parser4.setLanguage(lang2);
-      query = new Query(lang2, scm);
-      ready = true;
+      try {
+        await Parser2.init({ locateFile: (path) => `${VENDOR}/${path}` });
+        const lang2 = await Language2.load(`${VENDOR}/tree-sitter-ktav.wasm`);
+        const scm = await (await fetch(`${VENDOR}/highlights.scm`)).text();
+        parser4 = new Parser2();
+        parser4.setLanguage(lang2);
+        query = new Query(lang2, scm);
+        ready = true;
+      } catch (e2) {
+        console.warn("Ktav highlighting unavailable:", e2?.message || e2);
+      }
     })();
     return started;
   }

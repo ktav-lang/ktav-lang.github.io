@@ -26,14 +26,30 @@ const rehighlight = StateEffect.define();
 /** Load the runtime + grammar + query exactly once. Idempotent. */
 export function initKtav() {
     if (started) return started;
+    // web-tree-sitter fetches its wasm, which browsers forbid under the
+    // file:// origin (CORS: "requests are only supported for http/https/…").
+    // Don't even try there — otherwise a local file:// preview floods the
+    // console with CORS / wasm-abort errors. Ktav just shows as plain text;
+    // over HTTP (incl. the deployed site) it loads and highlights normally.
+    if (typeof location !== "undefined" && location.protocol === "file:") {
+        console.info("Ktav highlighting needs http(s); skipped on file:// — serve the folder to enable it.");
+        started = Promise.resolve();
+        return started;
+    }
     started = (async () => {
-        await Parser.init({ locateFile: (path) => `${VENDOR}/${path}` });
-        const lang = await Language.load(`${VENDOR}/tree-sitter-ktav.wasm`);
-        const scm = await (await fetch(`${VENDOR}/highlights.scm`)).text();
-        parser = new Parser();
-        parser.setLanguage(lang);
-        query = new Query(lang, scm);
-        ready = true;
+        try {
+            await Parser.init({ locateFile: (path) => `${VENDOR}/${path}` });
+            const lang = await Language.load(`${VENDOR}/tree-sitter-ktav.wasm`);
+            const scm = await (await fetch(`${VENDOR}/highlights.scm`)).text();
+            parser = new Parser();
+            parser.setLanguage(lang);
+            query = new Query(lang, scm);
+            ready = true;
+        } catch (e) {
+            // Grammar unavailable (blocked / offline) — degrade to plain text
+            // rather than surface an unhandled promise rejection.
+            console.warn("Ktav highlighting unavailable:", e?.message || e);
+        }
     })();
     return started;
 }
