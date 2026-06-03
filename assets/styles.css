@@ -454,6 +454,16 @@ html[data-theme="light"] .binding-row:hover { background: rgba(20, 16, 45, 0.03)
 .cmp .cell { display: inline-flex; align-items: center; justify-content: center; gap: 0.3rem; }
 .cmp .note { display: block; font-size: 0.68rem; color: var(--ink-faint); font-weight: 400; margin-top: 0.15rem; }
 
+/* Mobile: shrink so all 6 columns (incl. the key Ktav column) fit without
+   a sideways scroll that would push Ktav off-screen. */
+@media (max-width: 639px) {
+    .cmp { font-size: 0.74rem; }
+    .cmp th, .cmp td { padding: 0.5rem 0.28rem; }
+    .cmp th:first-child, .cmp td:first-child { padding-left: 0.45rem; padding-right: 0.3rem; }
+    .cmp thead th { font-size: 0.6rem; letter-spacing: 0; }
+    .cmp .note { font-size: 0.56rem; line-height: 1.25; margin-top: 0.1rem; overflow-wrap: anywhere; }
+}
+
 /* "Why ktav?" Q&A cards. */
 
 .why-item {
