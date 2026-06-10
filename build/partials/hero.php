@@ -42,10 +42,15 @@
     <span class="tok-punct">{</span> <span class="tok-key">host</span><span class="tok-marker">:</span> <span class="tok-string">a.example</span><span class="tok-punct">,</span> <span class="tok-key">weight</span><span class="tok-marker">:</span> <span class="tok-num">0.7</span> <span class="tok-punct">}</span>
 <span class="tok-punct">]</span>
 
-<span class="tok-comment">## dotted keys = flat nesting</span>
-<span class="tok-key">node</span><span class="tok-punct">.</span><span class="tok-key">host</span><span class="tok-marker">:</span> <span class="tok-string">a.example</span>
 <span class="tok-comment">## '::' forces a literal string</span>
-<span class="tok-key">node</span><span class="tok-punct">.</span><span class="tok-key">auth</span><span class="tok-marker">::</span> <span class="tok-string">p@ss:word</span></code></pre>
+<span class="tok-key">feature_flag</span><span class="tok-marker">::</span> <span class="tok-bool">true</span>
+<span class="tok-key">zip_code</span><span class="tok-marker">::</span> <span class="tok-string">00544</span>
+
+<span class="tok-comment">## multiline — indent auto-trimmed</span>
+<span class="tok-key">motd</span><span class="tok-marker">:</span> <span class="tok-punct">(</span>
+    <span class="tok-string">Welcome to the node.</span>
+    <span class="tok-string">Please behave.</span>
+<span class="tok-punct">)</span></code></pre>
             </div>
         </div>
     </section>
