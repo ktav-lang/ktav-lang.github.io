@@ -40,6 +40,12 @@
 
     --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
     --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    /* Tells the browser to paint native widgets dark. Without this the
+       UA assumes a light page and renders the <select> popup with a white
+       background, while our light `--ink` text colour is inherited by the
+       <option>s — leaving them unreadable. */
+    color-scheme: dark;
 }
 
 /* ── Light theme ───────────────────────────────────────────────────── */
@@ -201,6 +207,15 @@ html[data-theme="light"] .glass {
     background-repeat: no-repeat; background-position: right 0.7rem center;
 }
 .pill:focus { border-color: var(--violet); }
+
+/* The dropdown popup is painted by the OS/UA, not by the page: it ignores
+   `.pill`'s translucent background but still inherits its `color`. Pin
+   both so the options stay readable in either theme (belt and braces
+   alongside the `color-scheme` declaration in 01-base.css). */
+.pill option {
+    background: var(--bg-1);
+    color: var(--ink);
+}
 
 .icon-btn {
     display: inline-grid; place-items: center;
@@ -437,7 +452,19 @@ html[data-theme="light"] .binding-row:hover { background: rgba(20, 16, 45, 0.03)
 .status { font: 500 0.82rem var(--sans); min-height: 1.4rem; }
 .status-ok   { color: var(--green); }
 .status-warn { color: var(--amber); }
-.status-err  { color: #fca5a5; }
+
+/* A failed conversion leaves the output pane empty, so the reason has to
+   carry itself — a plain line of small red text under the left pane is
+   easy to miss. Give it a card of its own. */
+.status-err {
+    display: block;
+    color: #fca5a5;
+    background: rgba(248, 113, 113, 0.08);
+    border: 1px solid rgba(248, 113, 113, 0.32);
+    border-radius: 11px;
+    padding: 0.6rem 0.85rem;
+    line-height: 1.45;
+}
 .warn-list { margin: 0.35rem 0 0; padding-left: 1.1rem; color: var(--amber); font-size: 0.78rem; line-height: 1.5; }
 
 .cmp { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.9rem; }

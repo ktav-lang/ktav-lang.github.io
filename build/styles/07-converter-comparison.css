@@ -3,7 +3,19 @@
 .status { font: 500 0.82rem var(--sans); min-height: 1.4rem; }
 .status-ok   { color: var(--green); }
 .status-warn { color: var(--amber); }
-.status-err  { color: #fca5a5; }
+
+/* A failed conversion leaves the output pane empty, so the reason has to
+   carry itself — a plain line of small red text under the left pane is
+   easy to miss. Give it a card of its own. */
+.status-err {
+    display: block;
+    color: #fca5a5;
+    background: rgba(248, 113, 113, 0.08);
+    border: 1px solid rgba(248, 113, 113, 0.32);
+    border-radius: 11px;
+    padding: 0.6rem 0.85rem;
+    line-height: 1.45;
+}
 .warn-list { margin: 0.35rem 0 0; padding-left: 1.1rem; color: var(--amber); font-size: 0.78rem; line-height: 1.5; }
 
 .cmp { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.9rem; }
