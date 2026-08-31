@@ -103,12 +103,16 @@ function sanitize(value, target, warnings) {
     return walk(value, "");
 }
 
-// Ktav key hygiene. Since spec 0.6.0 a literal `.` or `:` in a key is
-// representable — Ktav escapes them (`\.` / `\:`) so the key round-trips
-// as a single literal, not a dotted path. Whitespace, `#`, and the
-// structural brackets still can't appear in a key; we warn on those.
+// Ktav key hygiene. Since spec 0.6.0 the writer escapes `.` `:` `,` `{`
+// `}` `[` `]` `\` in a key (`\.` `\:` etc.) so the key round-trips as a
+// single literal; interior whitespace and a `#` that isn't the key's
+// first byte need no escaping at all — the writer already handles all
+// of that correctly. The only key shape the current (pre-0.7) writer
+// truly can't round-trip is one starting with the two-byte sequence
+// `##`: it gets written raw, and Ktav then reads that line back as a
+// comment, silently dropping the pair. Warn on exactly that case (and
+// on the empty key, handled separately below).
 function auditKtavKeys(value, warnings) {
-    const bad = /[\s#{}\[\]]/;
     const walk = (v, path) => {
         if (Array.isArray(v)) {
             v.forEach((item, i) => walk(item, `${path}[${i}]`));
@@ -116,8 +120,8 @@ function auditKtavKeys(value, warnings) {
             for (const [k, val] of Object.entries(v)) {
                 if (k.length === 0) {
                     warnings.add(`empty key encountered — not representable in Ktav`);
-                } else if (bad.test(k)) {
-                    warnings.add(`key "${k}" contains a character Ktav can't use in a key`);
+                } else if (k.startsWith("##")) {
+                    warnings.add(`key "${k}" starts with "##" — Ktav would read the line as a comment and silently drop the pair`);
                 }
                 walk(val, path ? `${path}.${k}` : k);
             }
