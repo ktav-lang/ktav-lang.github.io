@@ -43,6 +43,8 @@ html[data-theme="light"] .glass {
     box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.7);
 }
 .btn-primary:hover { box-shadow: 0 14px 40px -10px rgba(124, 58, 237, 0.9); }
+/* The light theme's gradient is dark, so its label goes white. */
+html[data-theme="light"] .btn-primary { color: #fff; }
 .btn-ghost {
     color: var(--ink); background: var(--glass-2);
     border-color: var(--line-strong);
