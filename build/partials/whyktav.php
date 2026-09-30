@@ -11,7 +11,7 @@
             </div>
             <div class="why-item glass-soft">
                 <h3 class="why-q" data-i18n="why.q2">What actually makes it different?</h3>
-                <p class="why-a" data-i18n-html="why.a2">Types are inferred by <strong style="color:var(--ink)">strict lexical form</strong>: only <span class="font-mono" style="color:var(--ink)">true/false/null</span> and a strict number grammar are typed — everything else is a string, and <span class="font-mono" style="color:var(--ink)">::</span> forces a literal when you need it. No guessing. Plus dotted keys for flat edits, multi-line strings, and one small spec with one parser.</p>
+                <p class="why-a" data-i18n-html="why.a2">Types are inferred by <strong style="color:var(--ink)">strict lexical form</strong>: only <span class="font-mono" style="color:var(--ink)">true/false/null</span> and a strict number grammar are typed — everything else, even <span class="font-mono" style="color:var(--ink)">00544</span>, is a string, and <span class="font-mono" style="color:var(--ink)">::</span> forces a literal when you need it. No guessing. Plus dotted keys for flat edits, quoted keys for any other key, multi-line strings, and one small spec with one parser.</p>
             </div>
             <div class="why-item glass-soft">
                 <h3 class="why-q" data-i18n="why.q3">Is it just another lonely format?</h3>

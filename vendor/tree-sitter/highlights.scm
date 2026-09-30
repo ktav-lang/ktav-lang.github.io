@@ -9,6 +9,9 @@
 ; ---- Keys ----
 (key) @property
 (dotted_key) @property
+; A quoted key segment (spec 0.7.0 § 5.3.3) — the inner, more specific
+; capture distinguishes it from a bare key's plain `@property` text.
+(quoted_key_segment) @string.special.key
 "." @punctuation.delimiter
 
 ; ---- Pair separators ----
@@ -41,32 +44,34 @@
 (kw_true)  @constant.builtin.boolean
 (kw_false) @constant.builtin.boolean
 
-; ---- Number literals (new in spec 0.5.0) ----
+; ---- Number literals (block and inline values) ----
 (integer) @number
 (float)   @number.float
 
 ; ---- String values ----
-; Plain scalar after `:` — a string.
+; Plain scalar after `:` — a string, including 0.8 numeric-looking fallbacks.
 (object_pair
   separator: (sep_string)
   value: (scalar) @string)
 
-; Raw string after `::`
-(object_pair
-  separator: (sep_raw)
-  value: (raw_scalar) @string.special)
+; Raw strings can occur in pairs, compound arrays, and the top-level Array.
+(raw_scalar) @string.special
+
+; Inline raw values are distinct from whole-line raw scalars.
+(inline_raw_scalar) @string.special
 
 ; ---- Array items ----
-(array_item
-  marker: (sep_raw)
-  value: (raw_scalar) @string.special)
 
 (array_item
   value: (scalar) @string)
 
+(top_scalar) @string
+
 ; ---- Inline compounds (new in spec 0.5.0) ----
-(inline_object) @punctuation.bracket
-(inline_array)  @punctuation.bracket
+"{" @punctuation.bracket
+"}" @punctuation.bracket
+"[" @punctuation.bracket
+"]" @punctuation.bracket
 (inline_scalar) @string
 (escape_sequence) @string.escape
 

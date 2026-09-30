@@ -103,31 +103,19 @@ function sanitize(value, target, warnings) {
     return walk(value, "");
 }
 
-// Ktav key hygiene. Since spec 0.6.0 the writer escapes `.` `:` `,` `{`
-// `}` `[` `]` `\` in a key (`\.` `\:` etc.) so the key round-trips as a
-// single literal; interior whitespace and a `#` that isn't the key's
-// first byte need no escaping at all — the writer already handles all
-// of that correctly. The only key shape the current (pre-0.7) writer
-// truly can't round-trip is one starting with the two-byte sequence
-// `##`: it gets written raw, and Ktav then reads that line back as a
-// comment, silently dropping the pair. Warn on exactly that case (and
-// on the empty key, handled separately below).
-function auditKtavKeys(value, warnings) {
-    const walk = (v, path) => {
-        if (Array.isArray(v)) {
-            v.forEach((item, i) => walk(item, `${path}[${i}]`));
-        } else if (isPlainObject(v)) {
-            for (const [k, val] of Object.entries(v)) {
-                if (k.length === 0) {
-                    warnings.add(`empty key encountered — not representable in Ktav`);
-                } else if (k.startsWith("##")) {
-                    warnings.add(`key "${k}" starts with "##" — Ktav would read the line as a comment and silently drop the pair`);
-                }
-                walk(val, path ? `${path}.${k}` : k);
-            }
-        }
-    };
-    walk(value, "");
+// Ktav errors arrive as a JSON envelope (spec 0.8); show its `message`.
+// Every key shape except the empty one round-trips: the writer quotes
+// keys holding `.`, `:` or a leading `##` (§ 5.3.3), and rejects an
+// empty key with its own error.
+function errorText(e) {
+    const text = e?.message ?? String(e);
+    try {
+        const envelope = JSON.parse(text);
+        if (envelope && typeof envelope.message === "string") return envelope.message;
+    } catch {
+        // not an envelope
+    }
+    return text;
 }
 
 // --- INI (hand-rolled — small, predictable, dependency-free) -----------
@@ -256,7 +244,7 @@ export function convert(src, dst, text) {
     try {
         value = PARSERS[src](text);
     } catch (e) {
-        return { ok: false, output: "", error: `Can't parse ${FORMAT_LABELS[src]}: ${e.message}`, warnings: [] };
+        return { ok: false, output: "", error: `Can't parse ${FORMAT_LABELS[src]}: ${errorText(e)}`, warnings: [] };
     }
 
     if (src === dst) {
@@ -275,8 +263,6 @@ export function convert(src, dst, text) {
         };
     }
 
-    if (dst === "ktav") auditKtavKeys(value, warnings);
-
     let normalized;
     try {
         normalized = sanitize(value, dst, warnings);
@@ -288,7 +274,7 @@ export function convert(src, dst, text) {
     try {
         output = SERIALIZERS[dst](normalized);
     } catch (e) {
-        return { ok: false, output: "", error: `Can't emit ${FORMAT_LABELS[dst]}: ${e.message}`, warnings: [...warnings] };
+        return { ok: false, output: "", error: `Can't emit ${FORMAT_LABELS[dst]}: ${errorText(e)}`, warnings: [...warnings] };
     }
 
     return { ok: true, output, error: null, warnings: [...warnings] };

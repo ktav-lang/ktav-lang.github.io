@@ -39,7 +39,8 @@
         "operatingSystem": "Any",
         "description": "A minimalist configuration format with official parsers in 7 languages, a tree-sitter grammar, and LSP/editor plugins. Includes an in-browser JSON/YAML/TOML/INI ⇄ Ktav converter.",
         "url": "https://ktav-lang.github.io/",
-        "softwareHelp": "https://github.com/ktav-lang/spec",
+        "softwareVersion": "0.8.0",
+        "softwareHelp": "https://github.com/ktav-lang/spec/blob/main/versions/0.8/spec.md",
         "license": "https://spdx.org/licenses/MIT.html",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     }
@@ -52,7 +53,7 @@
             { "@type": "Question", "name": "Why another config format? Isn't JSON / YAML / TOML enough?",
               "acceptedAnswer": { "@type": "Answer", "text": "JSON is hostile to hand-edit (quotes, commas, no comments). YAML fixes ergonomics but adds traps: significant indentation and silent type coercion (the 'Norway' no→false bug). TOML splits tables vs inline. Ktav keeps JSON's shape and drops the punctuation tax without inheriting YAML's surprises." } },
             { "@type": "Question", "name": "What makes Ktav different?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Types are inferred by strict lexical form: only true/false/null and a strict number grammar are typed; everything else is a string, and :: forces a literal. Plus dotted keys, multi-line strings, and one small spec with one parser." } },
+              "acceptedAnswer": { "@type": "Answer", "text": "Types are inferred by strict lexical form: only true/false/null and a strict number grammar are typed; everything else, even 00544, is a string, and :: forces a literal. Plus dotted keys, quoted keys, multi-line strings, and one small spec with one parser." } },
             { "@type": "Question", "name": "Is Ktav just another lonely format?",
               "acceptedAnswer": { "@type": "Answer", "text": "No. Ktav ships official parsers for 7 languages over a single Rust core, a tree-sitter grammar, an LSP, VS Code / JetBrains plugins, and a language-agnostic conformance suite — verified by tests." } },
             { "@type": "Question", "name": "When should you not use Ktav?",

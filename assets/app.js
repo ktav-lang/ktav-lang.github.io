@@ -9,6 +9,7 @@ const SAMPLES = {
   "service": "socks5-rotator",
   "port": 20082,
   "log_level": "info",
+  "log.file": "/var/log/rotator.log",
   "debug": true,
   "upstreams": [
     { "host": "a.example", "port": 1080, "weight": 0.7 },
@@ -20,6 +21,7 @@ const SAMPLES = {
     yaml: `service: socks5-rotator
 port: 20082
 log_level: info
+log.file: /var/log/rotator.log
 debug: true
 upstreams:
   - host: a.example
@@ -35,6 +37,7 @@ node:
     toml: `service = "socks5-rotator"
 port = 20082
 log_level = "info"
+"log.file" = "/var/log/rotator.log"
 debug = true
 
 [[upstreams]]
@@ -89,6 +92,10 @@ node.port: 1080
 ## '::' forces a literal string — keeps "8080" from becoming a number.
 node.auth:: p@ss:word
 node.token:: 8080
+## Leading zeros already stay a string, no '::' needed.
+node.id: 007
+## A quoted key keeps its dot instead of nesting.
+"log.file": /var/log/rotator.log
 
 motd: (
     Welcome to the node.
@@ -108,6 +115,7 @@ const CMP_MARKS = [
     { json: "no",  yaml: "no",   toml: "yes",  ini: "part", ktav: "yes" },
     { json: "yes", yaml: "yes",  toml: "yes",  ini: "no",   ktav: "yes" },
     { json: "yes", yaml: "no",   toml: "yes",  ini: "yes",  ktav: "yes" },
+    { json: "part", yaml: "no",  toml: "part", ini: "yes",  ktav: "yes" },
     { json: "yes", yaml: "part", toml: "yes",  ini: "no",   ktav: "yes" },
     { json: "yes", yaml: "no",   toml: "part", ini: "part", ktav: "yes" },
 ];
@@ -117,7 +125,8 @@ const CMP_MARKS = [
 const I18N = {
     en: {
         htmlLang: "en",
-        nav: { converter: "Converter", compare: "Compare", spec: "Spec", why: "Why ktav?" },
+        nav: { converter: "Converter", compare: "Compare", spec: "Spec 0.8", why: "Why ktav?" },
+        links: { spec: "https://github.com/ktav-lang/spec/blob/main/versions/0.8/spec.md" },
         hero: {
             badge: "Format + full ecosystem",
             title1: "Easy to read, type, and edit.",
@@ -129,7 +138,7 @@ const I18N = {
                 binding over one Rust core — <span style="color:var(--ink)">WebAssembly in the browser</span> —
                 plus a tree-sitter grammar and LSP &amp; editor plugins, out of the box.`,
             try: "Try the converter ↓",
-            spec: "Read the spec",
+            spec: "Read the spec 0.8",
             libs: "Libraries",
             ides: "Editors",
         },
@@ -142,9 +151,10 @@ const I18N = {
             sample: "Load sample",
             copy: "Copy",
             copied: "Copied",
-            note: `Ktav is a <em>configuration</em> language, not a general data-interchange format: keys are dotted
-                paths, the root must be an object or array, and some JSON/YAML shapes don't round-trip. When a
-                conversion is lossy, the converter tells you exactly what changed.`,
+            note: `Ktav is a <em>configuration</em> language, not a general data-interchange format: bare keys
+                are dotted paths (a key that holds a dot is written in quotes), the root must be an object or
+                array, keys can't be empty, and some JSON/YAML shapes don't round-trip. When a conversion is
+                lossy, the converter tells you exactly what changed.`,
         },
         cmp: {
             badge: "How it stacks up",
@@ -160,6 +170,7 @@ const I18N = {
                 { f: "Dotted keys for flat edits", n: { ini: "via sections" } },
                 { f: "Nested objects & arrays", n: { ini: "flat sections only" } },
                 { f: "No type-ambiguity (the YAML “Norway” trap)", n: { yaml: "no → false", ini: "all strings", ktav: "strict lexical typing" } },
+                { f: "Leading zeros survive (zip codes, IDs)", n: { json: "quote it", yaml: "01234 → 1234", toml: "quote it", ini: "all strings", ktav: "stays a string" } },
                 { f: "Force a literal string when needed", n: { json: "always quoted", yaml: "quote it", toml: "always quoted", ini: "no types anyway", ktav: "the :: escape" } },
                 { f: "One parser, small spec", n: { yaml: "notoriously large", ini: "no single standard" } },
             ],
@@ -184,10 +195,11 @@ const I18N = {
             q2: "What actually makes it different?",
             a2: `Types are inferred by <strong style="color:var(--ink)">strict lexical form</strong>:
                 only <span class="font-mono" style="color:var(--ink)">true/false/null</span> and a
-                strict number grammar are typed — everything else is a string, and
+                strict number grammar are typed — everything else, even
+                <span class="font-mono" style="color:var(--ink)">00544</span>, is a string, and
                 <span class="font-mono" style="color:var(--ink)">::</span> forces a literal when you
-                need it. No guessing. Plus dotted keys for flat edits, multi-line strings, and one
-                small spec with one parser.`,
+                need it. No guessing. Plus dotted keys for flat edits, quoted keys for any other key,
+                multi-line strings, and one small spec with one parser.`,
             q3: "Is it just another lonely format?",
             a3: `No — and that's the point. On day one Ktav ships official parsers for
                 <strong style="color:var(--ink)">7 languages</strong> over a single Rust core, a
@@ -198,13 +210,14 @@ const I18N = {
                 swap it for JSON in an API. If you need schemas, types and logic inside the config
                 itself, tools like CUE or Dhall go further. Ktav deliberately stays small and readable.`,
         },
-        footer: { license: "Dual-licensed under MIT OR Apache-2.0", spec: "Specification", js: "JS / WASM", repos: "All repos" },
+        footer: { license: "Dual-licensed under MIT OR Apache-2.0", spec: "Specification 0.8", js: "JS / WASM", repos: "All repos" },
         status: { ok: "Converted", notes: (n) => `Converted with ${n} note${n > 1 ? "s" : ""}` },
     },
 
     ru: {
         htmlLang: "ru",
-        nav: { converter: "Конвертер", compare: "Сравнение", spec: "Спека", why: "Зачем ktav?" },
+        nav: { converter: "Конвертер", compare: "Сравнение", spec: "Спека 0.8", why: "Зачем ktav?" },
+        links: { spec: "https://github.com/ktav-lang/spec/blob/main/versions/0.8/spec.ru.md" },
         hero: {
             badge: "Формат + готовая экосистема",
             title1: "Удобно читать, набирать и править,",
@@ -216,7 +229,7 @@ const I18N = {
                 над единым ядром на Rust (<span style="color:var(--ink)">WebAssembly в браузере</span>) —
                 плюс грамматика tree-sitter, LSP и плагины редакторов, из коробки.`,
             try: "Открыть конвертер ↓",
-            spec: "Читать спецификацию",
+            spec: "Читать спецификацию 0.8",
             libs: "Библиотеки",
             ides: "Редакторы",
         },
@@ -229,9 +242,10 @@ const I18N = {
             sample: "Загрузить пример",
             copy: "Копировать",
             copied: "Скопировано",
-            note: `Ktav — это язык <em>конфигурации</em>, а не универсальный формат обмена данными: ключи — это
-                точечные пути, корень должен быть объектом или массивом, а часть форм JSON/YAML не переживает
-                обратное преобразование. Если конвертация с потерями — конвертер скажет, что именно изменилось.`,
+            note: `Ktav — это язык <em>конфигурации</em>, а не универсальный формат обмена данными: ключи без
+                кавычек — это точечные пути (ключ с точкой пишется в кавычках), корень должен быть объектом или
+                массивом, ключ не может быть пустым, а часть форм JSON/YAML не переживает обратное
+                преобразование. Если конвертация с потерями — конвертер скажет, что именно изменилось.`,
         },
         cmp: {
             badge: "Как оно смотрится",
@@ -247,6 +261,7 @@ const I18N = {
                 { f: "Точечные ключи для плоских правок", n: { ini: "через секции" } },
                 { f: "Вложенные объекты и массивы", n: { ini: "только плоские секции" } },
                 { f: "Нет неоднозначности типов (ловушка «Norway» в YAML)", n: { yaml: "no → false", ini: "всё строки", ktav: "строгая типизация по форме" } },
+                { f: "Ведущие нули сохраняются (индексы, ID)", n: { json: "закавычить", yaml: "01234 → 1234", toml: "закавычить", ini: "всё строки", ktav: "остаётся строкой" } },
                 { f: "Принудительная строка, когда нужно", n: { json: "всегда в кавычках", yaml: "закавычить", toml: "всегда в кавычках", ini: "типов всё равно нет", ktav: "экран :: " } },
                 { f: "Один парсер, маленькая спека", n: { yaml: "печально большая", ini: "нет единого стандарта" } },
             ],
@@ -272,10 +287,11 @@ const I18N = {
             q2: "Чем он реально отличается?",
             a2: `Типы выводятся <strong style="color:var(--ink)">строго по лексической форме</strong>:
                 типизируются только <span class="font-mono" style="color:var(--ink)">true/false/null</span>
-                и строгая грамматика чисел — всё остальное строка, а
+                и строгая грамматика чисел — всё остальное, даже
+                <span class="font-mono" style="color:var(--ink)">00544</span>, строка, а
                 <span class="font-mono" style="color:var(--ink)">::</span> форсит литерал, когда нужно.
-                Никакого угадывания. Плюс точечные ключи для плоских правок, многострочные строки и
-                одна маленькая спека с одним парсером.`,
+                Никакого угадывания. Плюс точечные ключи для плоских правок, ключи в кавычках для
+                любых других, многострочные строки и одна маленькая спека с одним парсером.`,
             q3: "Это просто ещё один одинокий формат?",
             a3: `Нет — и в этом суть. С первого дня у Ktav официальные парсеры на
                 <strong style="color:var(--ink)">7 языках</strong> над единым ядром на Rust,
@@ -286,13 +302,14 @@ const I18N = {
                 Если нужны схемы, типы и логика внутри самого конфига — CUE или Dhall дают больше.
                 Ktav намеренно остаётся маленьким и читаемым.`,
         },
-        footer: { license: "Двойная лицензия MIT OR Apache-2.0", spec: "Спецификация", js: "JS / WASM", repos: "Все репозитории" },
+        footer: { license: "Двойная лицензия MIT OR Apache-2.0", spec: "Спецификация 0.8", js: "JS / WASM", repos: "Все репозитории" },
         status: { ok: "Готово", notes: (n) => `Готово, замечаний: ${n}` },
     },
 
     zh: {
         htmlLang: "zh",
-        nav: { converter: "转换器", compare: "对比", spec: "规范", why: "为什么用 ktav？" },
+        nav: { converter: "转换器", compare: "对比", spec: "规范 0.8", why: "为什么用 ktav？" },
+        links: { spec: "https://github.com/ktav-lang/spec/blob/main/versions/0.8/spec.zh.md" },
         hero: {
             badge: "格式 + 完整生态",
             title1: "易读、易写、易改的配置，",
@@ -304,7 +321,7 @@ const I18N = {
                 （<span style="color:var(--ink)">浏览器中用 WebAssembly</span>），
                 外加 tree-sitter 语法以及开箱即用的 LSP 与编辑器插件。`,
             try: "试用转换器 ↓",
-            spec: "阅读规范",
+            spec: "阅读规范 0.8",
             libs: "库",
             ides: "编辑器",
         },
@@ -317,8 +334,8 @@ const I18N = {
             sample: "载入示例",
             copy: "复制",
             copied: "已复制",
-            note: `Ktav 是一种<em>配置</em>语言，而非通用数据交换格式：键是点路径，根必须是对象或数组，
-                部分 JSON/YAML 结构无法无损往返。当转换有损时，转换器会准确告诉你改了什么。`,
+            note: `Ktav 是一种<em>配置</em>语言，而非通用数据交换格式：不带引号的键是点路径（含点的键写在引号里），
+                根必须是对象或数组，键不能为空，部分 JSON/YAML 结构无法无损往返。当转换有损时，转换器会准确告诉你改了什么。`,
         },
         cmp: {
             badge: "横向对比",
@@ -334,6 +351,7 @@ const I18N = {
                 { f: "点式键，便于扁平编辑", n: { ini: "通过节实现" } },
                 { f: "嵌套对象与数组", n: { ini: "仅扁平的节" } },
                 { f: "无类型歧义（YAML 的“Norway”陷阱）", n: { yaml: "no → false", ini: "全是字符串", ktav: "按词法严格定型" } },
+                { f: "保留前导零（邮编、编号）", n: { json: "加引号", yaml: "01234 → 1234", toml: "加引号", ini: "全是字符串", ktav: "保持为字符串" } },
                 { f: "需要时强制为字面字符串", n: { json: "总是带引号", yaml: "加引号", toml: "总是带引号", ini: "本就无类型", ktav: ":: 转义" } },
                 { f: "单一解析器，规范精简", n: { yaml: "出了名地庞大", ini: "无统一标准" } },
             ],
@@ -357,9 +375,9 @@ const I18N = {
             q2: "它到底有何不同？",
             a2: `类型按<strong style="color:var(--ink)">严格的词法形式</strong>推断：只有
                 <span class="font-mono" style="color:var(--ink)">true/false/null</span> 和严格的数字语法
-                会被定型——其余都是字符串，需要时用
+                会被定型——其余（即便是 <span class="font-mono" style="color:var(--ink)">00544</span>）都是字符串，需要时用
                 <span class="font-mono" style="color:var(--ink)">::</span> 强制为字面量。绝不靠猜。
-                另有点式键便于扁平编辑、多行字符串，以及一份精简规范、一个解析器。`,
+                另有点式键便于扁平编辑、带引号的键可写任意其他键名、多行字符串，以及一份精简规范、一个解析器。`,
             q3: "它只是又一个孤零零的格式吗？",
             a3: `不是——这正是重点。Ktav 从第一天起就提供
                 <strong style="color:var(--ink)">7 种语言</strong>的官方解析器（基于同一个 Rust 内核）、
@@ -369,7 +387,7 @@ const I18N = {
             a4: `Ktav 是<em>配置</em>语言，而非数据交换格式——别在 API 里用它替代 JSON。
                 若你需要在配置内置模式、类型与逻辑，CUE 或 Dhall 走得更远。Ktav 刻意保持小巧而易读。`,
         },
-        footer: { license: "双重许可 MIT OR Apache-2.0", spec: "规范", js: "JS / WASM", repos: "全部仓库" },
+        footer: { license: "双重许可 MIT OR Apache-2.0", spec: "规范 0.8", js: "JS / WASM", repos: "全部仓库" },
         status: { ok: "已转换", notes: (n) => `已转换，有 ${n} 条提示` },
     },
 };
@@ -414,6 +432,10 @@ function applyI18n() {
     for (const el of document.querySelectorAll("[data-i18n-html]")) {
         const v = t(el.getAttribute("data-i18n-html"));
         if (typeof v === "string") el.innerHTML = v;
+    }
+    for (const el of document.querySelectorAll("[data-i18n-href]")) {
+        const v = t(el.getAttribute("data-i18n-href"));
+        if (typeof v === "string") el.setAttribute("href", v);
     }
     for (const btn of document.querySelectorAll("[data-lang]")) {
         btn.classList.toggle("lang-active", btn.getAttribute("data-lang") === lang);

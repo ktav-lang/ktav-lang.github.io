@@ -29,7 +29,7 @@
                             </button>
                         </div>
                         <a class="btn btn-ghost" href="#why" data-i18n="nav.why">Why ktav?</a>
-                        <a class="btn btn-ghost" href="https://github.com/ktav-lang/spec" data-i18n="nav.spec">Spec</a>
+                        <a class="btn btn-ghost" href="https://github.com/ktav-lang/spec/blob/main/versions/0.8/spec.md" data-i18n-href="links.spec" data-i18n="nav.spec">Spec 0.8</a>
                         <a class="btn btn-primary" href="https://github.com/ktav-lang">GitHub</a>
                     </div>
 

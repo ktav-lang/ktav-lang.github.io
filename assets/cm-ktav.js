@@ -62,6 +62,7 @@ const CAP_CLASS = {
     "property": "key",
     "string": "string",
     "string.special": "string",
+    "string.special.key": "key",
     "string.escape": "marker",
     "number": "num",
     "number.float": "num",

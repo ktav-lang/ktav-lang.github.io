@@ -10,7 +10,7 @@
                 <p class="mt-5 text-lg leading-relaxed" style="color:var(--ink-dim);max-width:34rem" data-i18n-html="hero.lead"></p>
                 <div class="mt-8 flex flex-wrap gap-3">
                     <a href="#convert" class="btn btn-primary" data-i18n="hero.try">Try the converter ↓</a>
-                    <a href="https://github.com/ktav-lang/spec" class="btn btn-ghost" data-i18n="hero.spec">Read the spec</a>
+                    <a href="https://github.com/ktav-lang/spec/blob/main/versions/0.8/spec.md" class="btn btn-ghost" data-i18n-href="links.spec" data-i18n="hero.spec">Read the spec 0.8</a>
                 </div>
 <?php $langSlugs = ['rust', 'js', 'python', 'go', 'php', 'java', 'dotnet']; $ideSlugs = ['vscode', 'jetbrains']; ?>
                 <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
@@ -42,9 +42,13 @@
     <span class="tok-punct">{</span> <span class="tok-key">host</span><span class="tok-marker">:</span> <span class="tok-string">a.example</span><span class="tok-punct">,</span> <span class="tok-key">weight</span><span class="tok-marker">:</span> <span class="tok-num">0.7</span> <span class="tok-punct">}</span>
 <span class="tok-punct">]</span>
 
+<span class="tok-comment">## leading zeros stay a string</span>
+<span class="tok-key">zip_code</span><span class="tok-marker">:</span> <span class="tok-string">00544</span>
 <span class="tok-comment">## '::' forces a literal string</span>
-<span class="tok-key">feature_flag</span><span class="tok-marker">::</span> <span class="tok-bool">true</span>
-<span class="tok-key">zip_code</span><span class="tok-marker">::</span> <span class="tok-string">00544</span>
+<span class="tok-key">feature_flag</span><span class="tok-marker">::</span> <span class="tok-string">true</span>
+
+<span class="tok-comment">## quoted keys keep dots and spaces</span>
+<span class="tok-key">"log.file"</span><span class="tok-marker">:</span> <span class="tok-string">/var/log/rotator.log</span>
 
 <span class="tok-comment">## multiline — indent auto-trimmed</span>
 <span class="tok-key">motd</span><span class="tok-marker">:</span> <span class="tok-punct">(</span>

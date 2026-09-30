@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="flex flex-wrap items-center gap-2 justify-center">
-                <a class="btn btn-ghost" href="https://github.com/ktav-lang/spec" data-i18n="footer.spec">Specification</a>
+                <a class="btn btn-ghost" href="https://github.com/ktav-lang/spec/blob/main/versions/0.8/spec.md" data-i18n-href="links.spec" data-i18n="footer.spec">Specification 0.8</a>
                 <a class="btn btn-ghost" href="https://github.com/ktav-lang/js" data-i18n="footer.js">JS / WASM</a>
                 <a class="btn btn-ghost" href="https://github.com/ktav-lang" data-i18n="footer.repos">All repos</a>
             </div>
