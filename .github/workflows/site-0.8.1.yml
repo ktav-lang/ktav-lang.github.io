@@ -81,6 +81,19 @@ jobs:
       - name: Build and verify 0.8.1
         id: build
         run: bash ci/build-site-0.8.1.sh
+      - name: Locate Rust standard-library copyright report
+        id: rust-stdlib-notice
+        run: |
+          sysroot="$(rustc --print sysroot)"
+          notice="$sysroot/share/doc/rust/COPYRIGHT-library.html"
+          test -s "$notice"
+          printf 'path=%s\n' "$notice" >> "$GITHUB_OUTPUT"
+      - name: Upload Rust standard-library copyright report
+        uses: actions/upload-artifact@v4
+        with:
+          name: rust-stdlib-copyright
+          path: ${{ steps.rust-stdlib-notice.outputs.path }}
+          if-no-files-found: error
       - name: Upload generated site inputs
         uses: actions/upload-artifact@v4
         with:
