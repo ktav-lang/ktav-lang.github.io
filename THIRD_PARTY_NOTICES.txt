@@ -13,8 +13,7 @@ Rust standard library 1.88.0 (toolchain notices):
   vendor/rust-std/COPYRIGHT
   vendor/rust-std/LICENSE-MIT
   vendor/rust-std/LICENSE-APACHE
-  The upstream copyright notice references a separate standard-library report;
-  its complete third-party inventory remains to be verified.
+  vendor/rust-std/COPYRIGHT-library.html (official Rust 1.88.0 report)
 
 Ktav tree-sitter grammar 0.8.1:
   vendor/tree-sitter/ktav-LICENSE-MIT

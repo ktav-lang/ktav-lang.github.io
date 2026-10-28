@@ -87,6 +87,7 @@ jobs:
           sysroot="$(rustc --print sysroot)"
           notice="$sysroot/share/doc/rust/COPYRIGHT-library.html"
           test -s "$notice"
+          cmp vendor/rust-std/COPYRIGHT-library.html "$notice"
           printf 'path=%s\n' "$notice" >> "$GITHUB_OUTPUT"
       - name: Upload Rust standard-library copyright report
         uses: actions/upload-artifact@v4
