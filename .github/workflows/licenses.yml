@@ -18,12 +18,20 @@ jobs:
         with:
           node-version: "24"
       - run: npm ci --ignore-scripts
+      - name: Resolve Tailwind CLI graph
+        run: |
+          set -euo pipefail
+          printf '%s  %s\n' 24b52743d97d8a973660ac142e34dd63aecbf0cd8f545bb52adcc3ccf20c44ed build/build.php | sha256sum --check
+          printf '%s  %s\n' b538c24b055e50b51bf368926213def769bc9041e9883de2d8d1f30fd982b764 build/tailwind/tailwind.config.js | sha256sum --check
+          mkdir "$RUNNER_TEMP/tailwind-license"
+          printf '%s\n' '{"name":"tailwind-license-audit","version":"0.0.0","private":true,"dependencies":{"tailwindcss":"^3.0.0"}}' > "$RUNNER_TEMP/tailwind-license/package.json"
+          npm --prefix "$RUNNER_TEMP/tailwind-license" install --package-lock-only --ignore-scripts --no-audit --no-fund
       - name: Check all lockfile package licenses
         run: |
           node --input-type=module <<'NODE'
           import assert from "node:assert/strict";
           import { readFileSync } from "node:fs";
-          const allowed = new Set(["MIT", "Apache-2.0", "MIT OR Apache-2.0", "Apache-2.0 OR MIT"]);
+          const allowed = new Set(["MIT", "Apache-2.0", "BSD-2-Clause", "BSD-3-Clause", "ISC", "0BSD", "MIT OR Apache-2.0", "Apache-2.0 OR MIT"]);
           function check(lock) {
             if (lock?.lockfileVersion !== 3 || !lock.packages || typeof lock.packages !== "object" || Array.isArray(lock.packages) || !lock.packages[""]) throw new Error("Invalid npm lockfile");
             return Object.entries(lock.packages).filter(([path, pkg]) => path !== "" && !allowed.has(pkg?.license)).map(([path, pkg]) => `${path}: ${JSON.stringify(pkg?.license)}`);
@@ -31,6 +39,7 @@ jobs:
           assert.equal(check({ lockfileVersion: 3, packages: { "": {}, x: { license: "MIT AND GPL-3.0-only" } } }).length, 1);
           assert.equal(check({ lockfileVersion: 3, packages: { "": {}, x: {} } }).length, 1);
           assert.equal(check({ lockfileVersion: 3, packages: { "": {}, x: { license: "MIT" } } }).length, 0);
-          const failures = check(JSON.parse(readFileSync("package-lock.json", "utf8")));
+          const files = ["package-lock.json", `${process.env.RUNNER_TEMP}/tailwind-license/package-lock.json`];
+          const failures = files.flatMap((file) => check(JSON.parse(readFileSync(file, "utf8"))).map((failure) => `${file}: ${failure}`));
           if (failures.length) { console.error(failures.join("\n")); process.exitCode = 1; }
           NODE
