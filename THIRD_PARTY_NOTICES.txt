@@ -9,6 +9,13 @@ Ktav 0.8.1 WASM and its Cargo dependencies:
   vendor/ktav/LICENSE-APACHE
   vendor/ktav/THIRD_PARTY_NOTICES.txt
 
+Rust standard library 1.88.0 (toolchain notices):
+  vendor/rust-std/COPYRIGHT
+  vendor/rust-std/LICENSE-MIT
+  vendor/rust-std/LICENSE-APACHE
+  The upstream copyright notice references a separate standard-library report;
+  its complete third-party inventory remains to be verified.
+
 Ktav tree-sitter grammar 0.8.1:
   vendor/tree-sitter/ktav-LICENSE-MIT
   vendor/tree-sitter/ktav-LICENSE-APACHE

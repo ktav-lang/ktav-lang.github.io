@@ -35,7 +35,7 @@ jobs:
           path: _sources/tree-sitter-ktav
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '24.22.1'
       - uses: dtolnay/rust-toolchain@1.88.0
         with:
           targets: wasm32-unknown-unknown
