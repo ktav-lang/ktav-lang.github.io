@@ -1,0 +1,17 @@
+Third-party licenses for the Ktav 0.8.1 WASM build
+
+Generated from the pinned Cargo.lock. This report must be distributed with the
+WASM artifact. Review any additional toolchain or bundled-code obligations
+separately.
+
+{{#each licenses}}
+============================================================
+{{name}}
+Used by:
+{{#each used_by}}
+- {{crate.name}} {{crate.version}}
+{{/each}}
+
+{{{text}}}
+
+{{/each}}

@@ -134,8 +134,8 @@ const I18N = {
             lead: `Ktav keeps JSON's shape — scalars, arrays, objects — but reads and writes like plain text:
                 no mandatory quotes, no commas, no indentation traps, no
                 <span class="font-mono" style="color:var(--ink)">no&nbsp;→&nbsp;false</span> surprises.
-                <strong style="color:var(--ink)">Performance-first parsers in 7 languages</strong>, each a thin
-                binding over one Rust core — <span style="color:var(--ink)">WebAssembly in the browser</span> —
+                <strong style="color:var(--ink)">Libraries for 7 languages</strong>, with native and standalone
+                pure backends — <span style="color:var(--ink)">WebAssembly in the browser</span> —
                 plus a tree-sitter grammar and LSP &amp; editor plugins, out of the box.`,
             try: "Try the converter ↓",
             spec: "Read the spec 0.8",
@@ -172,13 +172,13 @@ const I18N = {
                 { f: "No type-ambiguity (the YAML “Norway” trap)", n: { yaml: "no → false", ini: "all strings", ktav: "strict lexical typing" } },
                 { f: "Leading zeros survive (zip codes, IDs)", n: { json: "quote it", yaml: "01234 → 1234", toml: "quote it", ini: "all strings", ktav: "stays a string" } },
                 { f: "Force a literal string when needed", n: { json: "always quoted", yaml: "quote it", toml: "always quoted", ini: "no types anyway", ktav: "the :: escape" } },
-                { f: "One parser, small spec", n: { yaml: "notoriously large", ini: "no single standard" } },
+                { f: "Small spec and reference parser", n: { yaml: "notoriously large", ini: "no single standard" } },
             ],
         },
         bind: {
             badge: "Install",
             title: "Seven languages, one Rust core",
-            lead: "Every binding is a thin wrapper over the same reference parser written in Rust, exposed through a tiny C ABI — so you get identical behaviour and native speed everywhere, and WebAssembly in the browser.",
+            lead: "Official libraries support the Ktav format: native backends use the Rust core, and standalone pure backends are available in the bindings. The browser converter uses WebAssembly.",
             reference: "reference",
             editors: "Editor plugins — direct download",
             allReleases: "All releases ↗",
@@ -199,18 +199,18 @@ const I18N = {
                 <span class="font-mono" style="color:var(--ink)">00544</span>, is a string, and
                 <span class="font-mono" style="color:var(--ink)">::</span> forces a literal when you
                 need it. No guessing. Plus dotted keys for flat edits, quoted keys for any other key,
-                multi-line strings, and one small spec with one parser.`,
+                multi-line strings, and a small spec with a reference parser.`,
             q3: "Is it just another lonely format?",
-            a3: `No — and that's the point. On day one Ktav ships official parsers for
-                <strong style="color:var(--ink)">7 languages</strong> over a single Rust core, a
-                tree-sitter grammar, an LSP, VS Code / JetBrains plugins, and a language-agnostic
-                conformance suite. Identical behaviour everywhere, verified by tests.`,
+            a3: `No — Ktav provides official libraries for
+                <strong style="color:var(--ink)">7 languages</strong>, native and pure backends,
+                a tree-sitter grammar, an LSP, VS Code / JetBrains plugins, and a language-agnostic
+                conformance suite. Implementations are checked against the same corpus.`,
             q4: "When should you NOT use it?",
             a4: `Ktav is a <em>configuration</em> language, not a data-interchange format — don't
                 swap it for JSON in an API. If you need schemas, types and logic inside the config
                 itself, tools like CUE or Dhall go further. Ktav deliberately stays small and readable.`,
         },
-        footer: { license: "Dual-licensed under MIT OR Apache-2.0", spec: "Specification 0.8", js: "JS / WASM", repos: "All repos" },
+        footer: { license: "Dual-licensed under MIT OR Apache-2.0", thirdParty: "Third-party licenses", spec: "Specification 0.8", js: "JS / WASM", repos: "All repos" },
         status: { ok: "Converted", notes: (n) => `Converted with ${n} note${n > 1 ? "s" : ""}` },
     },
 
@@ -225,8 +225,8 @@ const I18N = {
             lead: `Ktav сохраняет форму JSON — скаляры, массивы, объекты — но читается и пишется как обычный текст:
                 никаких обязательных кавычек, запятых, ловушек с отступами и сюрпризов вида
                 <span class="font-mono" style="color:var(--ink)">no&nbsp;→&nbsp;false</span>.
-                <strong style="color:var(--ink)">Быстрые парсеры на 7 языках</strong> — каждый тонкая обёртка
-                над единым ядром на Rust (<span style="color:var(--ink)">WebAssembly в браузере</span>) —
+                <strong style="color:var(--ink)">Библиотеки для 7 языков</strong> с нативными и самостоятельными
+                чистыми реализациями (<span style="color:var(--ink)">WebAssembly в браузере</span>) —
                 плюс грамматика tree-sitter, LSP и плагины редакторов, из коробки.`,
             try: "Открыть конвертер ↓",
             spec: "Читать спецификацию 0.8",
@@ -263,13 +263,13 @@ const I18N = {
                 { f: "Нет неоднозначности типов (ловушка «Norway» в YAML)", n: { yaml: "no → false", ini: "всё строки", ktav: "строгая типизация по форме" } },
                 { f: "Ведущие нули сохраняются (индексы, ID)", n: { json: "закавычить", yaml: "01234 → 1234", toml: "закавычить", ini: "всё строки", ktav: "остаётся строкой" } },
                 { f: "Принудительная строка, когда нужно", n: { json: "всегда в кавычках", yaml: "закавычить", toml: "всегда в кавычках", ini: "типов всё равно нет", ktav: "экран :: " } },
-                { f: "Один парсер, маленькая спека", n: { yaml: "печально большая", ini: "нет единого стандарта" } },
+                { f: "Небольшая спека и эталонный парсер", n: { yaml: "печально большая", ini: "нет единого стандарта" } },
             ],
         },
         bind: {
             badge: "Установка",
             title: "Семь языков, одно ядро на Rust",
-            lead: "Каждый биндинг — тонкая обёртка над одним эталонным парсером на Rust (через крошечный C ABI): одинаковое поведение и нативная скорость везде, а в браузере — WebAssembly.",
+            lead: "Официальные библиотеки поддерживают формат Ktav: нативные варианты используют ядро Rust, а в биндингах доступны самостоятельные чистые реализации. В браузерном конвертере применяется WebAssembly.",
             reference: "эталон",
             editors: "Плагины редакторов — прямое скачивание",
             allReleases: "Все релизы ↗",
@@ -291,18 +291,18 @@ const I18N = {
                 <span class="font-mono" style="color:var(--ink)">00544</span>, строка, а
                 <span class="font-mono" style="color:var(--ink)">::</span> форсит литерал, когда нужно.
                 Никакого угадывания. Плюс точечные ключи для плоских правок, ключи в кавычках для
-                любых других, многострочные строки и одна маленькая спека с одним парсером.`,
+                любых других, многострочные строки и небольшая спека с эталонным парсером.`,
             q3: "Это просто ещё один одинокий формат?",
-            a3: `Нет — и в этом суть. С первого дня у Ktav официальные парсеры на
-                <strong style="color:var(--ink)">7 языках</strong> над единым ядром на Rust,
-                грамматика tree-sitter, LSP, плагины VS Code / JetBrains и язык-агностичный
-                conformance-suite. Одинаковое поведение везде, подтверждённое тестами.`,
+            a3: `Нет — Ktav предоставляет официальные библиотеки для
+                <strong style="color:var(--ink)">7 языков</strong>, нативные и чистые реализации,
+                грамматику tree-sitter, LSP, плагины VS Code / JetBrains и независимый от языка
+                набор тестов соответствия. Реализации проверяются на одном и том же корпусе.`,
             q4: "Когда его НЕ стоит брать?",
             a4: `Ktav — язык <em>конфигурации</em>, а не формат обмена данными: не меняй им JSON в API.
                 Если нужны схемы, типы и логика внутри самого конфига — CUE или Dhall дают больше.
                 Ktav намеренно остаётся маленьким и читаемым.`,
         },
-        footer: { license: "Двойная лицензия MIT OR Apache-2.0", spec: "Спецификация 0.8", js: "JS / WASM", repos: "Все репозитории" },
+        footer: { license: "Двойная лицензия MIT OR Apache-2.0", thirdParty: "Лицензии зависимостей", spec: "Спецификация 0.8", js: "JS / WASM", repos: "Все репозитории" },
         status: { ok: "Готово", notes: (n) => `Готово, замечаний: ${n}` },
     },
 
@@ -317,7 +317,7 @@ const I18N = {
             lead: `Ktav 保留 JSON 的结构——标量、数组、对象——却像纯文本一样易读易写：
                 无需强制引号、无逗号、没有缩进陷阱，也没有
                 <span class="font-mono" style="color:var(--ink)">no&nbsp;→&nbsp;false</span> 这类意外。
-                <strong style="color:var(--ink)">7 种语言的高性能解析器</strong>，每个都是对同一个 Rust 内核的轻量绑定
+                <strong style="color:var(--ink)">7 种语言的库</strong>，提供原生后端和独立的纯实现
                 （<span style="color:var(--ink)">浏览器中用 WebAssembly</span>），
                 外加 tree-sitter 语法以及开箱即用的 LSP 与编辑器插件。`,
             try: "试用转换器 ↓",
@@ -353,13 +353,13 @@ const I18N = {
                 { f: "无类型歧义（YAML 的“Norway”陷阱）", n: { yaml: "no → false", ini: "全是字符串", ktav: "按词法严格定型" } },
                 { f: "保留前导零（邮编、编号）", n: { json: "加引号", yaml: "01234 → 1234", toml: "加引号", ini: "全是字符串", ktav: "保持为字符串" } },
                 { f: "需要时强制为字面字符串", n: { json: "总是带引号", yaml: "加引号", toml: "总是带引号", ini: "本就无类型", ktav: ":: 转义" } },
-                { f: "单一解析器，规范精简", n: { yaml: "出了名地庞大", ini: "无统一标准" } },
+                { f: "精简规范与参考解析器", n: { yaml: "出了名地庞大", ini: "无统一标准" } },
             ],
         },
         bind: {
             badge: "安装",
             title: "七种语言，同一个 Rust 内核",
-            lead: "每个绑定都是对同一个用 Rust 编写的参考解析器的轻量封装（通过精简的 C ABI 暴露）——因此各处行为一致、速度原生，在浏览器中则使用 WebAssembly。",
+            lead: "官方库支持 Ktav 格式：原生后端使用 Rust 内核，各语言绑定也提供独立的纯实现。浏览器转换器使用 WebAssembly。",
             reference: "参考实现",
             editors: "编辑器插件 — 直接下载",
             allReleases: "全部发布 ↗",
@@ -377,17 +377,17 @@ const I18N = {
                 <span class="font-mono" style="color:var(--ink)">true/false/null</span> 和严格的数字语法
                 会被定型——其余（即便是 <span class="font-mono" style="color:var(--ink)">00544</span>）都是字符串，需要时用
                 <span class="font-mono" style="color:var(--ink)">::</span> 强制为字面量。绝不靠猜。
-                另有点式键便于扁平编辑、带引号的键可写任意其他键名、多行字符串，以及一份精简规范、一个解析器。`,
+                另有点式键便于扁平编辑、带引号的键可写任意其他键名、多行字符串，以及精简规范和参考解析器。`,
             q3: "它只是又一个孤零零的格式吗？",
-            a3: `不是——这正是重点。Ktav 从第一天起就提供
-                <strong style="color:var(--ink)">7 种语言</strong>的官方解析器（基于同一个 Rust 内核）、
+            a3: `不是。Ktav 提供
+                <strong style="color:var(--ink)">7 种语言</strong>的官方库、原生和纯实现、
                 tree-sitter 语法、LSP、VS Code / JetBrains 插件，以及一套语言无关的一致性测试集。
-                各处行为一致，并由测试保证。`,
+                各实现都使用同一测试语料库进行验证。`,
             q4: "什么时候不该用它？",
             a4: `Ktav 是<em>配置</em>语言，而非数据交换格式——别在 API 里用它替代 JSON。
                 若你需要在配置内置模式、类型与逻辑，CUE 或 Dhall 走得更远。Ktav 刻意保持小巧而易读。`,
         },
-        footer: { license: "双重许可 MIT OR Apache-2.0", spec: "规范 0.8", js: "JS / WASM", repos: "全部仓库" },
+        footer: { license: "双重许可 MIT OR Apache-2.0", thirdParty: "第三方许可证", spec: "规范 0.8", js: "JS / WASM", repos: "全部仓库" },
         status: { ok: "已转换", notes: (n) => `已转换，有 ${n} 条提示` },
     },
 };

@@ -1,0 +1,2 @@
+bindgen_version=0.2.117
+bindgen_digest=sha256:97f527f7c7956f69a88a4bdb5176142ebc4e255c2dbe3805ec4f373421028240
