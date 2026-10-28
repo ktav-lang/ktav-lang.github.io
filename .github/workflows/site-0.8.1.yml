@@ -1,0 +1,98 @@
+name: Site 0.8.1 build and verification
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-verify:
+    name: Build pinned WASM and verify site
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+      CARGO_RESOLVER_INCOMPATIBLE_RUST_VERSIONS: fallback
+      SOURCE_DATE_EPOCH: '1792656318'
+      TZ: UTC
+      LC_ALL: C
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out published JS source
+        uses: actions/checkout@v4
+        with:
+          repository: ktav-lang/js
+          ref: 562deb3fde092d63a78f359be095e5079929d0d1
+          path: _sources/ktav-js
+          submodules: true
+      - name: Check out published grammar source
+        uses: actions/checkout@v4
+        with:
+          repository: ktav-lang/tree-sitter-ktav
+          ref: ca25876463583d54caf51d54bdd7bae27e599c5f
+          path: _sources/tree-sitter-ktav
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: dtolnay/rust-toolchain@1.88.0
+        with:
+          targets: wasm32-unknown-unknown
+      - name: Install verified build tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          wasm_archive="$(mktemp -d "$RUNNER_TEMP/wasm-pack-download.XXXXXX")"
+          wasm_tools="$(mktemp -d "$RUNNER_TEMP/wasm-pack-tools.XXXXXX")"
+          curl -fsSL https://github.com/wasm-bindgen/wasm-pack/releases/download/v0.13.1/wasm-pack-v0.13.1-x86_64-unknown-linux-musl.tar.gz -o "$wasm_archive/archive.tar.gz"
+          printf '%s  %s\n' c539d91ccab2591a7e975bcf82c82e1911b03335c80aa83d67ad25ed2ad06539 "$wasm_archive/archive.tar.gz" | sha256sum --check
+          tar -xzf "$wasm_archive/archive.tar.gz" --strip-components=1 -C "$wasm_tools"
+          printf '%s\n' "$wasm_tools" >> "$GITHUB_PATH"
+
+          about_archive="$(mktemp -d "$RUNNER_TEMP/about-download.XXXXXX")"
+          about_tools="$(mktemp -d "$RUNNER_TEMP/about-tools.XXXXXX")"
+          curl -fsSL https://github.com/EmbarkStudios/cargo-about/releases/download/0.9.3/cargo-about-0.9.3-x86_64-unknown-linux-musl.tar.gz -o "$about_archive/archive.tar.gz"
+          printf '%s  %s\n' 3ad1e94ea1e63d69d1961f4fb15ccbbe9575d906111f96d2cb4dce6df48f71b4 "$about_archive/archive.tar.gz" | sha256sum --check
+          tar -xzf "$about_archive/archive.tar.gz" --strip-components=1 -C "$about_tools"
+          printf '%s\n' "$about_tools" >> "$GITHUB_PATH"
+
+          binaryen_archive="$(mktemp -d "$RUNNER_TEMP/binaryen-download.XXXXXX")"
+          binaryen_tools="$(mktemp -d "$RUNNER_TEMP/binaryen-tools.XXXXXX")"
+          curl -fsSL https://github.com/WebAssembly/binaryen/releases/download/version_133/binaryen-version_133-x86_64-linux.tar.gz -o "$binaryen_archive/archive.tar.gz"
+          printf '%s  %s\n' 2dc9c7813f5375db93d96ead4b78222fcc3e2677bbb832297af4797782a37489 "$binaryen_archive/archive.tar.gz" | sha256sum --check
+          tar -xzf "$binaryen_archive/archive.tar.gz" --strip-components=1 -C "$binaryen_tools"
+          printf '%s\n' "$binaryen_tools/bin" >> "$GITHUB_PATH"
+
+          cli_archive="$(mktemp -d "$RUNNER_TEMP/tree-sitter-download.XXXXXX")"
+          cli_tools="$(mktemp -d "$RUNNER_TEMP/tree-sitter-tools.XXXXXX")"
+          curl -fsSL https://github.com/tree-sitter/tree-sitter/releases/download/v0.26.8/tree-sitter-linux-x64.gz -o "$cli_archive/tree-sitter.gz"
+          printf '%s  %s\n' 9754a32800f0b970152782df177b4a47c711e34e651a7aceb384d8bd29fa136e "$cli_archive/tree-sitter.gz" | sha256sum --check
+          gzip -dc "$cli_archive/tree-sitter.gz" > "$cli_tools/tree-sitter"
+          chmod 0755 "$cli_tools/tree-sitter"
+          printf '%s\n' "$cli_tools" >> "$GITHUB_PATH"
+
+          wasi_archive="$(mktemp -d "$RUNNER_TEMP/wasi-download.XXXXXX")"
+          wasi_tools="$(mktemp -d "$RUNNER_TEMP/wasi-tools.XXXXXX")"
+          curl -fsSL https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-29/wasi-sdk-29.0-x86_64-linux.tar.gz -o "$wasi_archive/archive.tar.gz"
+          printf '%s  %s\n' 87d1d1a2879d139cdc624b968efad3d4a97b8078cdff95e63ac88ecafd1a0171 "$wasi_archive/archive.tar.gz" | sha256sum --check
+          tar -xzf "$wasi_archive/archive.tar.gz" --strip-components=1 -C "$wasi_tools"
+          printf 'TREE_SITTER_WASI_SDK_PATH=%s\n' "$wasi_tools" >> "$GITHUB_ENV"
+      - name: Build and verify 0.8.1
+        id: build
+        run: bash ci/build-site-0.8.1.sh
+      - name: Upload generated site inputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-0.8.1-generated
+          path: ${{ steps.build.outputs.stage }}
+          if-no-files-found: error
+      - name: Upload build diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-0.8.1-diagnostics
+          path: |
+            _sources/ktav-js/Cargo.lock
+            _sources/ktav-js/dist/wasm/web/ktav.inline.js
+          if-no-files-found: warn

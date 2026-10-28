@@ -9,13 +9,13 @@ $bindings = [
     ['name' => 'JavaScript / TS', 'slug' => 'js',     'ref' => false, 'cmd' => 'npm i @ktav-lang/ktav',                          'repo' => 'https://github.com/ktav-lang/js',     'note' => 'native + WASM', 'noteTitle' => 'Native N-API on Node & Bun; WebAssembly in browsers and Deno — one package, picks the right backend'],
     ['name' => 'Python',          'slug' => 'python', 'ref' => false, 'cmd' => 'pip install ktav',                              'repo' => 'https://github.com/ktav-lang/python'],
     ['name' => 'Go',              'slug' => 'go',     'ref' => false, 'cmd' => 'go get github.com/ktav-lang/golang',            'repo' => 'https://github.com/ktav-lang/golang'],
-    ['name' => 'PHP',             'slug' => 'php',    'ref' => false, 'cmd' => 'composer require ktav-lang/ktav',               'repo' => 'https://github.com/ktav-lang/php',    'note' => 'needs ext-ffi', 'noteTitle' => 'Requires the PHP FFI extension (ext-ffi); no extension compilation on the consumer side'],
-    ['name' => 'Java / JVM',      'slug' => 'java',   'ref' => false, 'cmd' => 'implementation("io.github.ktav-lang:ktav:0.8.0")', 'repo' => 'https://github.com/ktav-lang/java', 'note' => 'JDK 17 · JNA', 'noteTitle' => 'Gradle/Maven coordinate io.github.ktav-lang:ktav (on Maven Central); needs JDK 17 and the JNA runtime'],
+    ['name' => 'PHP',             'slug' => 'php',    'ref' => false, 'cmd' => 'composer require ktav-lang/ktav',               'repo' => 'https://github.com/ktav-lang/php',    'note' => 'native: ext-ffi · pure: standalone', 'noteTitle' => 'The native backend needs ext-ffi; the pure backend needs no FFI or native binary'],
+    ['name' => 'Java / JVM',      'slug' => 'java',   'ref' => false, 'cmd' => 'implementation("io.github.ktav-lang:ktav:0.8.1")', 'repo' => 'https://github.com/ktav-lang/java', 'note' => 'JDK 17 · JNA', 'noteTitle' => 'Gradle/Maven coordinate io.github.ktav-lang:ktav (on Maven Central); needs JDK 17 and the JNA runtime'],
     ['name' => 'C# / .NET',       'slug' => 'dotnet', 'ref' => false, 'cmd' => 'dotnet add package Ktav',                       'repo' => 'https://github.com/ktav-lang/csharp'],
 ];
 
-$VSIX = 'https://github.com/ktav-lang/editor/releases/download/v0.8.0/ktav-0.8.0.vsix';
-$JB   = 'https://github.com/ktav-lang/editor/releases/download/v0.8.0/ktav-intellij-0.8.0%2B20260930-2043.zip';
+$VSIX = 'https://github.com/ktav-lang/editor/releases/download/v0.8.1/ktav-0.8.1.vsix';
+$JB   = 'https://github.com/ktav-lang/editor/releases/download/v0.8.1/ktav-intellij-0.8.1%2B20261026-0756.zip';
 ?>
     <section id="bindings" class="max-w-6xl mx-auto px-5 py-12 sm:py-16">
         <div class="text-center mb-8">
@@ -43,11 +43,11 @@ $JB   = 'https://github.com/ktav-lang/editor/releases/download/v0.8.0/ktav-intel
             <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3">
                 <a class="btn btn-ghost" href="<?= $VSIX ?>">
                     <svg width="18" height="18" viewBox="0 0 128 128" fill="currentColor" aria-hidden="true"><path d="<?= icon('vscode') ?>"/></svg>
-                    VS&nbsp;Code / VSCodium <span style="color:var(--ink-faint);font-weight:500">.vsix</span>
+                    VS&nbsp;Code / VSCodium <span style="color:var(--ink-faint);font-weight:500">.vsix · 0.8.1</span>
                 </a>
                 <a class="btn btn-ghost" href="<?= $JB ?>">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="<?= icon('jetbrains') ?>"/></svg>
-                    JetBrains IDEs <span style="color:var(--ink-faint);font-weight:500">.zip</span>
+                    JetBrains IDEs <span style="color:var(--ink-faint);font-weight:500">.zip · 0.8.1</span>
                 </a>
                 <a class="btn btn-ghost" href="https://github.com/ktav-lang/editor/releases" data-i18n="bind.allReleases">All releases ↗</a>
             </div>
