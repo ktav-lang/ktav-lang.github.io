@@ -30,7 +30,7 @@ jobs:
           }
           assert.equal(check({ lockfileVersion: 3, packages: { "": {}, x: { license: "MIT AND GPL-3.0-only" } } }).length, 1);
           assert.equal(check({ lockfileVersion: 3, packages: { "": {}, x: {} } }).length, 1);
-          assert.equal(check({ lockfileVersion: 3, packaages: { "": {}, x: { license: "MIT" } } }).length, 0);
+          assert.equal(check({ lockfileVersion: 3, packages: { "": {}, x: { license: "MIT" } } }).length, 0);
           const failures = check(JSON.parse(readFileSync("package-lock.json", "utf8")));
           if (failures.length) { console.error(failures.join("\n")); process.exitCode = 1; }
           NODE
