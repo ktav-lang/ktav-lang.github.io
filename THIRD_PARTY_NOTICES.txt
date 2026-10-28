@@ -1,0 +1,29 @@
+Third-party licenses and notices
+
+The site bundles or serves the following components. Paths are relative to the
+site root. The listed notices do not by themselves establish complete legal
+compliance; toolchain runtime and generated-code obligations require review.
+
+Ktav 0.8.1 WASM and its Cargo dependencies:
+  vendor/ktav/LICENSE-MIT
+  vendor/ktav/LICENSE-APACHE
+  vendor/ktav/THIRD_PARTY_NOTICES.txt
+
+Ktav tree-sitter grammar 0.8.1:
+  vendor/tree-sitter/ktav-LICENSE-MIT
+  vendor/tree-sitter/ktav-LICENSE-APACHE
+
+web-tree-sitter 0.26.8:
+  vendor/tree-sitter/web-tree-sitter.LICENSE
+
+npm components included in assets/bundle.js:
+  vendor/npm/THIRD_PARTY_NOTICES.txt
+
+js-yaml 4.1.0:
+  vendor/js-yaml.LICENSE
+
+smol-toml 1.3.1:
+  vendor/smol-toml.mjs (license and copyright notice in the file header)
+
+Tailwind CSS 3.4.19:
+  vendor/tailwindcss.LICENSE

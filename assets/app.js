@@ -210,7 +210,7 @@ const I18N = {
                 swap it for JSON in an API. If you need schemas, types and logic inside the config
                 itself, tools like CUE or Dhall go further. Ktav deliberately stays small and readable.`,
         },
-        footer: { license: "Dual-licensed under MIT OR Apache-2.0", spec: "Specification 0.8", js: "JS / WASM", repos: "All repos" },
+        footer: { license: "Dual-licensed under MIT OR Apache-2.0", thirdParty: "Third-party licenses", spec: "Specification 0.8", js: "JS / WASM", repos: "All repos" },
         status: { ok: "Converted", notes: (n) => `Converted with ${n} note${n > 1 ? "s" : ""}` },
     },
 
@@ -302,7 +302,7 @@ const I18N = {
                 Если нужны схемы, типы и логика внутри самого конфига — CUE или Dhall дают больше.
                 Ktav намеренно остаётся маленьким и читаемым.`,
         },
-        footer: { license: "Двойная лицензия MIT OR Apache-2.0", spec: "Спецификация 0.8", js: "JS / WASM", repos: "Все репозитории" },
+        footer: { license: "Двойная лицензия MIT OR Apache-2.0", thirdParty: "Лицензии зависимостей", spec: "Спецификация 0.8", js: "JS / WASM", repos: "Все репозитории" },
         status: { ok: "Готово", notes: (n) => `Готово, замечаний: ${n}` },
     },
 
@@ -387,7 +387,7 @@ const I18N = {
             a4: `Ktav 是<em>配置</em>语言，而非数据交换格式——别在 API 里用它替代 JSON。
                 若你需要在配置内置模式、类型与逻辑，CUE 或 Dhall 走得更远。Ktav 刻意保持小巧而易读。`,
         },
-        footer: { license: "双重许可 MIT OR Apache-2.0", spec: "规范 0.8", js: "JS / WASM", repos: "全部仓库" },
+        footer: { license: "双重许可 MIT OR Apache-2.0", thirdParty: "第三方许可证", spec: "规范 0.8", js: "JS / WASM", repos: "全部仓库" },
         status: { ok: "已转换", notes: (n) => `已转换，有 ${n} 条提示` },
     },
 };

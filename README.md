@@ -124,4 +124,5 @@ Tailwind CLI + esbuild) are only needed when running `php build/build.php --js`.
 `assets/og.png` is a committed asset — regenerate it by rendering a 1200×630
 HTML banner with Playwright (it isn't part of the PHP build).
 
-Dual-licensed under **MIT OR Apache-2.0**.
+Dual-licensed under **MIT OR Apache-2.0**. Third-party license texts and
+notices are indexed in [`THIRD_PARTY_NOTICES.txt`](THIRD_PARTY_NOTICES.txt).

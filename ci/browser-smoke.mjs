@@ -35,9 +35,10 @@ try {
   const link = page.locator('#editors a[href*="ktav-0.8.1.vsix"]');
   assert.equal(await link.count(), 1);
   assert.equal(await page.locator('#editors a[href*="ktav-intellij-0.8.1%2B20261026-0756.zip"]').count(), 1);
-  for (const lang of ['en', 'ru', 'zh']) {
+  for (const [lang, label] of [['en', 'Third-party licenses'], ['ru', 'Лицензии зависимостей'], ['zh', '第三方许可证']]) {
     await page.locator(`button[data-lang="${lang}"]`).click();
     assert.equal(await page.locator('html').getAttribute('lang'), lang);
+    assert.equal(await page.locator('a[href="THIRD_PARTY_NOTICES.txt"]').textContent(), label);
   }
   assert.deepEqual(errors, []);
   console.log('Browser conversion, syntax highlighting, languages and plugin links verified');
