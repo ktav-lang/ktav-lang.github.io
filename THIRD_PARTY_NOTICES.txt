@@ -39,9 +39,8 @@ Emscripten 4.0.15 SDK code in the web-tree-sitter 0.26.8 runtime:
   vendor/tree-sitter/runtime-sdk/musl/COPYRIGHT (complete original and exceptions)
   vendor/tree-sitter/runtime-sdk/compiler-rt/LICENSE.TXT (Apache 2.0 with LLVM exception and legacy grants)
   vendor/tree-sitter/runtime-sdk/sources/system/lib/dlmalloc.c (Doug Lea public-domain dedication)
-  vendor/tree-sitter/runtime-sdk/sources/ (complete selected SDK source originals)
-  vendor/tree-sitter/runtime-sdk/generated-headers/ (complete source-map header originals)
   provenance/tree-sitter-runtime-sdk.json (exact runtime, source, grant and link-member identities)
+  The profile enumerates every complete selected source and generated header.
   The pinned source/image rebuild and its diagnostic link-map build reproduce
   the served npm runtime byte for byte. Original file-level copyright notices,
   permission text and full SDK license documents are retained without edits.
