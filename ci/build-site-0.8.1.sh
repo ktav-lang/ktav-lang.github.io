@@ -109,10 +109,10 @@ cp "$RUNNER_TEMP/npm-notices.txt" "$root/vendor/npm/THIRD_PARTY_NOTICES.txt"
 stage="$(mktemp -d "$RUNNER_TEMP/site-0.8.1.XXXXXX")"
 mkdir -p "$stage/assets" "$stage/vendor/ktav" "$stage/vendor/npm" "$stage/vendor/tree-sitter" "$stage/provenance"
 cp "$root/index.html" "$stage/index.html"
-cp "$root/assets/styles.css" "$root/assets/bundle.js" "$stage/assets/"
+cp "$root/assets/styles.css" "$root/assets/bundle.js" "$root/assets/tailwind.css" "$root/assets/favicon.svg" "$stage/assets/"
 cp "$root/vendor/ktav/ktav.inline.js" "$root/vendor/ktav/THIRD_PARTY_NOTICES.txt" "$root/vendor/ktav/LICENSE-MIT" "$root/vendor/ktav/LICENSE-APACHE" "$stage/vendor/ktav/"
 cp "$root/vendor/npm/THIRD_PARTY_NOTICES.txt" "$stage/vendor/npm/"
-cp "$root/vendor/tree-sitter/tree-sitter-ktav.wasm" "$root/vendor/tree-sitter/highlights.scm" "$root/vendor/tree-sitter/ktav-LICENSE-MIT" "$root/vendor/tree-sitter/ktav-LICENSE-APACHE" "$stage/vendor/tree-sitter/"
+cp "$root/vendor/tree-sitter/tree-sitter-ktav.wasm" "$root/vendor/tree-sitter/web-tree-sitter.wasm" "$root/vendor/tree-sitter/highlights.scm" "$root/vendor/tree-sitter/ktav-LICENSE-MIT" "$root/vendor/tree-sitter/ktav-LICENSE-APACHE" "$stage/vendor/tree-sitter/"
 cp "$js/Cargo.lock" "$stage/provenance/ktav-js-0.8.1-Cargo.lock"
 cp "$RUNNER_TEMP/wasm-bindgen.txt" "$stage/provenance/wasm-bindgen.txt"
 mkdir -p "$stage/vendor/rust-std"
@@ -125,4 +125,8 @@ for legal in \
   vendor/rust-std/LICENSE-MIT vendor/rust-std/LICENSE-APACHE vendor/tailwindcss.LICENSE; do
   cmp "$root/$legal" "$stage/$legal"
 done
+for asset in assets/tailwind.css assets/favicon.svg vendor/tree-sitter/web-tree-sitter.wasm; do
+  cmp "$root/$asset" "$stage/$asset"
+done
+(cd "$root" && node ci/browser-smoke.mjs "$stage")
 printf 'stage=%s\n' "$stage" >> "$GITHUB_OUTPUT"

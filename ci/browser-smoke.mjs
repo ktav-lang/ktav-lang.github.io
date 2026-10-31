@@ -6,7 +6,7 @@ import { extname, resolve, sep } from 'node:path';
 
 const require = createRequire(resolve('_sources/ktav-js/package.json'));
 const { chromium } = require('playwright');
-const root = resolve('.');
+const root = resolve(process.argv[2] || '.');
 const types = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.wasm': 'application/wasm', '.svg': 'image/svg+xml' };
 const server = createServer(async (request, response) => {
   try {
@@ -25,8 +25,15 @@ const browser = await chromium.launch({ headless: true });
 try {
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   const errors = [];
+  const failedAssets = [];
+  const origin = `http://127.0.0.1:${server.address().port}`;
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.goto(`http://127.0.0.1:${server.address().port}/`, { waitUntil: 'networkidle' });
+  page.on('response', (response) => {
+    if (response.url().startsWith(`${origin}/`) && response.status() >= 400) {
+      failedAssets.push(`${response.status()} ${new URL(response.url()).pathname}`);
+    }
+  });
+  await page.goto(`${origin}/`, { waitUntil: 'networkidle' });
   await page.selectOption('#src-format', 'ktav');
   await page.selectOption('#dst-format', 'json');
   await page.locator('#src-editor .cm-content').fill('service: socks\ncount: 7\n');
@@ -42,7 +49,8 @@ try {
     assert.ok((await page.locator('[data-i18n="bind.lead"]').textContent()).includes(pure));
   }
   assert.deepEqual(errors, []);
-  console.log('Browser conversion, syntax highlighting, languages and plugin links verified');
+  assert.deepEqual(failedAssets, []);
+  console.log('Browser conversion, syntax highlighting, languages and plugin links verified', process.argv[2] ? 'against staged artifact' : 'against source tree');
 } finally {
   await browser.close();
   await new Promise((done, reject) => server.close((error) => error ? reject(error) : done()));
