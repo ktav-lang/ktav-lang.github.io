@@ -36,6 +36,7 @@ jobs:
           docker pull "$EMSDK_IMAGE"
           docker image inspect "$EMSDK_IMAGE" > "$RUNNER_TEMP/tree-sitter-runtime-evidence/image.json"
           docker run --rm --network none \
+            --user "$(id -u):$(id -g)" \
             --workdir /src \
             --volume "$GITHUB_WORKSPACE/upstream:/src" \
             --volume "$GITHUB_WORKSPACE/site/ci:/tools:ro" \
