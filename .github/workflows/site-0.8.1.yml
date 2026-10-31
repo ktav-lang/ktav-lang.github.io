@@ -101,6 +101,13 @@ jobs:
           name: site-0.8.1-generated
           path: ${{ steps.build.outputs.stage }}
           if-no-files-found: error
+      - name: Upload grammar compiler evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grammar-compiler-evidence
+          path: ${{ runner.temp }}/grammar-compiler-evidence/
+          if-no-files-found: warn
       - name: Upload build diagnostics on failure
         if: failure()
         uses: actions/upload-artifact@v4

@@ -76,6 +76,8 @@ fi
 (cd "$grammar" && tree-sitter build --wasm -o "$RUNNER_TEMP/tree-sitter-ktav-first.wasm")
 (cd "$grammar" && tree-sitter build --wasm -o "$RUNNER_TEMP/tree-sitter-ktav.wasm")
 cmp "$RUNNER_TEMP/tree-sitter-ktav-first.wasm" "$RUNNER_TEMP/tree-sitter-ktav.wasm"
+(cd "$root" && python3 -I -m unittest discover -s ci -p test_grammar_compiler_evidence.py -v)
+python3 -I "$root/ci/grammar-compiler-evidence.py" "$grammar" "$RUNNER_TEMP/tree-sitter-ktav.wasm" "$TREE_SITTER_WASI_SDK_PATH" "$RUNNER_TEMP/grammar-compiler-evidence"
 
 cmp "$root/vendor/ktav/ktav.inline.js" "$js/dist/wasm/web/ktav.inline.js"
 cmp "$root/vendor/ktav/THIRD_PARTY_NOTICES.txt" "$RUNNER_TEMP/ktav-notices.txt"
