@@ -2,6 +2,7 @@
 
 import importlib.util
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 
@@ -35,6 +36,41 @@ class GrammarEvidenceTests(unittest.TestCase):
             root = Path(temporary)
             with self.assertRaisesRegex(ValueError, 'output escapes'):
                 MODULE.validate_arguments(arguments(root.parent / 'outside.wasm'), root, root)
+
+    def test_archive_parser_does_not_treat_a_data_section_as_an_archive(self):
+        mapping = ' - 100 20 /tmp/parser.o:(.rodata.a)\n - 120 40 /sdk/libc.a(memcpy.o):(.text.memcpy)\n'
+        self.assertEqual(MODULE.archive_members(mapping), ['/sdk/libc.a(memcpy.o)'])
+        self.assertEqual(MODULE.archive_members(' - 100 20 /tmp/parser.o:(.rodata.a)\n'), [])
+
+    def test_all_reviewed_legal_originals_are_copied_verbatim(self):
+        root = Path(__file__).parent / 'licenses/grammar-sdk'
+        with tempfile.TemporaryDirectory() as temporary:
+            evidence = Path(temporary)
+            records = MODULE.reviewed_legal(root, evidence)
+            self.assertEqual(len(records), 6)
+            for item in records:
+                self.assertEqual((root / item['path']).read_bytes(), (evidence / 'sdk-legal-reviewed' / item['path']).read_bytes())
+
+    def test_missing_or_changed_legal_original_is_rejected(self):
+        original = Path(__file__).parent / 'licenses/grammar-sdk'
+        for change in ['missing', 'changed']:
+            with tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary) / 'legal'
+                shutil.copytree(original, root)
+                path = root / 'LLVM-LICENSE.TXT'
+                if change == 'missing':
+                    path.unlink()
+                else:
+                    path.write_bytes(path.read_bytes() + b'\n')
+                with self.subTest(change=change), self.assertRaises(ValueError):
+                    MODULE.reviewed_legal(root, Path(temporary) / 'evidence')
+
+    def test_legal_profile_roles_cannot_be_removed(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / 'index.json').write_text('[]\n', encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'unreviewed grammar SDK legal profile'):
+                MODULE.reviewed_legal(root, root / 'evidence')
 
     def test_original_byte_reader_is_bounded(self):
         with tempfile.TemporaryDirectory() as temporary:

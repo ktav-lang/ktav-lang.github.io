@@ -28,6 +28,30 @@ def fingerprint(path):
     return {'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()}
 
 
+def archive_members(mapping):
+    return sorted(set(re.findall(r'^\s*\S+\s+\S+\s+\S+\s+(\S+[.]a\([^)]+\)):', mapping, re.M)))
+
+
+def reviewed_legal(root, evidence):
+    raw = read(root / 'index.json', 64 * 1024)
+    if hashlib.sha256(raw).hexdigest() != '3716b6b99faed9499c87d4c30c3388e21c7cde13d012a40bb55c9cddcdcb9f0b':
+        raise ValueError('unreviewed grammar SDK legal profile')
+    records = json.loads(raw)
+    for item in records:
+        name = item['path']
+        if Path(name).name != name or name in {'.', '..'}:
+            raise ValueError('unsafe grammar SDK legal path')
+        data = read(root / name, 4 * 1024 * 1024)
+        blob = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+        if len(data) != item['bytes'] or hashlib.sha256(data).hexdigest() != item['sha256'] or blob != item['git_blob']:
+            raise ValueError('grammar SDK legal original differs')
+        destination = evidence / 'sdk-legal-reviewed' / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(data)
+    (evidence / 'sdk-legal-reviewed/index.json').write_bytes(raw)
+    return records
+
+
 def validate_arguments(args, cwd, evidence):
     if len(args) < 3:
         raise ValueError('unreviewed grammar compiler arguments')
@@ -61,6 +85,22 @@ def main(grammar, nominal_path, sdk, evidence):
     if hashlib.sha256(nominal).hexdigest() != BINARY:
         raise ValueError('nominal grammar differs from actual served bytes')
     evidence.mkdir()
+    reviewed = reviewed_legal(Path(__file__).parent / 'licenses/grammar-sdk', evidence)
+    site = Path(__file__).resolve().parents[1]
+    source_legal = []
+    for name in ['LICENSE-MIT', 'LICENSE-APACHE']:
+        raw = read(grammar / name, 1024 * 1024)
+        if raw != read(site / 'vendor/tree-sitter' / ('ktav-' + name), 1024 * 1024):
+            raise ValueError('actual grammar source grant differs from staged grant')
+        destination = evidence / 'source-licenses' / ('grammar-' + name)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(raw)
+        source_legal.append({'path': destination.name, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
+    raw = read(site / 'vendor/tree-sitter/web-tree-sitter.LICENSE', 1024 * 1024)
+    if hashlib.sha256(raw).hexdigest() != 'c5cfb43042b6b72045f4ba997834d0a7786d2793d91680868b5815b39f14fc78':
+        raise ValueError('exact Tree-sitter generator grant differs')
+    (evidence / 'source-licenses/TREE-SITTER-MIT').write_bytes(raw)
+    source_legal.append({'path': 'TREE-SITTER-MIT', 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
     actual = (sdk / 'bin/clang').resolve()
     if not actual.is_relative_to(sdk.resolve()):
         raise ValueError('compiler escapes selected SDK')
@@ -109,7 +149,7 @@ def main(grammar, nominal_path, sdk, evidence):
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_bytes(raw)
         sources.append({'role': role, 'path': relative, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
-    archives = sorted(set(re.findall(r'[^\s()]+[.]a(?:\([^)]*\))?', mapping)))
+    archives = archive_members(mapping)
     legal = []
     legal_total = 0
     for index, path in enumerate(sdk.rglob('*')):
@@ -128,7 +168,7 @@ def main(grammar, nominal_path, sdk, evidence):
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_bytes(raw)
         legal.append({'path': relative, 'bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()})
-    record = {'source_ref': SOURCE, 'binary_sha256': BINARY, 'diagnostic_matches_nominal': True, 'compiler': fingerprint(actual), 'map_sha256': hashlib.sha256(mapping.encode('utf-8')).hexdigest(), 'map_archive_members': archives, 'source_inputs': sources, 'sdk_legal': legal, 'scope': 'Actual matching grammar build with logged compiler arguments, full selected source/header originals and diagnostic link map. SDK inventory is not proof of included code; no redistribution-rights approval or served asset change.'}
+    record = {'source_ref': SOURCE, 'binary_sha256': BINARY, 'diagnostic_matches_nominal': True, 'compiler': fingerprint(actual), 'map_sha256': hashlib.sha256(mapping.encode('utf-8')).hexdigest(), 'map_archive_members': archives, 'map_object_inputs': sorted(set(re.findall(r'^\s*\S+\s+\S+\s+\S+\s+(\S+[.]o):', mapping, re.M))), 'source_inputs': sources, 'sdk_legal': legal, 'reviewed_sdk_legal': reviewed, 'source_legal': source_legal, 'scope': 'Actual matching grammar build with logged compiler arguments, full selected source/header originals and diagnostic link map. SDK inventory is not proof of included code; no redistribution-rights approval or served asset change.'}
     (evidence / 'verification.json').write_text(json.dumps(record, sort_keys=True, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(record, sort_keys=True))
 
