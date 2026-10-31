@@ -101,6 +101,8 @@ test -s "$RUNNER_TEMP/npm-notices.txt"
 cmp "$root/vendor/npm/THIRD_PARTY_NOTICES.txt" "$RUNNER_TEMP/npm-notices.txt"
 mkdir -p "$root/vendor/npm"
 cp "$RUNNER_TEMP/npm-notices.txt" "$root/vendor/npm/THIRD_PARTY_NOTICES.txt"
+(cd "$root" && node --test ci/check-tree-sitter-icu.test.mjs)
+(cd "$root" && node ci/check-tree-sitter-icu.mjs)
 (cd "$root" && node ci/site-smoke.mjs)
 (cd "$js" && npx --no-install playwright install --with-deps chromium)
 (cd "$root" && node ci/browser-smoke.mjs)
@@ -118,7 +120,12 @@ cp "$RUNNER_TEMP/wasm-bindgen.txt" "$stage/provenance/wasm-bindgen.txt"
 mkdir -p "$stage/vendor/rust-std"
 cp "$root/LICENSE-MIT" "$root/LICENSE-APACHE" "$root/THIRD_PARTY_NOTICES.txt" "$stage/"
 cp "$root/vendor/rust-std/COPYRIGHT" "$root/vendor/rust-std/COPYRIGHT-library.html" "$root/vendor/rust-std/LICENSE-MIT" "$root/vendor/rust-std/LICENSE-APACHE" "$stage/vendor/rust-std/"
-cp "$root/vendor/tailwindcss.LICENSE" "$stage/vendor/"
+cp "$root/vendor/tailwindcss.LICENSE" "$root/vendor/js-yaml.LICENSE" "$root/vendor/smol-toml.mjs" "$stage/vendor/"
+cp "$root/vendor/tree-sitter/web-tree-sitter.LICENSE" "$stage/vendor/tree-sitter/"
+mkdir -p "$stage/vendor/tree-sitter/icu"
+cp "$root/vendor/tree-sitter/icu/LICENSE" "$root/vendor/tree-sitter/icu/utf8.h" "$root/vendor/tree-sitter/icu/utf16.h" "$root/vendor/tree-sitter/icu/umachine.h" "$stage/vendor/tree-sitter/icu/"
+cp "$root/provenance/tree-sitter-icu.json" "$stage/provenance/"
+cp "$root/package-lock.json" "$stage/package-lock.json"
 for legal in \
   LICENSE-MIT LICENSE-APACHE THIRD_PARTY_NOTICES.txt \
   vendor/rust-std/COPYRIGHT vendor/rust-std/COPYRIGHT-library.html \
@@ -128,5 +135,9 @@ done
 for asset in assets/tailwind.css assets/favicon.svg vendor/tree-sitter/web-tree-sitter.wasm; do
   cmp "$root/$asset" "$stage/$asset"
 done
+for legal in package-lock.json provenance/tree-sitter-icu.json vendor/tree-sitter/icu/LICENSE vendor/tree-sitter/icu/utf8.h vendor/tree-sitter/icu/utf16.h vendor/tree-sitter/icu/umachine.h vendor/tree-sitter/web-tree-sitter.LICENSE vendor/js-yaml.LICENSE vendor/smol-toml.mjs; do
+  cmp "$root/$legal" "$stage/$legal"
+done
+(cd "$root" && node ci/check-tree-sitter-icu.mjs "$stage")
 (cd "$root" && node ci/browser-smoke.mjs "$stage")
 printf 'stage=%s\n' "$stage" >> "$GITHUB_OUTPUT"

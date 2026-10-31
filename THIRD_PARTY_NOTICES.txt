@@ -22,6 +22,17 @@ Ktav tree-sitter grammar 0.8.1:
 web-tree-sitter 0.26.8:
   vendor/tree-sitter/web-tree-sitter.LICENSE
 
+Unicode ICU header subset used by web-tree-sitter 0.26.8:
+  vendor/tree-sitter/icu/LICENSE (complete original upstream notice)
+  vendor/tree-sitter/icu/utf8.h
+  vendor/tree-sitter/icu/utf16.h
+  vendor/tree-sitter/icu/umachine.h
+  provenance/tree-sitter-icu.json (exact runtime/source/material identities)
+  The small header subset is identified separately from the npm MIT license.
+  The complete upstream license file is retained verbatim, including its
+  conditional third-party notices; this does not mean that all ICU libraries
+  or dictionaries are included in this site.
+
 npm components included in assets/bundle.js:
   vendor/npm/THIRD_PARTY_NOTICES.txt
 

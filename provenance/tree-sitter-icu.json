@@ -1,0 +1,50 @@
+{
+  "icu_upstream_revision": "552b01f61127d30d6589aa4bf99468224979b661",
+  "materials": [
+    {
+      "bytes": 21001,
+      "git_blob": "2e01e368768a4b992e22f98c05ead747134492a6",
+      "path": "vendor/tree-sitter/icu/LICENSE",
+      "role": "license",
+      "sha256": "6a18c5fac70d7860b57f5b72b4e2c9a1ba6b3d2741eef7ff9767c5379364f10d",
+      "source_path": "lib/src/unicode/LICENSE"
+    },
+    {
+      "bytes": 31698,
+      "git_blob": "bb001303747efec58edf0e60c18561e225467a05",
+      "path": "vendor/tree-sitter/icu/utf8.h",
+      "role": "utf8",
+      "sha256": "39651224b2ca2452359c7f3339f3cc0a841fe7db64f8a00c9c5ec19c0389645c",
+      "source_path": "lib/src/unicode/utf8.h"
+    },
+    {
+      "bytes": 23878,
+      "git_blob": "9fd7d5c8a7727979c172dc781a7c6a4ee3fc839a",
+      "path": "vendor/tree-sitter/icu/utf16.h",
+      "role": "utf16",
+      "sha256": "c370d9069f37fad2b53981c06dc648bbc21923db1655517a31bb237df4fba041",
+      "source_path": "lib/src/unicode/utf16.h"
+    },
+    {
+      "bytes": 14865,
+      "git_blob": "9195824d5b9959a985779da9081d259b7a6e841c",
+      "path": "vendor/tree-sitter/icu/umachine.h",
+      "role": "umachine",
+      "sha256": "2d79c0903d9e73e247b948bc0a12b6a785257ca0273bddab56fb59561f8d7391",
+      "source_path": "lib/src/unicode/umachine.h"
+    }
+  ],
+  "runtime_integrity": "sha512-4sUwi7ZyOrIk5KLgYLkc2A/F0LFMQnBhfb+2Cdl7ik4ePJ6JD+fk4ofI2sA5eGawBKBaK4Vntt7Ww5KcEsay4A==",
+  "runtime_package": "web-tree-sitter",
+  "runtime_sha256": "082795b88fe15e4b64043f835b4d7160fbf95e801855122acc9509239b5ef916",
+  "runtime_version": "0.26.8",
+  "schema_version": 1,
+  "scope": "Original Unicode permission/copyright and header subset identified through exact npm runtime/source provenance. The complete upstream license document is retained verbatim, including its conditional third-party notices; this does not claim that all ICU libraries/dictionaries are linked. Filtered upstream source-map mappings do not establish a complete retained-code inventory; other compiler/generated-runtime sources require separate review.",
+  "source_map_wrapper": {
+    "git_blob": "0fba3f29614d3688e553bcc9e896341d05e00d66",
+    "sha256": "6cf0ec5a54e72644e506cca20b854dc7c49249cb1cff0d806635a10c8efba340",
+    "source_path": "lib/src/unicode.h"
+  },
+  "source_repository": "https://github.com/tree-sitter/tree-sitter",
+  "source_revision": "cd5b087cd9f45ca6d93ab1954f6b7c8534f324d2"
+}
