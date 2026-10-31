@@ -1,0 +1,51 @@
+name: Tree-sitter runtime SDK evidence
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  runtime-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      EMSDK_IMAGE: emscripten/emsdk@sha256:27bc6267cb285223b8aebb7627bfebae7cb3ad2aaa0d5923b8aa5321793033e8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: site
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: tree-sitter/tree-sitter
+          ref: cd5b087cd9f45ca6d93ab1954f6b7c8534f324d2
+          path: upstream
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify bounded evidence helpers
+        run: python -I -m unittest discover -s site/ci -p test_tree_sitter_runtime_evidence.py -v
+      - name: Rebuild nominal and diagnostic runtime with the pinned SDK
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir "$RUNNER_TEMP/tree-sitter-runtime-evidence"
+          docker pull "$EMSDK_IMAGE"
+          docker image inspect "$EMSDK_IMAGE" > "$RUNNER_TEMP/tree-sitter-runtime-evidence/image.json"
+          docker run --rm --network none \
+            --workdir /src \
+            --volume "$GITHUB_WORKSPACE/upstream:/src" \
+            --volume "$GITHUB_WORKSPACE/site/ci:/tools:ro" \
+            --volume "$GITHUB_WORKSPACE/site/vendor/tree-sitter:/original:ro" \
+            --volume "$RUNNER_TEMP/tree-sitter-runtime-evidence:/evidence" \
+            "$EMSDK_IMAGE" \
+            python3 -I /tools/tree-sitter-runtime-evidence.py /src /evidence /original/web-tree-sitter.wasm
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tree-sitter-runtime-sdk-evidence
+          path: ${{ runner.temp }}/tree-sitter-runtime-evidence/
+          if-no-files-found: error
