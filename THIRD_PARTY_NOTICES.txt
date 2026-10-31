@@ -33,6 +33,22 @@ Unicode ICU header subset used by web-tree-sitter 0.26.8:
   conditional third-party notices; this does not mean that all ICU libraries
   or dictionaries are included in this site.
 
+Emscripten 4.0.15 SDK code in the web-tree-sitter 0.26.8 runtime:
+  vendor/tree-sitter/runtime-sdk/emscripten/LICENSE (complete MIT/NCSA original)
+  vendor/tree-sitter/runtime-sdk/emscripten/AUTHORS
+  vendor/tree-sitter/runtime-sdk/musl/COPYRIGHT (complete original and exceptions)
+  vendor/tree-sitter/runtime-sdk/compiler-rt/LICENSE.TXT (Apache 2.0 with LLVM exception and legacy grants)
+  vendor/tree-sitter/runtime-sdk/sources/system/lib/dlmalloc.c (Doug Lea public-domain dedication)
+  vendor/tree-sitter/runtime-sdk/sources/ (complete selected SDK source originals)
+  vendor/tree-sitter/runtime-sdk/generated-headers/ (complete source-map header originals)
+  provenance/tree-sitter-runtime-sdk.json (exact runtime, source, grant and link-member identities)
+  The pinned source/image rebuild and its diagnostic link-map build reproduce
+  the served npm runtime byte for byte. Original file-level copyright notices,
+  permission text and full SDK license documents are retained without edits.
+  These materials cover the selected Emscripten, musl, dlmalloc and compiler-rt
+  inputs, not all SDK components. They do not describe the separate grammar
+  WASM or Ktav wasm-bindgen generated payload. ICU materials are listed above.
+
 npm components included in assets/bundle.js:
   vendor/npm/THIRD_PARTY_NOTICES.txt
 

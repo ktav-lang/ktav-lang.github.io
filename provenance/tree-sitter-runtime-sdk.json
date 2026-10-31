@@ -1,0 +1,895 @@
+{
+  "emscripten_revision": "09f52557f0d48b65b8c724853ed8f4e8bf80e669",
+  "emscripten_version": "4.0.15",
+  "evidence": {
+    "diagnostic_matches_nominal": true,
+    "head": "76011be68c713b5e2eee34ad43d707e0714f865e",
+    "link_map_sha256": "265701e51a72eb5d58eddfb9388c2db3ceeca61c1b16668773d20d1882b16cc7",
+    "nominal_matches_original": true,
+    "repository": "ktav-lang/ktav-lang.github.io",
+    "run": 41241244288,
+    "source_map_sha256": "b3279016f638ed161417f7c8777843b6f7e4ef130e8546b163eefc83036d89fb"
+  },
+  "image": "emscripten/emsdk@sha256:27bc6267cb285223b8aebb7627bfebae7cb3ad2aaa0d5923b8aa5321793033e8",
+  "materials": [
+    {
+      "bytes": 16708,
+      "git_blob": "5a79a1b9d5cb0af9a779751f07033e44ca3b14d8",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/compiler-rt/LICENSE.TXT",
+      "role": "compiler-rt-license",
+      "sha256": "1a8f1058753f1ba890de984e48f0242a3a5c29a6a8f2ed9fd813f36985387e8d",
+      "upstream_path": "system/lib/compiler-rt/LICENSE.TXT"
+    },
+    {
+      "bytes": 28933,
+      "git_blob": "5aed48f68b996d61e83272c74094aa3be0badd14",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/emscripten/AUTHORS",
+      "role": "emscripten-authors",
+      "sha256": "56f7df65203d4858dac19cafe3a84a8c49abaff56b67d32d2d463d5fef6e440b",
+      "upstream_path": "AUTHORS"
+    },
+    {
+      "bytes": 5093,
+      "git_blob": "70cabe388d27da221bd769c50b427a35354f4f1d",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/emscripten/LICENSE",
+      "role": "emscripten-license",
+      "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86",
+      "upstream_path": "LICENSE"
+    },
+    {
+      "bytes": 2547,
+      "git_blob": "937fd43fc97e2412b6d00c7b753ff3df3e175deb",
+      "origin": "sdk-generated-header",
+      "path": "vendor/tree-sitter/runtime-sdk/generated-headers/atomic_arch.h",
+      "role": "generated-header:atomic_arch.h",
+      "sha256": "8d580c6a437be6e55d7481bae8cbeca0405da95a9ed31037c4f2e6ca380458d9",
+      "upstream_path": "cache/sysroot/include/atomic_arch.h"
+    },
+    {
+      "bytes": 1958,
+      "git_blob": "172c43203af12bde8a5cbb6f300fe2a11d2d6663",
+      "origin": "sdk-generated-header",
+      "path": "vendor/tree-sitter/runtime-sdk/generated-headers/endian.h",
+      "role": "generated-header:endian.h",
+      "sha256": "4414084736937798abcc075d1f8053e116d873c81dda0908013bfca3331771b9",
+      "upstream_path": "cache/sysroot/include/endian.h"
+    },
+    {
+      "bytes": 6204,
+      "git_blob": "c1628e9ac84f927fe791124ec172fb61c760bb9b",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/musl/COPYRIGHT",
+      "role": "musl-copyright",
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+      "upstream_path": "system/lib/libc/musl/COPYRIGHT"
+    },
+    {
+      "bytes": 766,
+      "git_blob": "9c376e719ebb3ac8ea8680fa0af260e5868e995a",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/compiler-rt/emscripten_exception_builtins.c",
+      "role": "source:system/lib/compiler-rt/emscripten_exception_builtins.c",
+      "sha256": "48e70458a6cc487f78b2406931cc6da9f12b81f72b2cd5098ff9216c6cd65f16",
+      "upstream_path": "system/lib/compiler-rt/emscripten_exception_builtins.c"
+    },
+    {
+      "bytes": 1195,
+      "git_blob": "2bebf10401d34ac2b489a73cf735a27fdad6aac2",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/compiler-rt/lib/builtins/ashlti3.c",
+      "role": "source:system/lib/compiler-rt/lib/builtins/ashlti3.c",
+      "sha256": "39afba4710d9b24c9c27cccdc8e18a18db10ce3616dc60cdcfa494f0a49a3a60",
+      "upstream_path": "system/lib/compiler-rt/lib/builtins/ashlti3.c"
+    },
+    {
+      "bytes": 5121,
+      "git_blob": "a1bd881eb57c9e79476a7ec30c511eef500fabb0",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/compiler-rt/lib/builtins/fp_trunc.h",
+      "role": "source:system/lib/compiler-rt/lib/builtins/fp_trunc.h",
+      "sha256": "90626a0811dcf96be507daa5d7fe872d1efae2c388af4c48eaba45101856be23",
+      "upstream_path": "system/lib/compiler-rt/lib/builtins/fp_trunc.h"
+    },
+    {
+      "bytes": 6307,
+      "git_blob": "f68492495697f9a7fdfe371409673f809e4b4a84",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/compiler-rt/lib/builtins/fp_trunc_impl.inc",
+      "role": "source:system/lib/compiler-rt/lib/builtins/fp_trunc_impl.inc",
+      "sha256": "17098ba776ada9f2cc568a02cf34317bb0b59b8a603ff8a92ea909b7bc8c214b",
+      "upstream_path": "system/lib/compiler-rt/lib/builtins/fp_trunc_impl.inc"
+    },
+    {
+      "bytes": 1191,
+      "git_blob": "5dc8a0a2347f2f0f5fb220034a17451a517e11b2",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/compiler-rt/lib/builtins/lshrti3.c",
+      "role": "source:system/lib/compiler-rt/lib/builtins/lshrti3.c",
+      "sha256": "89da91e31e33c3c62128c32ed1c740856a413c17ac1e7cd75702da37d1cf9fa4",
+      "upstream_path": "system/lib/compiler-rt/lib/builtins/lshrti3.c"
+    },
+    {
+      "bytes": 591,
+      "git_blob": "a5bdded53751fdb5eaefd53fc85466cf78d3e513",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/compiler-rt/lib/builtins/trunctfdf2.c",
+      "role": "source:system/lib/compiler-rt/lib/builtins/trunctfdf2.c",
+      "sha256": "46a8ca78c3d3c44a0eb8eff7a86739349cbd26cb7f61e3b5784fb096a5420871",
+      "upstream_path": "system/lib/compiler-rt/lib/builtins/trunctfdf2.c"
+    },
+    {
+      "bytes": 902,
+      "git_blob": "9d1913d7219e3b188b6d5938d168466d3dd19f69",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/compiler-rt/stack_ops.S",
+      "role": "source:system/lib/compiler-rt/stack_ops.S",
+      "sha256": "f99c53c18be77b978f2255c5ef9c1c31798fe17dea87ca87f34ae39a2f237045",
+      "upstream_path": "system/lib/compiler-rt/stack_ops.S"
+    },
+    {
+      "bytes": 236568,
+      "git_blob": "7dc91503f1bec86e4be64da7fd0ad4b3670578ea",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/dlmalloc.c",
+      "role": "source:system/lib/dlmalloc.c",
+      "sha256": "c008dc3c2b005ba822efb1bf6187a9d7a6aecd096826c6f28c6f5ee62885053d",
+      "upstream_path": "system/lib/dlmalloc.c"
+    },
+    {
+      "bytes": 396,
+      "git_blob": "bc39a05df8ae9c7cd09f6eb3b0c90d8f4c706c92",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/emscripten_get_heap_size.c",
+      "role": "source:system/lib/libc/emscripten_get_heap_size.c",
+      "sha256": "f642e9c8e89121b3c379535996cb78d8a7fa0626ef8351d7b00c1824dcdb1dbe",
+      "upstream_path": "system/lib/libc/emscripten_get_heap_size.c"
+    },
+    {
+      "bytes": 3185,
+      "git_blob": "7e30f567463c2bc5443743bbc8d231556a69de7e",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/emscripten_memcpy.c",
+      "role": "source:system/lib/libc/emscripten_memcpy.c",
+      "sha256": "1eed22a14ee2143283ad19a0494355734bd9d48a19b318b605c86f274642afa0",
+      "upstream_path": "system/lib/libc/emscripten_memcpy.c"
+    },
+    {
+      "bytes": 521,
+      "git_blob": "876b997944893e5b792b3ef810012246de829c2f",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/emscripten_memcpy_bulkmem.S",
+      "role": "source:system/lib/libc/emscripten_memcpy_bulkmem.S",
+      "sha256": "39af87c7ef0479fa2c4863838b4012a8ed86e89d6e37035c1054666731ffc016",
+      "upstream_path": "system/lib/libc/emscripten_memcpy_bulkmem.S"
+    },
+    {
+      "bytes": 706,
+      "git_blob": "2d12280698f7fa028faf2b21e5a0852b1285aa6f",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/emscripten_memmove.c",
+      "role": "source:system/lib/libc/emscripten_memmove.c",
+      "sha256": "9cb5224eafe928a4e518865f4613477141fa462920df1824bf6dbbd2650ab5d9",
+      "upstream_path": "system/lib/libc/emscripten_memmove.c"
+    },
+    {
+      "bytes": 804,
+      "git_blob": "111a99f495e6295a78d6bae0ea676636655f2a45",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/emscripten_memset.c",
+      "role": "source:system/lib/libc/emscripten_memset.c",
+      "sha256": "7f345bf7ffbb49e3d7e1691538a243471e67e0e11c9e06b518c2b691295b1cdf",
+      "upstream_path": "system/lib/libc/emscripten_memset.c"
+    },
+    {
+      "bytes": 6545,
+      "git_blob": "ca7e5be6eea10f83ee63f5c45cc2a4ab20bbe825",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/emscripten_syscall_stubs.c",
+      "role": "source:system/lib/libc/emscripten_syscall_stubs.c",
+      "sha256": "7550df4837f16b83edae5e98a13ca7cfec27daf6ecff7fefedb08b839e744e63",
+      "upstream_path": "system/lib/libc/emscripten_syscall_stubs.c"
+    },
+    {
+      "bytes": 11491,
+      "git_blob": "14f28ec8c646596aee2d78c662a65584def559a1",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/include/math.h",
+      "role": "source:system/lib/libc/musl/include/math.h",
+      "sha256": "5559892c51d9625616fde0c4d25609f1e68e0aa3aee090d1842c6f894e63352a",
+      "upstream_path": "system/lib/libc/musl/include/math.h"
+    },
+    {
+      "bytes": 173,
+      "git_blob": "716da23a566155ebc90646751a3be838523c0c10",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/ctype/isblank.c",
+      "role": "source:system/lib/libc/musl/src/ctype/isblank.c",
+      "sha256": "2fe71bd5c48604d04f2582e35e1230c2c302bd175ebcfa3c7ed15cf191156bd3",
+      "upstream_path": "system/lib/libc/musl/src/ctype/isblank.c"
+    },
+    {
+      "bytes": 191,
+      "git_blob": "046c399c3775f30ca065d29239395c39e6b82831",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/ctype/iswalnum.c",
+      "role": "source:system/lib/libc/musl/src/ctype/iswalnum.c",
+      "sha256": "647f8fc54b33790c1de8a26acd2f5b7212952c2e60db0ada433f9ddd639ce186",
+      "upstream_path": "system/lib/libc/musl/src/ctype/iswalnum.c"
+    },
+    {
+      "bytes": 333,
+      "git_blob": "1c5485d2bfb418feed5911bd2292d4acd3278e7b",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/ctype/iswalpha.c",
+      "role": "source:system/lib/libc/musl/src/ctype/iswalpha.c",
+      "sha256": "c22480b08b6943bbecfb6e0ab6677bf3b41c0371d5df51286f437b3cb37c130e",
+      "upstream_path": "system/lib/libc/musl/src/ctype/iswalpha.c"
+    },
+    {
+      "bytes": 193,
+      "git_blob": "68c88002029791f92c6e5b258220e58097a0873d",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/ctype/iswblank.c",
+      "role": "source:system/lib/libc/musl/src/ctype/iswblank.c",
+      "sha256": "6f3a3161506c01d7a425c766e6de722101618d14548b56998bc147e86077e744",
+      "upstream_path": "system/lib/libc/musl/src/ctype/iswblank.c"
+    },
+    {
+      "bytes": 201,
+      "git_blob": "db817edf7dd73544da17be7ba77e9da0eeb68ea4",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/ctype/iswdigit.c",
+      "role": "source:system/lib/libc/musl/src/ctype/iswdigit.c",
+      "sha256": "d7e9bda18ff14bd8ace47884d8bd021130e95c69a2dc747f83effc1a2714895b",
+      "upstream_path": "system/lib/libc/musl/src/ctype/iswdigit.c"
+    },
+    {
+      "bytes": 181,
+      "git_blob": "f02a4362a8664c424c35adfd4dbe22d57c6c94fc",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/ctype/iswlower.c",
+      "role": "source:system/lib/libc/musl/src/ctype/iswlower.c",
+      "sha256": "e51bb97002c407e416bfca5689abef2e9b9dc625bef19ae684753722e98d0392",
+      "upstream_path": "system/lib/libc/musl/src/ctype/iswlower.c"
+    },
+    {
+      "bytes": 616,
+      "git_blob": "263afa15c5d746bd5421f5c2271587d2d08f8f28",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/ctype/iswspace.c",
+      "role": "source:system/lib/libc/musl/src/ctype/iswspace.c",
+      "sha256": "c8592c0fb5463b314c38926e3df26b9efdfe5f1437958ba20c7c36f81facba80",
+      "upstream_path": "system/lib/libc/musl/src/ctype/iswspace.c"
+    },
+    {
+      "bytes": 181,
+      "git_blob": "7e486665eef59fd79e795b5a7d62eeb7a5ae5264",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/ctype/iswupper.c",
+      "role": "source:system/lib/libc/musl/src/ctype/iswupper.c",
+      "sha256": "f6b68aa9983a6fb5c09479e1349a2b35721cb7aef308192584fdea5585032cd8",
+      "upstream_path": "system/lib/libc/musl/src/ctype/iswupper.c"
+    },
+    {
+      "bytes": 222,
+      "git_blob": "62bc9e743953bfc532ca42ef96e5ab9431b4c3c1",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/ctype/iswxdigit.c",
+      "role": "source:system/lib/libc/musl/src/ctype/iswxdigit.c",
+      "sha256": "1f6dc78efe7c313ddcf47401101f903ce194af5dacd89922f483a995075f52cb",
+      "upstream_path": "system/lib/libc/musl/src/ctype/iswxdigit.c"
+    },
+    {
+      "bytes": 1715,
+      "git_blob": "76d137696ee9eb9bfef6607f49ae24779f918dc0",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/ctype/towctrans.c",
+      "role": "source:system/lib/libc/musl/src/ctype/towctrans.c",
+      "sha256": "43f4374b7dfcd24a957b4be4cfa304611e24912529183174ec724fcbaedf82cd",
+      "upstream_path": "system/lib/libc/musl/src/ctype/towctrans.c"
+    },
+    {
+      "bytes": 447,
+      "git_blob": "05f55d9eaf7adacbee6f72b79d126a9245ed75be",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/errno/__errno_location.c",
+      "role": "source:system/lib/libc/musl/src/errno/__errno_location.c",
+      "sha256": "167fe0721c519c40c6d674db4a3a7c042e54140be230b876024e999660424878",
+      "upstream_path": "system/lib/libc/musl/src/errno/__errno_location.c"
+    },
+    {
+      "bytes": 1333,
+      "git_blob": "a6427d51d66e9d6d4ddc6b372d2af30ee56481c0",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/exit/abort.c",
+      "role": "source:system/lib/libc/musl/src/exit/abort.c",
+      "sha256": "dab1cb2741a6890a8d16591457969c6c0d6e7b5fc34d0bf0d663593dee0ee627",
+      "upstream_path": "system/lib/libc/musl/src/exit/abort.c"
+    },
+    {
+      "bytes": 238,
+      "git_blob": "c84ed3d2524c1450435d31191ca62b6eb48296de",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/internal/libc.c",
+      "role": "source:system/lib/libc/musl/src/internal/libc.c",
+      "sha256": "bae9969eb415ba23bdae8ae7f80e346f6a2c1e5c9d17dc373fd3bba04bc03fa5",
+      "upstream_path": "system/lib/libc/musl/src/internal/libc.c"
+    },
+    {
+      "bytes": 8312,
+      "git_blob": "7f3a5483c802f37f95fab2791a7d7a0e04ef9952",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/internal/pthread_impl.h",
+      "role": "source:system/lib/libc/musl/src/internal/pthread_impl.h",
+      "sha256": "9c0917012766522e7465195774c7ea766366e567a64f62df9535b1ae7d60b07d",
+      "upstream_path": "system/lib/libc/musl/src/internal/pthread_impl.h"
+    },
+    {
+      "bytes": 374,
+      "git_blob": "27b6266ed0c1d7c5dadd06ecc186a994fdcd1c52",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/math/frexp.c",
+      "role": "source:system/lib/libc/musl/src/math/frexp.c",
+      "sha256": "58a2973f80f9def7940708850e97f8080da38be2496cd473f7cb9023e9d59e94",
+      "upstream_path": "system/lib/libc/musl/src/math/frexp.c"
+    },
+    {
+      "bytes": 810,
+      "git_blob": "8e34926ed8c5fe7ece77546ea7ae0601098398d8",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/multibyte/wcrtomb.c",
+      "role": "source:system/lib/libc/musl/src/multibyte/wcrtomb.c",
+      "sha256": "a8f5bfa624c88f1e3214bcd46d909fb9c5b172ac9b634fb32a101161ab680693",
+      "upstream_path": "system/lib/libc/musl/src/multibyte/wcrtomb.c"
+    },
+    {
+      "bytes": 122,
+      "git_blob": "bad41c5edf9633941db03c8cfad68d1ec1c3ad03",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/multibyte/wctomb.c",
+      "role": "source:system/lib/libc/musl/src/multibyte/wctomb.c",
+      "sha256": "046e38f206c7203d0b1295dcdcd3080e3b1c335ff2e1433f0626066a73e8befc",
+      "upstream_path": "system/lib/libc/musl/src/multibyte/wctomb.c"
+    },
+    {
+      "bytes": 639,
+      "git_blob": "2b648c05660a2bf4c0fe9b3e18a562b652447532",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/__lockfile.c",
+      "role": "source:system/lib/libc/musl/src/stdio/__lockfile.c",
+      "sha256": "c7dde436ebc0d1b486ffebff1937a3d406012b7bdd44ed6d84cda99e622ed1d7",
+      "upstream_path": "system/lib/libc/musl/src/stdio/__lockfile.c"
+    },
+    {
+      "bytes": 241,
+      "git_blob": "e65a594dd7bf190a5481fc707a8f902812fe0ca3",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/__overflow.c",
+      "role": "source:system/lib/libc/musl/src/stdio/__overflow.c",
+      "sha256": "1d4606389714e1ccd180cd411cac9d766e087e4efc9ded513c92050969366491",
+      "upstream_path": "system/lib/libc/musl/src/stdio/__overflow.c"
+    },
+    {
+      "bytes": 301,
+      "git_blob": "7618de9309f322923393aba75d9e003a9c26111d",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/__stdio_close.c",
+      "role": "source:system/lib/libc/musl/src/stdio/__stdio_close.c",
+      "sha256": "59089a99da4101f335e45e9b65ff6245cd1d31bb0cbc5d3871dba00965140f49",
+      "upstream_path": "system/lib/libc/musl/src/stdio/__stdio_close.c"
+    },
+    {
+      "bytes": 137,
+      "git_blob": "326ab9bce48ed38f5f56e059b9312efb0328acbe",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/__stdio_seek.c",
+      "role": "source:system/lib/libc/musl/src/stdio/__stdio_seek.c",
+      "sha256": "02a6231c5ba3b012d097ea9646d6e85bfb396d6f49061363915a3277a25e57b6",
+      "upstream_path": "system/lib/libc/musl/src/stdio/__stdio_seek.c"
+    },
+    {
+      "bytes": 996,
+      "git_blob": "cce9f6a16a5586cbd3cbe9a6fb23d5b89dbfe8dc",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/__stdio_write.c",
+      "role": "source:system/lib/libc/musl/src/stdio/__stdio_write.c",
+      "sha256": "42ef77431b5fbf7e03678569bd809c0e77b385f352c4dbca6bfcb1e1dd21bfe4",
+      "upstream_path": "system/lib/libc/musl/src/stdio/__stdio_write.c"
+    },
+    {
+      "bytes": 413,
+      "git_blob": "4c9c66ae79c9e8c5abe8750df8ebfce149b1e061",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/__towrite.c",
+      "role": "source:system/lib/libc/musl/src/stdio/__towrite.c",
+      "sha256": "b9cb9369502a6d10165bc4b959b4be6a11cfcd43af62d2132d521f860c9bfa4f",
+      "upstream_path": "system/lib/libc/musl/src/stdio/__towrite.c"
+    },
+    {
+      "bytes": 91,
+      "git_blob": "f364ed38ba7471d3ca80f2d21560737eca642042",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/fputc.c",
+      "role": "source:system/lib/libc/musl/src/stdio/fputc.c",
+      "sha256": "3f8178bfae26f9b6dec69cd13997a6316d43840db5e956eb4fadc0e74fb7a240",
+      "upstream_path": "system/lib/libc/musl/src/stdio/fputc.c"
+    },
+    {
+      "bytes": 732,
+      "git_blob": "7a567b2c55a94b30288444bd93f6fc48fff7e433",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/fwrite.c",
+      "role": "source:system/lib/libc/musl/src/stdio/fwrite.c",
+      "sha256": "91b1cbf23660e909dfe788f1c7cc46e19a937342dbaa357eda1946d2daf5c9c8",
+      "upstream_path": "system/lib/libc/musl/src/stdio/fwrite.c"
+    },
+    {
+      "bytes": 499,
+      "git_blob": "2014c4ec4af9c68c283d5e8cb7b2a094eab436fa",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/putc.h",
+      "role": "source:system/lib/libc/musl/src/stdio/putc.h",
+      "sha256": "f7c496989e9f4aeb95a9756549756226a5c97f5df489b001f73d100aee585d4b",
+      "upstream_path": "system/lib/libc/musl/src/stdio/putc.h"
+    },
+    {
+      "bytes": 219,
+      "git_blob": "771503b284eba969c9f26e0e05416be0083e429d",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/snprintf.c",
+      "role": "source:system/lib/libc/musl/src/stdio/snprintf.c",
+      "sha256": "be661cb258170863a1372b8e5998ef345bb8ef8e3f06d38a603dfda77eed4d4d",
+      "upstream_path": "system/lib/libc/musl/src/stdio/snprintf.c"
+    },
+    {
+      "bytes": 360,
+      "git_blob": "f2bc4648d6f0af2f0e8c2ced2531fcef940ad56f",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/stderr.c",
+      "role": "source:system/lib/libc/musl/src/stdio/stderr.c",
+      "sha256": "328cd28a186bec37f37df12aac17c68e08f6aa75bce3c08509b5982dbe66d14b",
+      "upstream_path": "system/lib/libc/musl/src/stdio/stderr.c"
+    },
+    {
+      "bytes": 19672,
+      "git_blob": "c0542b599024c3d7a7d9884ff77fd2a7750ef61e",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/vfprintf.c",
+      "role": "source:system/lib/libc/musl/src/stdio/vfprintf.c",
+      "sha256": "6e135850f0b6bf65e6d0d27206a8a07a57dc0ae91dc1f961d22bd097eadee2a5",
+      "upstream_path": "system/lib/libc/musl/src/stdio/vfprintf.c"
+    },
+    {
+      "bytes": 2175,
+      "git_blob": "4d18b50450ef6dd0e7871977d6d9557144650e4a",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/stdio/vsnprintf.c",
+      "role": "source:system/lib/libc/musl/src/stdio/vsnprintf.c",
+      "sha256": "b307baae1675cf93bab514457dcb6446db7e3bd058d56c209880fc033e7b7668",
+      "upstream_path": "system/lib/libc/musl/src/stdio/vsnprintf.c"
+    },
+    {
+      "bytes": 786,
+      "git_blob": "bad4e75cc3f38493d5d14b23a890fc30735d8a78",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/memchr.c",
+      "role": "source:system/lib/libc/musl/src/string/memchr.c",
+      "sha256": "67bfc48f1d29368c9d0ba806112eab32b7a4c1376a7de42e64761a170d7c2dfc",
+      "upstream_path": "system/lib/libc/musl/src/string/memchr.c"
+    },
+    {
+      "bytes": 782,
+      "git_blob": "c93cf8cc97330a9d14cccc40c9303c710488bc22",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/memcmp.c",
+      "role": "source:system/lib/libc/musl/src/string/memcmp.c",
+      "sha256": "2514492fc7e9249713857dfd12c1a3630661aa163f16bc40a6f59f8cd8e76aeb",
+      "upstream_path": "system/lib/libc/musl/src/string/memcmp.c"
+    },
+    {
+      "bytes": 850,
+      "git_blob": "5dc9cdb924218cb10f284d013984797e03fd4e19",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/memmove.c",
+      "role": "source:system/lib/libc/musl/src/string/memmove.c",
+      "sha256": "1304f9ddfc18594f5d9a84691892b9fdaf3be8ecc6d7f365c691abb138eaf74e",
+      "upstream_path": "system/lib/libc/musl/src/string/memmove.c"
+    },
+    {
+      "bytes": 2212,
+      "git_blob": "5613a1486e6a6fc3988be6561f41b07b2647d80f",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/memset.c",
+      "role": "source:system/lib/libc/musl/src/string/memset.c",
+      "sha256": "2a74d9e7f988945e0d691d480b78d77a228da0d2be401c1000637cc879b2c0be",
+      "upstream_path": "system/lib/libc/musl/src/string/memset.c"
+    },
+    {
+      "bytes": 925,
+      "git_blob": "2e3f67ef3abce468f0812a798a634a45e7590c98",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/stpncpy.c",
+      "role": "source:system/lib/libc/musl/src/string/stpncpy.c",
+      "sha256": "4aa7816aeb8e9f0093ec014fed56dc7b9d4808a2ab58adad60d53dc7eddc0255",
+      "upstream_path": "system/lib/libc/musl/src/string/stpncpy.c"
+    },
+    {
+      "bytes": 150,
+      "git_blob": "808bd8370ddeca3a2cfc124601cbd6012be89f80",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/strcmp.c",
+      "role": "source:system/lib/libc/musl/src/string/strcmp.c",
+      "sha256": "3e1793ea2dd358e5c884c4dd232083605d0f6775f7ebe19d03d64fe97068a78f",
+      "upstream_path": "system/lib/libc/musl/src/string/strcmp.c"
+    },
+    {
+      "bytes": 603,
+      "git_blob": "aab0719519f6e632901423fcbecb401950298886",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/strlen.c",
+      "role": "source:system/lib/libc/musl/src/string/strlen.c",
+      "sha256": "152cbbb4bf1b99ea4853a0e244e895e2a9c4446cf52b4d6a0c1d4bad5f0106b2",
+      "upstream_path": "system/lib/libc/musl/src/string/strlen.c"
+    },
+    {
+      "bytes": 179,
+      "git_blob": "01ca2a2317c6f29ecc1289e94b76b72c69698ea8",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/strncat.c",
+      "role": "source:system/lib/libc/musl/src/string/strncat.c",
+      "sha256": "784dbc83b122671f97711ab6cbcb1ee871513e8d0da3462a8ce267e1367353af",
+      "upstream_path": "system/lib/libc/musl/src/string/strncat.c"
+    },
+    {
+      "bytes": 220,
+      "git_blob": "e228843f0bb394a209b764296e1df52fc8663344",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/strncmp.c",
+      "role": "source:system/lib/libc/musl/src/string/strncmp.c",
+      "sha256": "df801c43304b27dcda67f219a7a3ca34a8fb06f4e63d21e8a6bcb36b03c3c012",
+      "upstream_path": "system/lib/libc/musl/src/string/strncmp.c"
+    },
+    {
+      "bytes": 123,
+      "git_blob": "545892e6ec5f602deb1d3b46cde440213812a390",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/strncpy.c",
+      "role": "source:system/lib/libc/musl/src/string/strncpy.c",
+      "sha256": "88301f7a48004250e1833e9155c7d2fa607ffdddca3b1b1804774d93c82acb96",
+      "upstream_path": "system/lib/libc/musl/src/string/strncpy.c"
+    },
+    {
+      "bytes": 120,
+      "git_blob": "6442eb793fbeeda51a3f19b9e1c1269a030444e9",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/strnlen.c",
+      "role": "source:system/lib/libc/musl/src/string/strnlen.c",
+      "sha256": "3a72ef5250b314ca0d8ff0fed2f6aa10c8b2b26605806c759faf0d1a9b835a9e",
+      "upstream_path": "system/lib/libc/musl/src/string/strnlen.c"
+    },
+    {
+      "bytes": 171,
+      "git_blob": "8dfc2f318316f84ac396d85349373f423d5fd6df",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/wcschr.c",
+      "role": "source:system/lib/libc/musl/src/string/wcschr.c",
+      "sha256": "c9ac14e131c281bef6ab9228ae4e0aea824b3b96c32ed4c2b1a573d7529e7194",
+      "upstream_path": "system/lib/libc/musl/src/string/wcschr.c"
+    },
+    {
+      "bytes": 109,
+      "git_blob": "1b7b66550c618a2126fdd92eefa0ea38af48d356",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/string/wcslen.c",
+      "role": "source:system/lib/libc/musl/src/string/wcslen.c",
+      "sha256": "4baada75103e9906fa85dd6650c07752c1803b36cbdfc1b5e0678c5e3f3223a6",
+      "upstream_path": "system/lib/libc/musl/src/string/wcslen.c"
+    },
+    {
+      "bytes": 129,
+      "git_blob": "dce9640964c23ffc0e14da4ae7a56f7a2a418515",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/thread/default_attr.c",
+      "role": "source:system/lib/libc/musl/src/thread/default_attr.c",
+      "sha256": "99be8ab4db8a5ca9278af138db6b3bb7132170c3715f82628acc1d772e3d2680",
+      "upstream_path": "system/lib/libc/musl/src/thread/default_attr.c"
+    },
+    {
+      "bytes": 96,
+      "git_blob": "a6d4e6d1bc9fc610a54b3a177a7f34bebfe50eb7",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/unistd/getpid.c",
+      "role": "source:system/lib/libc/musl/src/unistd/getpid.c",
+      "sha256": "17b3add7a6d6f26d1a97b627bbeb2078a9c863d57a74d0fed2405174f3ba3b3d",
+      "upstream_path": "system/lib/libc/musl/src/unistd/getpid.c"
+    },
+    {
+      "bytes": 458,
+      "git_blob": "199e784c01d7419c1242027e3a641507ad33b056",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/musl/src/unistd/lseek.c",
+      "role": "source:system/lib/libc/musl/src/unistd/lseek.c",
+      "sha256": "0a5ff6af363be25291d771069def7405e76a1b09dc7b988b39eb16abb13540c4",
+      "upstream_path": "system/lib/libc/musl/src/unistd/lseek.c"
+    },
+    {
+      "bytes": 4507,
+      "git_blob": "c370f9ec2f3d636b22b97b427eb2ee9314f2d7f7",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/sbrk.c",
+      "role": "source:system/lib/libc/sbrk.c",
+      "sha256": "7a348606c92e9e5311ed307bbfba0b4a6a56692ff4005d440cb3a9e983fed7c9",
+      "upstream_path": "system/lib/libc/sbrk.c"
+    },
+    {
+      "bytes": 1028,
+      "git_blob": "0eaba304e980eb4438fd9dcddc13c3d30855bbd0",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/libc/wasi-helpers.c",
+      "role": "source:system/lib/libc/wasi-helpers.c",
+      "sha256": "6173efcc48a1daacd3c1f7817b18173a6de48a1bb87b1ba49598fa70d22b1731",
+      "upstream_path": "system/lib/libc/wasi-helpers.c"
+    },
+    {
+      "bytes": 8862,
+      "git_blob": "0a5bf624f4ea24285e7ab405a2dec93f6300db65",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/pthread/library_pthread_stub.c",
+      "role": "source:system/lib/pthread/library_pthread_stub.c",
+      "sha256": "3635c65a1ae8cf81910934a71427ad3382870e53700860fc4a2df90fcf11b967",
+      "upstream_path": "system/lib/pthread/library_pthread_stub.c"
+    },
+    {
+      "bytes": 1025,
+      "git_blob": "a233f8863c6268644331c28dbad4bb08bd936260",
+      "origin": "emscripten-git",
+      "path": "vendor/tree-sitter/runtime-sdk/sources/system/lib/pthread/pthread_self_stub.c",
+      "role": "source:system/lib/pthread/pthread_self_stub.c",
+      "sha256": "5c8d2d2c31c89f962b766385d6743afb6e3d641ffb2d72ef1b0627363b046b12",
+      "upstream_path": "system/lib/pthread/pthread_self_stub.c"
+    }
+  ],
+  "runtime_integrity": "sha512-4sUwi7ZyOrIk5KLgYLkc2A/F0LFMQnBhfb+2Cdl7ik4ePJ6JD+fk4ofI2sA5eGawBKBaK4Vntt7Ww5KcEsay4A==",
+  "runtime_sha256": "082795b88fe15e4b64043f835b4d7160fbf95e801855122acc9509239b5ef916",
+  "runtime_version": "0.26.8",
+  "schema_version": 1,
+  "scope": "Complete original permission/copyright and selected SDK source materials for the exact byte-reproduced web-tree-sitter runtime. Includes source-map headers and five additional map-selected source files without line-table entries. Does not claim every included source line survived optimization, all SDK components linked, or coverage of grammar WASM / Ktav wasm-bindgen generated code.",
+  "selected_members": [
+    {
+      "archive": "libc.a",
+      "member": "__errno_location.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "__lockfile.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "__overflow.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "__stdio_close.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "__stdio_seek.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "__stdio_write.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "__towrite.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "abort.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "default_attr.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "emscripten_get_heap_size.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "emscripten_memcpy.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "emscripten_memcpy_bulkmem.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "emscripten_memmove.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "emscripten_memset.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "fputc.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "frexp.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "fwrite.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "getpid.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "isblank.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "iswalnum.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "iswalpha.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "iswblank.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "iswdigit.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "iswlower.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "iswspace.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "iswupper.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "iswxdigit.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "libc.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "library_pthread_stub.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "lseek.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "memchr.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "memcmp.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "pthread_self_stub.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "snprintf.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "stderr.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "stpncpy.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "strcmp.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "strlen.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "strncat.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "strncmp.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "strncpy.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "strnlen.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "towctrans.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "vfprintf.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "vsnprintf.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "wasi-helpers.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "wcrtomb.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "wcschr.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "wcslen.o"
+    },
+    {
+      "archive": "libc.a",
+      "member": "wctomb.o"
+    },
+    {
+      "archive": "libcompiler_rt.a",
+      "member": "ashlti3.o"
+    },
+    {
+      "archive": "libcompiler_rt.a",
+      "member": "emscripten_exception_builtins.o"
+    },
+    {
+      "archive": "libcompiler_rt.a",
+      "member": "lshrti3.o"
+    },
+    {
+      "archive": "libcompiler_rt.a",
+      "member": "stack_ops.o"
+    },
+    {
+      "archive": "libcompiler_rt.a",
+      "member": "trunctfdf2.o"
+    },
+    {
+      "archive": "libdlmalloc.a",
+      "member": "dlmalloc.o"
+    },
+    {
+      "archive": "libdlmalloc.a",
+      "member": "sbrk.o"
+    },
+    {
+      "archive": "libstubs.a",
+      "member": "emscripten_syscall_stubs.o"
+    }
+  ],
+  "tree_sitter_revision": "cd5b087cd9f45ca6d93ab1954f6b7c8534f324d2"
+}

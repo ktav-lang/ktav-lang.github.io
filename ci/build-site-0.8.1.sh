@@ -103,6 +103,8 @@ mkdir -p "$root/vendor/npm"
 cp "$RUNNER_TEMP/npm-notices.txt" "$root/vendor/npm/THIRD_PARTY_NOTICES.txt"
 (cd "$root" && node --test ci/check-tree-sitter-icu.test.mjs)
 (cd "$root" && node ci/check-tree-sitter-icu.mjs)
+(cd "$root" && python3 -I -m unittest discover -s ci -p test_tree_sitter_runtime_notices.py -v)
+(cd "$root" && python3 -I ci/check-tree-sitter-runtime-notices.py "$root")
 (cd "$root" && node ci/site-smoke.mjs)
 (cd "$js" && npx --no-install playwright install --with-deps chromium)
 (cd "$root" && node ci/browser-smoke.mjs)
@@ -138,6 +140,7 @@ done
 for legal in package-lock.json provenance/tree-sitter-icu.json vendor/tree-sitter/icu/LICENSE vendor/tree-sitter/icu/utf8.h vendor/tree-sitter/icu/utf16.h vendor/tree-sitter/icu/umachine.h vendor/tree-sitter/web-tree-sitter.LICENSE vendor/js-yaml.LICENSE vendor/smol-toml.mjs; do
   cmp "$root/$legal" "$stage/$legal"
 done
+(cd "$root" && python3 -I ci/check-tree-sitter-runtime-notices.py "$root" "$stage")
 (cd "$root" && node ci/check-tree-sitter-icu.mjs "$stage")
 (cd "$root" && node ci/browser-smoke.mjs "$stage")
 printf 'stage=%s\n' "$stage" >> "$GITHUB_OUTPUT"
