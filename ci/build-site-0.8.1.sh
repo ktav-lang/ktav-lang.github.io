@@ -115,4 +115,14 @@ cp "$root/vendor/npm/THIRD_PARTY_NOTICES.txt" "$stage/vendor/npm/"
 cp "$root/vendor/tree-sitter/tree-sitter-ktav.wasm" "$root/vendor/tree-sitter/highlights.scm" "$root/vendor/tree-sitter/ktav-LICENSE-MIT" "$root/vendor/tree-sitter/ktav-LICENSE-APACHE" "$stage/vendor/tree-sitter/"
 cp "$js/Cargo.lock" "$stage/provenance/ktav-js-0.8.1-Cargo.lock"
 cp "$RUNNER_TEMP/wasm-bindgen.txt" "$stage/provenance/wasm-bindgen.txt"
+mkdir -p "$stage/vendor/rust-std"
+cp "$root/LICENSE-MIT" "$root/LICENSE-APACHE" "$root/THIRD_PARTY_NOTICES.txt" "$stage/"
+cp "$root/vendor/rust-std/COPYRIGHT" "$root/vendor/rust-std/COPYRIGHT-library.html" "$root/vendor/rust-std/LICENSE-MIT" "$root/vendor/rust-std/LICENSE-APACHE" "$stage/vendor/rust-std/"
+cp "$root/vendor/tailwindcss.LICENSE" "$stage/vendor/"
+for legal in \
+  LICENSE-MIT LICENSE-APACHE THIRD_PARTY_NOTICES.txt \
+  vendor/rust-std/COPYRIGHT vendor/rust-std/COPYRIGHT-library.html \
+  vendor/rust-std/LICENSE-MIT vendor/rust-std/LICENSE-APACHE vendor/tailwindcss.LICENSE; do
+  cmp "$root/$legal" "$stage/$legal"
+done
 printf 'stage=%s\n' "$stage" >> "$GITHUB_OUTPUT"
