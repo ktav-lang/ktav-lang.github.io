@@ -1,0 +1,27 @@
+accepted = [
+    "MIT",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "0BSD",
+    "Zlib",
+    "BSL-1.0",
+    "Unicode-3.0",
+    "Unicode-DFS-2016",
+]
+
+[ktav-wasm.clarify]
+license = "MIT OR Apache-2.0"
+override-git-commit = "562deb3fde092d63a78f359be095e5079929d0d1"
+
+[[ktav-wasm.clarify.git]]
+path = "LICENSE-MIT"
+license = "MIT"
+checksum = "dab3570e779bf2a81f0331e5346b8f663278e624df1daf052751fa5ca2dbab5d"
+
+[[ktav-wasm.clarify.git]]
+path = "LICENSE-APACHE"
+license = "Apache-2.0"
+checksum = "a6dc86d5f5d6c98462c1361d7c062ca8d3a932aa13ecbffbb2ab9f8b1586feec"

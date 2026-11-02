@@ -1,0 +1,56 @@
+[
+  {
+    "path": "LLVM-LICENSE.TXT",
+    "repository": "llvm/llvm-project",
+    "revision": "222fc11f2b8f25f6a0f4976272ef1bb7bf49521d",
+    "upstream_path": "llvm/LICENSE.TXT",
+    "bytes": 15141,
+    "sha256": "8d85c1057d742e597985c7d4e6320b015a9139385cff4cbae06ffc0ebe89afee",
+    "git_blob": "fa6ac540007032cbd0ec772a1c72e6cb5527a4fe"
+  },
+  {
+    "path": "WASI-LICENSE",
+    "repository": "WebAssembly/wasi-libc",
+    "revision": "ac020b86fd44bafe60aa4fa12f407d16e3731329",
+    "upstream_path": "LICENSE",
+    "bytes": 910,
+    "sha256": "2711a8b5a5cdfef0e639f96c1aca12ae23d7d64a02d0507f1bdf14d2b27bbc3a",
+    "git_blob": "d3e737899d93ea0794d8dd67eac9f6020bb105bf"
+  },
+  {
+    "path": "WASI-LICENSE-APACHE",
+    "repository": "WebAssembly/wasi-libc",
+    "revision": "ac020b86fd44bafe60aa4fa12f407d16e3731329",
+    "upstream_path": "LICENSE-APACHE",
+    "bytes": 10847,
+    "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2",
+    "git_blob": "16fe87b06e802f094b3fbb0894b137bca2b16ef1"
+  },
+  {
+    "path": "WASI-LICENSE-APACHE-LLVM",
+    "repository": "WebAssembly/wasi-libc",
+    "revision": "ac020b86fd44bafe60aa4fa12f407d16e3731329",
+    "upstream_path": "LICENSE-APACHE-LLVM",
+    "bytes": 12243,
+    "sha256": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5",
+    "git_blob": "f9d81955f4bcb8f96a025e2ecc46f39ec536d465"
+  },
+  {
+    "path": "WASI-LICENSE-MIT",
+    "repository": "WebAssembly/wasi-libc",
+    "revision": "ac020b86fd44bafe60aa4fa12f407d16e3731329",
+    "upstream_path": "LICENSE-MIT",
+    "bytes": 1023,
+    "sha256": "23f18e03dc49df91622fe2a76176497404e46ced8a715d9d2b67a7446571cca3",
+    "git_blob": "31aa79387f27e730e33d871925e152e35e428031"
+  },
+  {
+    "path": "MUSL-COPYRIGHT",
+    "repository": "WebAssembly/wasi-libc",
+    "revision": "ac020b86fd44bafe60aa4fa12f407d16e3731329",
+    "upstream_path": "libc-top-half/musl/COPYRIGHT",
+    "bytes": 6204,
+    "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+    "git_blob": "c1628e9ac84f927fe791124ec172fb61c760bb9b"
+  }
+]

@@ -73,12 +73,14 @@ build/data/icons.php   shared brand logos (icon() helper)
 
 - **Ktav** parse/serialize runs on the **official WASM bindings**, vendored
   self-contained at `vendor/ktav/ktav.inline.js` (wasm base64-embedded, one
-  file), built from `ktav-lang/js` at ktav **0.8.0** (`npm run build:wasm`,
+  file), built from `ktav-lang/js` at ktav **0.8.1** (`npm run build:wasm`,
   then copy `dist/wasm/web/ktav.inline.js`). Spec **0.8.0**: `##` comments,
   numbers/bools inferred from `:` (a leading-zero number such as `00544` stays
   a string), `::` forces a literal string, quoted keys (`"log.file": …`) keep
   dots and spaces, `\uXXXX` escapes. Errors arrive as a JSON envelope; the
-  converter shows its `message`.
+  converter shows its `message`. The build pins its Cargo graph in
+  `provenance/ktav-js-0.8.1-Cargo.lock`; dependency license texts are in
+  `vendor/ktav/THIRD_PARTY_NOTICES.txt`.
 - **JSON** native · **YAML** `js-yaml` · **TOML** `smol-toml` · **INI** a small
   hand-rolled parser/serializer in `converter.js`.
 - Every route goes through one intermediate JS value:
@@ -93,7 +95,7 @@ build/data/icons.php   shared brand logos (icon() helper)
 All five formats are edited in CodeMirror 6 (`assets/cm-editor.js`). Ktav is
 coloured by the canonical tree-sitter grammar (`assets/cm-ktav.js`): the
 vendored `vendor/tree-sitter/tree-sitter-ktav.wasm` and `highlights.scm` come
-from `ktav-lang/tree-sitter-ktav` for spec 0.8 (`node playground/build.mjs`
+from `ktav-lang/tree-sitter-ktav` **0.8.1** for spec 0.8 (`node playground/build.mjs`
 writes the wasm to `playground/out/`; copy it together with
 `queries/highlights.scm`).
 
@@ -122,4 +124,5 @@ Tailwind CLI + esbuild) are only needed when running `php build/build.php --js`.
 `assets/og.png` is a committed asset — regenerate it by rendering a 1200×630
 HTML banner with Playwright (it isn't part of the PHP build).
 
-Dual-licensed under **MIT OR Apache-2.0**.
+Dual-licensed under **MIT OR Apache-2.0**. Third-party license texts and
+notices are indexed in [`THIRD_PARTY_NOTICES.txt`](THIRD_PARTY_NOTICES.txt).

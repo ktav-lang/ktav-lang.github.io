@@ -1,0 +1,61 @@
+Third-party licenses and notices
+
+The site bundles or serves the following components. Paths are relative to the
+site root. The listed notices do not by themselves establish complete legal
+compliance; toolchain runtime and generated-code obligations require review.
+
+Ktav 0.8.1 WASM and its Cargo dependencies:
+  vendor/ktav/LICENSE-MIT
+  vendor/ktav/LICENSE-APACHE
+  vendor/ktav/THIRD_PARTY_NOTICES.txt
+
+Rust standard library 1.88.0 (toolchain notices):
+  vendor/rust-std/COPYRIGHT
+  vendor/rust-std/LICENSE-MIT
+  vendor/rust-std/LICENSE-APACHE
+  vendor/rust-std/COPYRIGHT-library.html (official Rust 1.88.0 report)
+
+Ktav tree-sitter grammar 0.8.1:
+  vendor/tree-sitter/ktav-LICENSE-MIT
+  vendor/tree-sitter/ktav-LICENSE-APACHE
+
+web-tree-sitter 0.26.8:
+  vendor/tree-sitter/web-tree-sitter.LICENSE
+
+Unicode ICU header subset used by web-tree-sitter 0.26.8:
+  vendor/tree-sitter/icu/LICENSE (complete original upstream notice)
+  vendor/tree-sitter/icu/utf8.h
+  vendor/tree-sitter/icu/utf16.h
+  vendor/tree-sitter/icu/umachine.h
+  provenance/tree-sitter-icu.json (exact runtime/source/material identities)
+  The small header subset is identified separately from the npm MIT license.
+  The complete upstream license file is retained verbatim, including its
+  conditional third-party notices; this does not mean that all ICU libraries
+  or dictionaries are included in this site.
+
+Emscripten 4.0.15 SDK code in the web-tree-sitter 0.26.8 runtime:
+  vendor/tree-sitter/runtime-sdk/emscripten/LICENSE (complete MIT/NCSA original)
+  vendor/tree-sitter/runtime-sdk/emscripten/AUTHORS
+  vendor/tree-sitter/runtime-sdk/musl/COPYRIGHT (complete original and exceptions)
+  vendor/tree-sitter/runtime-sdk/compiler-rt/LICENSE.TXT (Apache 2.0 with LLVM exception and legacy grants)
+  vendor/tree-sitter/runtime-sdk/sources/system/lib/dlmalloc.c (Doug Lea public-domain dedication)
+  provenance/tree-sitter-runtime-sdk.json (exact runtime, source, grant and link-member identities)
+  The profile enumerates every complete selected source and generated header.
+  The pinned source/image rebuild and its diagnostic link-map build reproduce
+  the served npm runtime byte for byte. Original file-level copyright notices,
+  permission text and full SDK license documents are retained without edits.
+  These materials cover the selected Emscripten, musl, dlmalloc and compiler-rt
+  inputs, not all SDK components. They do not describe the separate grammar
+  WASM or Ktav wasm-bindgen generated payload. ICU materials are listed above.
+
+npm components included in assets/bundle.js:
+  vendor/npm/THIRD_PARTY_NOTICES.txt
+
+js-yaml 4.1.0:
+  vendor/js-yaml.LICENSE
+
+smol-toml 1.3.1:
+  vendor/smol-toml.mjs (license and copyright notice in the file header)
+
+Tailwind CSS 3.4.19:
+  vendor/tailwindcss.LICENSE

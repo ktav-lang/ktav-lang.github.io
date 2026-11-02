@@ -1,0 +1,19 @@
+name: Vendored js-yaml notice
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  js-yaml-notice:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify reviewed js-yaml and upstream notice
+        run: |
+          printf "%s  %s\n" 16f210b939b359b6ec8dde581eb62c157185711dc7b719b33779c43db5c31a91 vendor/js-yaml.mjs | sha256sum --check
+          printf "%s  %s\n" a07bc24468b9654ce76a547d47a2db282d07733b715db4c73a98bd63961f9550 vendor/js-yaml.LICENSE | sha256sum --check

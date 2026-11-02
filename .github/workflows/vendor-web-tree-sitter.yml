@@ -1,0 +1,19 @@
+name: Vendored web-tree-sitter notice
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  web-tree-sitter-notice:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify reviewed wasm runtime and upstream notice
+        run: |
+          printf '%s  %s\n' 082795b88fe15e4b64043f835b4d7160fbf95e801855122acc9509239b5ef916 vendor/tree-sitter/web-tree-sitter.wasm | sha256sum --check
+          printf '%s  %s\n' c5cfb43042b6b72045f4ba997834d0a7786d2793d91680868b5815b39f14fc78 vendor/tree-sitter/web-tree-sitter.LICENSE | sha256sum --check
