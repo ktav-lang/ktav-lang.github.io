@@ -10,7 +10,7 @@ permissions:
 jobs:
   build-and-verify:
     name: Build pinned WASM and verify site
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
       GH_TOKEN: ${{ github.token }}
